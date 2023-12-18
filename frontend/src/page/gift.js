@@ -265,7 +265,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
             </img>
 
             {displayContent &&
-                <div className="animate-pulse  animate-charcter">
+                <div className="">
                     {/* <span className="font-sans text-[4cqw]">
                         Surprise Gift to you
                     </span>
@@ -273,7 +273,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     <span className="text-[3cqw] mt-4">
                         <br /> Check your luck
                     </span> */}
-                    <span className="font-sans text-[4cqw] mt-44">
+                    <span className="font-sans text-[4cqw] mt-44 animate-pulse giftBoxCss">
                         Try Your Luck
                     </span>
                 </div>

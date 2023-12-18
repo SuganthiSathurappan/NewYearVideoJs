@@ -25,8 +25,8 @@ const ContactForm = ({ handleTryOff }) => {
                 {displayContact &&
                     <div>
                         <div className="mx-auto w-full  flex flex-col space-y-2">
-                            <div className="animate-pulse videoFadeInAni mt-56">
-                                <span className="font-sans text-[3cqw] mt-24">
+                            <div className="animate-pulse videoFadeInAni  mt-56">
+                                <span className="text-[3cqw] mt-20">
                                 For Any Queries 
                                 </span>
 
