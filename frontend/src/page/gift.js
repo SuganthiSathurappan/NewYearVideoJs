@@ -137,6 +137,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
         return () => clearTimeout(timer);
 
     };
+    
     const CrakersFunction = () => {
         let canvas, ctx, w, h, particles = [], probability = 0.04,
             xPoint, yPoint;
@@ -260,7 +261,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
         <div className=" font-poppins  container1 ">
             <canvas id="canvas" className="canvasCss" >
             </canvas>
-            <img alt="" src="/assets/Gift-bg.jpg" className="w-full h-full ">
+            <img alt="" src="/assets/video-bg.jpg" className="w-full h-full ">
             </img>
 
             {displayContent &&
