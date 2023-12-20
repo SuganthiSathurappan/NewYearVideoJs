@@ -110,9 +110,6 @@ const ContactForm = ({ handleTryOff }) => {
                         </div> */}
 
 
-
-
-
                                 {/* Change Design */}
                         <div className='flex justify-center basis-1/2'>
                           <div className=' rounded-xl border-5 border-[#e78b08] bg-black-rgba space-y-2 m-1.5 p-4'>
