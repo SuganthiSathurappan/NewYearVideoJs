@@ -27,7 +27,7 @@ const ContactForm = ({ handleTryOff }) => {
                         <div className="mx-auto w-full  flex flex-col space-y-2">
                             <div className="animate-pulse videoFadeInAni  mt-56">
                                 <span className="text-xl md:text-[3cqw] mt-20">
-                                         For Any Queries 
+                                    For Any Queries
                                 </span>
                                 <span className="text-xl md:text-[3cqw] mt-28">
                                     <br /> Please Contact
@@ -110,20 +110,30 @@ const ContactForm = ({ handleTryOff }) => {
                         </div> */}
 
 
-                                {/* Change Design */}
+
+                        {/* Change Design */}
                         <div className='flex justify-center basis-1/2'>
-                          <div className=' rounded-xl border-5 border-[#e78b08] bg-black-rgba space-y-2 m-1.5 p-4'>
+                            <div className=' rounded-xl border-5 border-[#e78b08] bg-black-rgba space-y-2 m-1.5 p-4'>
                                 <div className='flex flex-col flex-wrap space-y-3'>
                                     <div className=''>
-                                       <input type="text" name='name'  placeholder="Enter your Name"  className={`w-96 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
+                                        <input type="text" name='name' placeholder="Enter your Name" className={`w-96 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
                                               text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
                                     </div>
                                     <div className=''>
-                                    <input type="email" name='email'  placeholder="Enter your Email"  className={`w-96 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
+                                        <input type="email" name='email' placeholder="Enter your Email" className={`w-96 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
                                               text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
                                     </div>
                                     <div className=''>
-                                    <input type="tel" name='number'  placeholder="Enter your Number"  className={`w-96 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
+                                        <input type="tel" name='number' placeholder="Enter your Number" className={`w-96 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
+       text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
+                                    </div>
+                                    <div className=''>
+                                        <input type="email" name='email' placeholder="Enter your Email" className={`w-80 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
+                                              text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
+                                    </div>
+                                    <div className=''>
+                                        <input type="tel" name='number' placeholder="Enter your Number" className={`w-80 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
+
                                               text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
                                     </div>
                                 </div>
@@ -147,9 +157,9 @@ const ContactForm = ({ handleTryOff }) => {
                                         Submit
                                     </a>
                                 </div>
-                                
-                          </div>
-                       </div>
+
+                            </div>
+                        </div>
                     </div>
                 }
 

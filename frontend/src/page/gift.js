@@ -278,6 +278,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     </span>
                 </div>
             }
+
             <div className="flex justify-center">
                 {displayGiftBox &&
                     <div className="w-44 absolute top-0  ">
