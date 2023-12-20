@@ -26,11 +26,10 @@ const ContactForm = ({ handleTryOff }) => {
                     <div>
                         <div className="mx-auto w-full  flex flex-col space-y-2">
                             <div className="animate-pulse videoFadeInAni  mt-56">
-                                <span className="text-[3cqw] mt-20">
-                                For Any Queries 
+                                <span className="text-xl md:text-[3cqw] mt-20">
+                                         For Any Queries 
                                 </span>
-
-                                <span className="text-[2cqw] mt-28">
+                                <span className="text-xl md:text-[3cqw] mt-28">
                                     <br /> Please Contact
                                 </span>
                             </div>

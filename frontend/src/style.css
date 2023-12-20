@@ -4,7 +4,6 @@
   font-family: poppins;
   /* background-image: url('../public/assets/Template-Video.jpg'); */
 }
-
 /* overlay text animated */
 .overlayTitle1 {
   width: 100%;
@@ -138,7 +137,8 @@ video {
   left: 0;
   width: 100%;
   height: 100%;
-
+  justify-content: center;
+  align-items: center;
   /* background-image: url("../public/assets/Gift-bg.jpg"); */
 }
 .container1 img {
@@ -171,9 +171,7 @@ video {
 
 .giftopenCss {
   animation: fadeInAnimation ease 5s;
-  position: absolute;
-  top: 40%;
-  left: 15%;
+
 }
 
 .gift1Css {
@@ -181,7 +179,7 @@ video {
   position: absolute;
   width: 50%;
   left: 25%;
-  top: 15%;
+  top: 5%;
 }
 
 .gift3Css {
@@ -197,7 +195,7 @@ video {
   position: absolute;
   width: 25%;
   left: 38%;
-  top: 15%;
+  top: 5%;
 }
 
 /* contact form css */
@@ -232,7 +230,8 @@ video {
 /* full sceen css */
 .canvasCss {
   position: absolute;
-  width: 100%;
+  top: 0;
+  width: 80%;
   height: auto;
   background-color: transparent;
 }
@@ -257,7 +256,7 @@ video {
 }
 
 
-/* responsive design */
+/* Changes */
 @media only screen and (max-width: 768px) {
   /* Adjust width for smaller screens */
   .container {
@@ -268,6 +267,46 @@ video {
   .overlayTitle1 {
     top: 20%;
   }
+  .canvasCss {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+  }
+  .gift1Css {
+    animation: fadeInAnimation ease 5s;
+    position: absolute;
+    width: 100%;
+    left: 25%;
+    top: 15%;
+  }
+  .gift3Css {
+    animation: fadeInAnimation ease 5s;
+    position: absolute;
+    width: 70%;
+    left: 15%;
+    top: 25%;
+  }
+  .gift4Css {
+    animation: fadeInAnimation ease 5s;
+    position: absolute;
+    width: 55%;
+    left: 20%;
+    top: 15%;
+  }
+  .custom-skip-button {
+    position: absolute;
+    bottom: 15%;
+    font-family: poppins;
+    right: 5px;
+    background-color: #e78b08;
+    border: 2px solid #172936;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px rgba(202, 58, 58, 0.1);
+    font-size: 20px;
+
+  }
 }
 
 @media only screen and (max-width: 480px) {
@@ -276,9 +315,50 @@ video {
     width: 100%;
     height: 500px;
   }
-
+  .canvasCss {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: auto;
+    background-color: transparent;
+  }
   .overlayTitle1 {
     top: 10%;
   }
+  .gift1Css {
+    animation: fadeInAnimation ease 5s;
+    position: absolute;
+    top: 15%;
+    left: 12%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+  .gift3Css {
+    animation: fadeInAnimation ease 5s;
+    position: absolute;
+    width: 70%;
+    left: 15%;
+    top: 25%;
+  }
+  .gift4Css {
+    animation: fadeInAnimation ease 5s;
+    position: absolute;
+    width: 55%;
+    left: 20%;
+    top: 15%;
+  }
+  .custom-skip-button {
+    position: absolute;
+    bottom: 15%;
+    font-family: poppins;
+    right: 5px;
+    background-color: #e78b08;
+    border: 2px solid #172936;
+    border-radius: 8px;
+    box-shadow: 1px 1px 2px rgba(202, 58, 58, 0.1);
+    font-size: 20px;
+  }
+  
 }
 

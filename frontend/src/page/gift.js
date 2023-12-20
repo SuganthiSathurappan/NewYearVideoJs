@@ -278,26 +278,24 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     </span>
                 </div>
             }
-            <div
-                className={`gift-form common`}>
+               <div className="flex justify-center">
                 {displayGiftBox &&
-                    <div className="w-64 mx-72 ">
+                    <div className="w-36 absolute top-0  ">
                         <img alt=""
                             src="/assets/Gift-box.png"
-                            className=" cursor-pointer mt-40 giftBoxCss"
+                            className="cursor-pointer mt-40 giftBoxCss"
                             onClick={handleGiftClick}
                         />
                     </div>
                 }
                 {displayGiftBoxOpen &&
-                    <div className="w-64 flex flex-col justify-center items-center mx-72 animate-pulse giftBoxOpen">
+                    <div className="w-52 md:w-64  absolute top-0 animate-pulse ">
                         <img alt="" src="/assets/gift-cover.png" className=" cursor-pointer mt-16" />
                         <img alt="" src="/assets/gift-bottom.png" className=" cursor-pointer mt-32" />
                     </div>
                 }
-
-                {displayGiftBoxCheck &&
-                    <div className="w-28 flex giftopenCss animate-fade-up">
+                                            {displayGiftBoxCheck &&
+                    <div className="w-16 md:w-28 flex justify-center absolute top-40 giftopenCss animate-fade-up">
                         <img alt="" src="/assets/small-gift1.png"
                             className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
                             onClick={handleGift1Click}
@@ -315,7 +313,25 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                             onClick={handleGift4Click}
                         />
                     </div>
-                }
+                }   
+                                {displayTry &&
+                <div className="absolute bottom-3 py-2 justify-center">
+                    <a href
+                        className="w-auto p-1.5 font-semibold border-4  border-[#e78b08] text-[20px]  text-deep-purple-900  rounded-xl bg-[#dfcb18] text-center
+                               cursor-pointer no-underline focus:shadow-outline focus:outline-none"
+                        onClick={handleTry}
+                    >
+                        Try Your Luck Again
+                    </a>
+                </div>
+            }
+
+                </div>
+
+
+            <div className={`gift-form common`}>         
+                
+
             </div>
             {displayGiftBox1 &&
                 <div className=" gift1Css
@@ -349,22 +365,12 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     />
                 </div>
             }
-            {displayTry &&
-                <div className="flex mt-[-10%] py-2 justify-center">
-                    <a href
-                        className="w-auto p-3 font-semibold border-4  border-[#e78b08] text-[20px]  text-deep-purple-900  rounded-xl bg-[#dfcb18] text-center
-                               cursor-pointer no-underline focus:shadow-outline focus:outline-none"
-                        onClick={handleTry}
-                    >
-                        Try Your Luck Again
-                    </a>
-                </div>
-            }
+
             {displayContactForm &&
                 <ContactForm />
             }
             {displaySkip &&
-                <div className="text-xl  custom-skip-button ">
+                <div className="text-xl  custom-skip-button  ">
                     <button
                         className="py-1 px-4 "
                         onClick={getSkip}>
