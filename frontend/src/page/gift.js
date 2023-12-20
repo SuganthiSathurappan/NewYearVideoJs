@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import UserDetailsForm from './getUserForm'
+import UserDetailsForm from './gift1Form'
 import ContactForm from "./contactForm";
+import GiftVoucherForm from "./giftVoucherForm"
 
 const GiftForm = ({ getSkip, getContactForm }) => {
     const [displayContent, setDisplayContent] = useState(false)
@@ -16,20 +17,19 @@ const GiftForm = ({ getSkip, getContactForm }) => {
     const [displayContactForm, setDisplayContactForm] = useState(false)
 
     useEffect(() => {
-       
+
         CrakersFunction()
-     
+
         if (!getContactForm) {
             setTimeout(() => {
                 setDisplayContent(true);
             }, 1000);
             setTimeout(() => {
-                setDisplayContent(false);
+                // setDisplayContent(false);
                 setDisplayGiftBox(true);
-            }, 6000);
+            }, 2000);
         }
-        else
-        {
+        else {
             setTimeout(() => {
                 setDisplayContactForm(true);
             }, 1000);
@@ -66,7 +66,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
         setDisplayGiftBoxCheck(false)
         setDisplayGiftBox1(true)
         // setDisplaySkip(true)
-        setDisplayTry(true)
+        // setDisplayTry(true)
     };
     const handleGift3Click = () => {
         setDisplayContent(false)
@@ -137,7 +137,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
         return () => clearTimeout(timer);
 
     };
-    
+
     const CrakersFunction = () => {
         let canvas, ctx, w, h, particles = [], probability = 0.04,
             xPoint, yPoint;
@@ -273,31 +273,29 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     <span className="text-[3cqw] mt-4">
                         <br /> Check your luck
                     </span> */}
-                    <span className="font-sans text-[4cqw] mt-44 animate-pulse giftBoxCss">
+                    <span className="font-sans text-[4cqw] top-10 animate-pulse giftBoxCss">
                         Try Your Luck
                     </span>
                 </div>
             }
-            <div
-                className={`gift-form common`}>
+            <div className="flex justify-center">
                 {displayGiftBox &&
-                    <div className="w-64 mx-72 ">
+                    <div className="w-44 absolute top-0  ">
                         <img alt=""
                             src="/assets/Gift-box.png"
-                            className=" cursor-pointer mt-40 giftBoxCss"
+                            className="cursor-pointer mt-44 giftBoxCss"
                             onClick={handleGiftClick}
                         />
                     </div>
                 }
                 {displayGiftBoxOpen &&
-                    <div className="w-64 flex flex-col justify-center items-center mx-72 animate-pulse giftBoxOpen">
+                    <div className="w-52 md:w-64  absolute top-0 animate-pulse ">
                         <img alt="" src="/assets/gift-cover.png" className=" cursor-pointer mt-16" />
                         <img alt="" src="/assets/gift-bottom.png" className=" cursor-pointer mt-32" />
                     </div>
                 }
-
                 {displayGiftBoxCheck &&
-                    <div className="w-28 flex giftopenCss animate-fade-up">
+                    <div className="w-16 md:w-28 flex justify-center absolute top-40 giftopenCss animate-fade-up">
                         <img alt="" src="/assets/small-gift1.png"
                             className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
                             onClick={handleGift1Click}
@@ -316,8 +314,26 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                         />
                     </div>
                 }
+                {displayTry &&
+                    <div className="absolute bottom-3 py-2 justify-center">
+                        <a href
+                            className="w-auto p-1.5 font-semibold border-4  border-[#e78b08] text-[20px]  text-deep-purple-900  rounded-xl bg-[#dfcb18] text-center
+                               cursor-pointer no-underline focus:shadow-outline focus:outline-none"
+                            onClick={handleTry}
+                        >
+                            Try Your Luck Again
+                        </a>
+                    </div>
+                }
+
             </div>
-            {displayGiftBox1 &&
+
+
+            <div className={`gift-form common`}>
+
+
+            </div>
+            {/* {displayGiftBox1 &&
                 <div className=" gift1Css
                      transition duration-300 ease-in-out hover:scale-110 ">
                     <img alt=""
@@ -325,8 +341,11 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                         className="w-full"
                     />
                 </div>
-            }
+            } */}
 
+            {displayGiftBox1 &&
+                <GiftVoucherForm handleTryOff={handleTry} />
+            }
             {displayGiftBox2 &&
                 <UserDetailsForm handleTryOff={handleTry} />
             }
@@ -349,22 +368,12 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     />
                 </div>
             }
-            {displayTry &&
-                <div className="flex mt-[-10%] py-2 justify-center">
-                    <a href
-                        className="w-auto p-3 font-semibold border-4  border-[#e78b08] text-[20px]  text-deep-purple-900  rounded-xl bg-[#dfcb18] text-center
-                               cursor-pointer no-underline focus:shadow-outline focus:outline-none"
-                        onClick={handleTry}
-                    >
-                        Try Your Luck Again
-                    </a>
-                </div>
-            }
+
             {displayContactForm &&
                 <ContactForm />
             }
             {displaySkip &&
-                <div className="text-xl  custom-skip-button ">
+                <div className="text-xl  custom-skip-button  ">
                     <button
                         className="py-1 px-4 "
                         onClick={getSkip}>
@@ -378,5 +387,3 @@ const GiftForm = ({ getSkip, getContactForm }) => {
     );
 };
 export default GiftForm;
-
-
