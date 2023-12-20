@@ -70,15 +70,7 @@ const ContactForm = ({ handleTryOff }) => {
                                         <input type="tel" name='number' placeholder="Enter your Number" className={`w-96 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
        text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
                                     </div>
-                                    <div className=''>
-                                        <input type="email" name='email' placeholder="Enter your Email" className={`w-80 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
-                                              text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
-                                    </div>
-                                    <div className=''>
-                                        <input type="tel" name='number' placeholder="Enter your Number" className={`w-80 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
-
-                                              text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
-                                    </div>
+                    
                                 </div>
                                 <div className="flex py-1">
                                     <textarea
