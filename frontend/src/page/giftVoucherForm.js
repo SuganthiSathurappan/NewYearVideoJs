@@ -27,26 +27,24 @@ const GetUserForm = ({ handleTryOff }) => {
                     <img alt="" src="/assets/Voucher1.jpg" className="w-full mt-28" />
                 </div>
             ) : (
-                <div className="flex left-0 top-0 items-center ">
-
-                    <img alt="" src="/assets/voucher-left.png"
-                        className="absolute top-36 left-10  w-[360px] h-autoc z-10 giftopenCss" />
-
-                    <div className={`transition-all duration-1000 ease-in-out `}>
-                        <div className={`absolute top-16 w-[480px] right-10 gift1FormCss`}>
-                            <h1 className={`text-[19px] text-white mx-2`}>
-                                To avail the Cash Voucher, kindly fill and submit
-                            </h1>
-                            <div className="w-full rounded-2xl border-4 border-[#669ef3] p-4 bg-black-rgba">
-                                <div className="mx-auto w-full flex flex-col space-y-2">
+                // Changes responsive form
+                <>
+                    <div className="flex justify-center">
+                        <div className="flex absolute top-28 ">
+                            <div className="flex items-center relative left-2 ">
+                                <img alt="" src="/assets/voucher-left.png" className="w-[350px]  h-48 z-10 giftopenCss" />
+                            </div>
+                            <div className="-mt-10 transition-all duration-1000 ease-in-out gift1FormCss -ml-3">
+                                <h1 className={`text-[19px] text-white mx-2`}>
+                                    To avail the Cash Voucher, kindly fill and submit
+                                </h1>
+                                <div className="rounded-2xl border-4 border-[#669ef3] p-4 bg-black-rgba">
                                     <div className="flex py-1">
-                                        <input
-                                            className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline bg-gray-100 text-gray-600 focus:border-white`}
+                                        <input className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline bg-gray-100 text-gray-600 focus:border-white`}
                                             type="text"
                                             placeholder="Enter your Name"
                                         />
                                     </div>
-
                                     <div className="flex py-1">
                                         <input
                                             className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline ${darkMode
@@ -57,7 +55,6 @@ const GetUserForm = ({ handleTryOff }) => {
                                             placeholder="Phone Number"
                                         />
                                     </div>
-
                                     <div className="flex py-1">
                                         <input
                                             className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline ${darkMode
@@ -68,7 +65,6 @@ const GetUserForm = ({ handleTryOff }) => {
                                             placeholder="Email Id"
                                         />
                                     </div>
-
                                     <div className="flex py-1">
                                         <textarea
                                             className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline ${darkMode
@@ -79,22 +75,22 @@ const GetUserForm = ({ handleTryOff }) => {
                                             placeholder="Address"
                                         />
                                     </div>
+                                    <div className="flex justify-center mt-2">
+                                        <a href="#"
+                                            className="w-40  p-1.5  border-3 border-[#669ef3] text-[24px] text-white rounded-lg bg-[#2f49af] text-center 
+                               cursor-pointer no-underline focus:shadow-outline focus:outline-none"
+                                            onClick={() => handleTryOff()}>
+                                            Submit
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className="flex py-3 mx-40">
-                                <a
-                                    href="# "
-                                    className="w-40  p-1.5  border-3 border-[#669ef3] text-[24px] text-white rounded-lg bg-[#2f49af] text-center 
-                                    cursor-pointer no-underline focus:shadow-outline focus:outline-none"
-                                    onClick={() => handleTryOff()}
-                                >
-                                    Submit
-                                </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
+                </>
+
+            )
+            };
         </div>
 
     )

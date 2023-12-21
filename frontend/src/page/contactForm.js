@@ -20,10 +20,10 @@ const ContactForm = ({ handleTryOff }) => {
         <div className="flex flex-col justify-center items-center font-poppins ">
 
             <div
-                className={`contact-form common giftopenCss`}
+                className={`contact-form common `}
             >
                 {displayContact &&
-                    <div>
+                    <div className="giftBoxContentCss">
                         <div className="mx-auto w-full  flex flex-col space-y-2">
                             <div className="animate-pulse videoFadeInAni  mt-80">
                                 <span className="text-lg md:text-[2cqw] mt-28 text-[#ffdf60]">

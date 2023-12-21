@@ -209,7 +209,7 @@ video {
 
 /* contact form css */
 .contact-form {
-  animation: fadeInAnimation ease 5s;
+  /* animation: fadeInAnimation ease 5s; */
   position: absolute;
   width: 55%;
   top: 0;
