@@ -30,7 +30,7 @@ const GetUserForm = ({ handleTryOff }) => {
                 <div className="flex left-0 top-0 items-center ">
 
                     <img alt="" src="/assets/voucher-left.png"
-                        className="absolute top-36 left-10  w-[340px] h-autoc z-10 giftopenCss" />
+                        className="absolute top-36 left-10  w-[360px] h-autoc z-10 giftopenCss" />
 
                     <div className={`transition-all duration-1000 ease-in-out `}>
                         <div className={`absolute top-16 w-[480px] right-10 gift1FormCss`}>
