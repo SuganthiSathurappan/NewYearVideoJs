@@ -35,7 +35,7 @@ const GetUserForm = ({ handleTryOff }) => {
                             </div>
                             <div className="-mt-10 transition-all duration-1000 ease-in-out gift1FormCss">
                                 <h1 className={`text-[19px] text-white mx-2`}>
-                                    To avail the Cash Voucher, kindly fill and submit
+                                    To avail the Groceries Voucher, kindly fill and submit
                                 </h1>
                                 <div className="rounded-2xl border-4 border-[#669ef3] p-4 bg-black-rgba">
                                     <div className="flex py-1">
