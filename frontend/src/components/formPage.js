@@ -10,9 +10,9 @@ const FormPage = () => {
       <h1>Form Page</h1>
       <Link to={`/video-player/${encryptName('Toben')}`}>Toben's Link</Link>
       <br />
-      <Link to={`/video-player/${encryptName('Sankar kumar')}`}>Sankar kumar's Link</Link>
+      <Link to={`/video-player/${encryptName('Sankar')}`}>Sankar's Link</Link>
       <br />
-      <Link to={`/video-player/${encryptName('Venkatesh Prabhu')}`}>Venkatesh Prabhu's Link</Link>
+      <Link to={`/video-player/${encryptName('Venkatesh')}`}>Venkatesh's Link</Link>
     </div>
   );
 };

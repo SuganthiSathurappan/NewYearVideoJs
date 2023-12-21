@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import UserDetailsForm from './gift1Form'
 import ContactForm from "./contactForm";
 import GiftVoucherForm from "./giftVoucherForm"
+import Gift4Form from "./gift4Form"
 
 const GiftForm = ({ getSkip, getContactForm }) => {
     const [displayContent, setDisplayContent] = useState(false)
@@ -23,7 +24,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
         if (!getContactForm) {
             setTimeout(() => {
                 setDisplayContent(true);
-            }, 1000);
+            }, 500);
             setTimeout(() => {
                 // setDisplayContent(false);
                 setDisplayGiftBox(true);
@@ -101,7 +102,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
 
         setDisplayGiftBox4(true)
         setDisplaySkip(true)
-        setDisplayTry(true)
+        // setDisplayTry(true)
     };
 
     const handleSkip = () => {
@@ -258,7 +259,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
     }
 
     return (
-        <div className=" font-poppins  container1 ">
+        <div className="font-poppins  container1 ">
             <canvas id="canvas" className="canvasCss" >
             </canvas>
             <img alt="" src="/assets/video-bg.jpg" className="w-full h-full ">
@@ -273,7 +274,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     <span className="text-[3cqw] mt-4">
                         <br /> Check your luck
                     </span> */}
-                    <span className="font-sans text-[4cqw] top-10 animate-pulse giftBoxCss">
+                    <span className="text-[4cqw] top-0 mt-20 animate-pulse giftBoxContentCss font-poppins">
                         Try Your Luck
                     </span>
                 </div>
@@ -281,16 +282,16 @@ const GiftForm = ({ getSkip, getContactForm }) => {
 
             <div className="flex justify-center">
                 {displayGiftBox &&
-                    <div className="w-44 absolute top-0  ">
+                    <div className="w-44 absolute top-44  ">
                         <img alt=""
                             src="/assets/Gift-box.png"
-                            className="cursor-pointer mt-44 giftBoxCss"
+                            className="cursor-pointer giftBoxContentCss"
                             onClick={handleGiftClick}
                         />
                     </div>
                 }
                 {displayGiftBoxOpen &&
-                    <div className="w-52 md:w-64  absolute top-0 animate-pulse ">
+                    <div className="w-52 md:w-64  absolute top-0 animate-pulse giftBoxContentCss">
                         <img alt="" src="/assets/gift-cover.png" className=" cursor-pointer mt-16" />
                         <img alt="" src="/assets/gift-bottom.png" className=" cursor-pointer mt-32" />
                     </div>
@@ -316,7 +317,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     </div>
                 }
                 {displayTry &&
-                    <div className="absolute bottom-3 py-2 justify-center">
+                    <div className="absolute bottom-10 py-2 justify-center">
                         <a href
                             className="w-auto p-1.5 font-semibold border-4  border-[#e78b08] text-[20px]  text-deep-purple-900  rounded-xl bg-[#dfcb18] text-center
                                cursor-pointer no-underline focus:shadow-outline focus:outline-none"
@@ -350,17 +351,23 @@ const GiftForm = ({ getSkip, getContactForm }) => {
             {displayGiftBox2 &&
                 <UserDetailsForm handleTryOff={handleTry} />
             }
+            {displayGiftBox4 &&
+                <Gift4Form handleTryOff={handleTry} />
+
+            }
 
             {displayGiftBox3 &&
 
                 <div className="gift3Css transition duration-300 ease-in-out hover:scale-110 ">
+
                     <img alt=""
-                        src="/assets/gift-voucher1.png"
+                        src="/assets/greeting.png"
                         className="w-full"
                     />
+
                 </div>
             }
-            {displayGiftBox4 &&
+            {/* {displayGiftBox4 &&
 
                 <div className="gift4Css transition duration-300 ease-in-out hover:scale-110 ">
                     <img alt=""
@@ -368,7 +375,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                         className="w-full"
                     />
                 </div>
-            }
+            } */}
 
             {displayContactForm &&
                 <ContactForm />

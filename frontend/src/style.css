@@ -165,13 +165,18 @@ video {
     transform: scale(1);
   }
 }
-.giftBoxOpen{
-  animation: fadeInAnimation ease 5s;
-}
+/* .giftBoxOpen{
+ 
+    opacity: 1;
+    transition: opacity 500ms ease-out;
+    animation: fadeInAnimationContent ease 2s, pulseContent 1s infinite ease-in-out alternate;
+} */
 
 .giftopenCss {
-  animation: fadeInAnimation ease 5s;
-
+  /* animation: fadeInAnimation ease 5s; */
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: fadeInAnimationContent ease 2s;
 }
 
 .gift1Css {
@@ -183,19 +188,23 @@ video {
 }
 
 .gift3Css {
-  animation: fadeInAnimation ease 5s;
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: fadeInAnimationContent ease 2s,pulseContent 1s infinite ease-in-out alternate;
   position: absolute;
-  width: 70%;
-  left: 15%;
-  top: 25%;
+  width: 50%;
+  left: 25%;
+  top: 20%;
 }
 
 .gift4Css {
-  animation: fadeInAnimation ease 5s;
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: fadeInAnimationContent ease 2s,pulseContent 1s infinite ease-in-out alternate;
   position: absolute;
   width: 25%;
-  left: 38%;
-  top: 5%;
+  left: 37%;
+  top: 8%;
 }
 
 /* contact form css */
@@ -364,5 +373,31 @@ video {
 
 .gift1FormCss {
   animation: scale 2s forwards cubic-bezier(0.5, 1, 0.89, 1), fadeIn ease 5s;
+}
+
+
+/* Add this CSS to your stylesheet */
+.giftBoxContentCss {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: fadeInAnimationContent ease 2s, pulseContent 1s infinite ease-in-out alternate;
+}
+
+@keyframes fadeInAnimationContent {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseContent {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 

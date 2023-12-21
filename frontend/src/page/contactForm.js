@@ -20,20 +20,20 @@ const ContactForm = ({ handleTryOff }) => {
         <div className="flex flex-col justify-center items-center font-poppins ">
 
             <div
-                className={`contact-form common`}
+                className={`contact-form common giftopenCss`}
             >
                 {displayContact &&
                     <div>
                         <div className="mx-auto w-full  flex flex-col space-y-2">
-                            <div className="animate-pulse videoFadeInAni  mt-56">
-                                <span className="text-xl md:text-[3cqw] mt-20">
-                                    For Any Queries
+                            <div className="animate-pulse videoFadeInAni  mt-80">
+                                <span className="text-lg md:text-[2cqw] mt-28 text-[#ffdf60]">
+                                    Feel free to contact
                                 </span>
-                                <span className="text-xl md:text-[3cqw] mt-28">
+                                {/* <span className="text-xl md:text-[3cqw] mt-28">
                                     <br /> Please Contact
-                                </span>
+                                </span> */}
                             </div>
-                            <div className="flex py-2 justify-center ">
+                            {/* <div className="flex py-2 justify-center ">
                                 <a href
                                     className="w-auto p-3 font-semibold border-4  border-[#e78b08] text-[20px]  text-deep-purple-900  rounded-xl bg-[#dfcb18] text-center
                            cursor-pointer no-underline focus:shadow-outline focus:outline-none"
@@ -41,6 +41,13 @@ const ContactForm = ({ handleTryOff }) => {
                                 >
                                     Contact Us
                                 </a>
+                            </div> */}
+                            <div className="flex py-2 justify-center ">
+                                <span className="text-lg md:text-[2.5cqw] mt-48">
+                                    +65 9206 6938                                </span>
+                                <span className="text-lg md:text-[2.5cqw] mt-52">
+                                    <br />sales@skie.ai
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -52,7 +59,7 @@ const ContactForm = ({ handleTryOff }) => {
                         `}
                         >
                             Contact Details
-                        </h1>  
+                        </h1>
 
                         {/* Change Design */}
                         <div className='flex justify-center basis-1/2'>
@@ -70,7 +77,7 @@ const ContactForm = ({ handleTryOff }) => {
                                         <input type="tel" name='number' placeholder="Enter your Number" className={`w-96 md:w-94 px-2 py-2  rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
        text-sm focus:outline-none  focus:border-2  focus:outline bg-gray-100 text-gray-600 focus:border-white"`} />
                                     </div>
-                    
+
                                 </div>
                                 <div className="flex py-1">
                                     <textarea

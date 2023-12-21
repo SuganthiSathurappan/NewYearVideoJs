@@ -12,7 +12,7 @@ const GetUserForm = ({ handleTryOff }) => {
 
             setTimeout(() => {
                 setShowFirstImage(false);
-            }, 2000);
+            }, 5000);
         }
         // Cleanup function
         return () => {
@@ -23,22 +23,21 @@ const GetUserForm = ({ handleTryOff }) => {
     return (
         <div className="flex flex-col justify-between items-center font-poppins">
             {showFirstImage ? (
-                <div className="absolute top-0 w-[600px]">
+                <div className="absolute top-0 w-[600px] giftBoxContentCss">
                     <img alt="" src="/assets/Voucher1.jpg" className="w-full mt-28" />
                 </div>
             ) : (
-                <div className="flex justify-between items-center ">
+                <div className="flex left-0 top-0 items-center ">
 
                     <img alt="" src="/assets/voucher-left.png"
-                        className="absolute top-40 left-14 transform  transition-all duration-1000 ease-in-out w-80 h-48" />
+                        className="absolute top-36 left-10  w-[340px] h-autoc z-10 giftopenCss" />
 
-                    <div className={`w-[180px] transition-all duration-1000 ease-in-out `}>
-                        <div className={`absolute top-20 common gift1FormCss  w-[500px]`}>
-                            <h1 className={`text-center text-xl sm:text-xl  text-white`}>
-                               To avail the lucky gift, kindly fill and submit
+                    <div className={`transition-all duration-1000 ease-in-out `}>
+                        <div className={`absolute top-16 w-[480px] right-10 gift1FormCss`}>
+                            <h1 className={`text-[19px] text-white mx-2`}>
+                                To avail the Cash Voucher, kindly fill and submit
                             </h1>
-
-                            <div className="w-full rounded-2xl border-5 border-[#669ef3] p-4 bg-black-rgba">
+                            <div className="w-full rounded-2xl border-4 border-[#669ef3] p-4 bg-black-rgba">
                                 <div className="mx-auto w-full flex flex-col space-y-2">
                                     <div className="flex py-1">
                                         <input
@@ -82,11 +81,11 @@ const GetUserForm = ({ handleTryOff }) => {
                                     </div>
                                 </div>
                             </div>
-
-                            <div className="flex py-2 justify-center">
+                            <div className="flex py-3 mx-40">
                                 <a
-                                    href="#"
-                                    className="w-auto p-3 font-semibold border-4 border-[#669ef3] text-[20px] text-white rounded-xl bg-[#2f49af] text-center cursor-pointer no-underline focus:shadow-outline focus:outline-none"
+                                    href="# "
+                                    className="w-40  p-1.5  border-3 border-[#669ef3] text-[24px] text-white rounded-lg bg-[#2f49af] text-center 
+                                    cursor-pointer no-underline focus:shadow-outline focus:outline-none"
                                     onClick={() => handleTryOff()}
                                 >
                                     Submit

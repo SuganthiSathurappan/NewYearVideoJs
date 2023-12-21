@@ -8,12 +8,12 @@ const GetUserForm = ({ handleTryOff }) => {
     const [showFirstImage, setShowFirstImage] = useState(true);
 
     useEffect(() => {
-        if (showFirstImage) {
+        // if (showFirstImage) {
 
-            setTimeout(() => {
-                setShowFirstImage(false);
-            }, 4000);
-        }
+        //     setTimeout(() => {
+        //         setShowFirstImage(false);
+        //     }, 4000);
+        // }
         // Cleanup function
         return () => {
 
@@ -22,15 +22,15 @@ const GetUserForm = ({ handleTryOff }) => {
 
     return (
         <div className="flex flex-col justify-between items-center font-poppins">
-            {showFirstImage ? (
+            {/* {showFirstImage ? (
                 <div className="absolute top-0 giftBoxContentCss">
-                    <img alt="" src="/assets/Gold-Coin.png" className="w-56 mt-40" />
+                    <img alt="" src="/assets/gift-voucher2.png" className="w-56 mt-28" />
                 </div>
-            ) : (
+            ) : ( */}
                 <div className="flex justify-between items-center ">
 
-                    <img alt="" src="/assets/Gold-Coin-left.png"
-                        className="w-52 absolute top-32 left-20 giftopenCss" />
+                    <img alt="" src="/assets/gift-voucher2.png"
+                        className="w-52 absolute top-24 left-20 giftopenCss" />
 
                     <div className={`transition-all duration-1000 ease-in-out `}>
                         <div className={`absolute top-16 w-[480px] right-16 gift1FormCss`}>
@@ -95,7 +95,7 @@ const GetUserForm = ({ handleTryOff }) => {
                     </div>
 
                 </div>
-            )}
+            {/* )} */}
         </div>
 
     )
