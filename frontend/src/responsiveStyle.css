@@ -1,0 +1,466 @@
+/* App.css */
+#overlay {
+  z-index: 2147483647;
+  font-family: poppins;
+  /* background-image: url('../public/assets/Template-Video.jpg'); */
+}
+/* overlay text animated */
+.overlayTitle1 {
+  text-align: center;
+  transform: scale(0.94);
+  animation: scale 2s forwards cubic-bezier(0.5, 1, 0.89, 1), fadeIn ease 5s;
+  position: absolute;
+  z-index: 1;
+  color: white;
+  margin-top: 50%;
+}
+
+.mobile .overlayTitle1 {
+  margin-left: 0;
+  margin-top: 50%;
+  width: 100%;
+  /* background-color: blue; */
+}
+
+@keyframes scale {
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.spanCss1 {
+  font-size: 4.5cqw;
+}
+.spanCss2 {
+  font-size: 2.5cqw;
+}
+
+@keyframes fade-in {
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+/******************/
+
+.custom-skip-button {
+  margin: -50px auto;
+
+  font-family: poppins;
+  right: 5px;
+  background-color: #e78b08;
+  border: 2px solid #172936;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px rgba(202, 58, 58, 0.1);
+  font-size: 20px;
+}
+
+.custom-skip-button:after {
+  content: "\00bb";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.custom-skip-button:hover {
+  padding-right: 5px;
+}
+
+.custom-skip-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* document page css */
+.gift-form {
+  /* width: 30%; */
+  height: auto;
+  top: 0;
+  left: 0;
+  text-align: center;
+}
+
+.common {
+  height: auto;
+  /* opacity: 0.95; */
+  z-index: 2147483647;
+  position: absolute;
+}
+
+.container1 {
+  position: absolute;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.container1 span {
+  /* font-size: 3cqw; */
+  position: absolute;
+  width: 100%;
+  height: auto;
+  top: 10%;
+  text-align: center;
+}
+
+.giftBoxCss {
+  animation: pulse1 1s infinite ease-in-out alternate, fadeInAnimation ease 5s;
+}
+@keyframes pulse1 {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+/* .giftBoxOpen{
+   
+      opacity: 1;
+      transition: opacity 500ms ease-out;
+      animation: fadeInAnimationContent ease 2s, pulseContent 1s infinite ease-in-out alternate;
+  } */
+
+.giftopenCss {
+  /* animation: fadeInAnimation ease 5s; */
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: fadeInAnimationContent ease 2s;
+}
+
+.gift1Css {
+  animation: fadeInAnimation ease 5s;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  top: 5%;
+}
+
+.gift3Css {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: fadeInAnimationContent ease 2s,
+    pulseContent 1s infinite ease-in-out alternate;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  top: 20%;
+}
+
+.gift4Css {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: fadeInAnimationContent ease 2s,
+    pulseContent 1s infinite ease-in-out alternate;
+  position: absolute;
+  width: 25%;
+  left: 37%;
+  top: 8%;
+}
+
+/* contact form css */
+.contact-form {
+  /* animation: fadeInAnimation ease 5s; */
+  position: absolute;
+  width: 55%;
+  top: 0;
+}
+
+.video-js.container {
+  width: 100%;
+}
+
+.vjs-hidden {
+  display: none !important;
+}
+.hide-controls .vjs-control-bar {
+  display: none;
+}
+
+.hide-controls .vjs-big-play-button {
+  display: none !important;
+}
+
+.brand-image {
+  margin: 0 15px !important;
+}
+
+/* animattion in video fade in/out */
+.videoFadeInAni {
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.video-js.vjs-control-bar {
+  height: auto;
+}
+
+/* Changes */
+
+.canvasCss {
+  z-index: 1;
+  position: absolute;
+  width: 100%;
+  height: auto;
+  /* background-color: blue; */
+}
+.mobile .canvasCss {
+  margin-left: 0;
+  margin-top: 5%;
+  width: 100%;
+  /* background-color: #e78b08; */
+}
+
+.gift1FormCss {
+  animation: scale 2s forwards cubic-bezier(0.5, 1, 0.89, 1), fadeIn ease 5s;
+}
+
+/* Add this CSS to your stylesheet */
+.giftBoxContentCss {
+  opacity: 1;
+  transition: opacity 500ms ease-out;
+  animation: fadeInAnimationContent ease 2s,
+    pulseContent 1s infinite ease-in-out alternate;
+}
+
+@keyframes fadeInAnimationContent {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulseContent {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+/* Persionalization */
+
+/* Video Js .css */
+.video-container {
+  position: absolute;
+  width: 60%;
+  /* max-width: 800px; */
+  margin-left: 20%;
+  /* background-color: blue; */
+  margin-top: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobile {
+  margin-left: 0;
+  margin-top: 5%;
+  width: 100%;
+  /* background-color: blue; */
+}
+
+.tablet {
+  margin-top: 5%;
+  width: 100%;
+  margin-left: 0;
+  /* background-color: blue; */
+}
+
+.video-container video {
+  position: absolute;
+  height: auto;
+}
+
+.image-container {
+  position: absolute; /* or use relative, depending on your layout */
+  top: 0;
+  left: 0;
+  width: 100%; /* Make the image container take the full width of its parent */
+  height: 100%; /* Make the image container take the full height of its parent */
+  z-index: 1; /* Move the image behind the video player */
+}
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 1; /* Set a higher z-index to display the canvas above the image */
+}
+
+/* Changes */
+.mobile-giftboxcss {
+  /* position: absolute; */
+  width: 25%;
+  margin-top: -35%;
+}
+.mobile-giftboxOpencss {
+  /* To make all elements center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 60px auto;
+  width: 25%;
+}
+.mobile-giftboxbottomcss {
+  /* To make all elements center */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 150px auto;
+  width: 25%;
+}
+.mobile-smallboxescss {
+  margin: 170px auto;
+  width: 12%;
+}
+.gift1Vouchercss {
+  width: 70%;
+  margin: 100px auto;
+}
+.gift1Formeventcss {
+  /* width: 70%; */
+  margin-top: 2%;
+}
+.gift1Formeventcss h1 {
+  font-size: 24px;
+}
+.formImage{
+  top: 60px;
+}
+.formCoinImage{
+    width: 25%;
+    margin-right: 50px;
+    margin-left: 50px;
+    top: 20px;
+}
+
+/* For Desktop View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .canvasCss {
+    margin-left: 0;
+    margin-top: 0;
+    width: 60%;
+    /* background-color: #e78b08; */
+  }
+  .mobile-giftboxOpencss {
+    width: 25%;
+    margin: 50px auto;
+  }
+
+  .mobile-giftboxbottomcss {
+    width: 25%;
+    margin: 100px auto;
+  }
+
+  .mobile-smallboxescss {
+    margin: 120px auto;
+    width: 12%;
+  }
+  .gift1Vouchercss {
+    width: 60%;
+    margin: 100px auto;
+  }
+  .gift1Formeventcss {    
+    margin-top: 1px;
+    width: 60%;
+    /* background-color: #e78b08; */
+  }
+  .gift1Formeventcss h1 {
+    font-size: 10px;
+  }
+  .gift1Formeventcss form{   
+    height:202px;
+  }
+  .formImage{
+    width: 50%;
+    top: 0px;
+  }
+  .custom-skip-button {
+    margin: -50px auto;
+    right: 4%;
+  }
+}
+
+/* For Mobile View */
+@media only screen and (max-width: 480px) {
+  /* Further adjustments for even smaller screens */
+
+  .mobile-giftboxcss {
+    width: 20%;
+  }
+
+  .mobile-giftboxOpencss {
+    width: 20%;
+    margin: 40px auto;
+  }
+
+  .mobile-giftboxbottomcss {
+    width: 20%;
+    margin: 50px auto;
+  }
+
+  .mobile-smallboxescss {
+    margin: 80px auto;
+    width: 25px;
+  }
+
+  .gift1Vouchercss {
+    width: 50%;
+    margin: 50px auto;
+  }
+  .gift1Formeventcss {  
+    padding-top: -10px;  
+    margin-top: -10px;
+    width: 100%;
+    overflow: hidden;
+    /* background-color: #e78b08; */
+  }
+  .gift1Formeventcss h1 {
+    font-size: 8px;
+  }
+ .gift1Formeventcss textarea{
+    height: 1px;
+    /* padding: auto; */
+   
+ }
+  .gift1Formeventcss input{
+    width: 100%;
+    height: 1px;
+  }
+  .gift1Formeventcss form{   
+    height:120px;
+  }
+  .formImage{
+    display: none;
+  }
+  .custom-skip-button {
+    margin: -50px auto;
+    /* width: 80px; */
+    right: 4%;
+  }
+}

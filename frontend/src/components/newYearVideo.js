@@ -4,11 +4,12 @@ import 'video.js/dist/video-js.css';
 import "videojs-contextmenu-ui";
 import "videojs-overlay";
 import { useParams } from 'react-router-dom';
-import { decrypt } from "../common/cryptoUtils";
 import 'videojs-playlist';
+import { useMediaQuery } from 'react-responsive'
 
 import Gift from '../page/gift'
 import ContactForm from "../page/contactForm";
+import { decrypt } from "../common/cryptoUtils";
 
 
 
@@ -20,7 +21,10 @@ const VideoPlayer = () => {
     const [displayContent, setDisplayContent] = useState(true);
     const [displayContactForm, setDisplayContactForm] = useState(false);
 
-    // let setDisplayContactForm = 'false'
+    const [displayVideo, setDisplayVideo] = useState(false);
+
+    const isMobile = useMediaQuery({ maxWidth: 767 });
+    const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
 
     const spokenRef = useRef(false);
     const player = useRef(null);
@@ -39,6 +43,8 @@ const VideoPlayer = () => {
             { src: '/assets/Greeting2.mp4', type: 'video/mp4' },
         ],
         controls: true,
+        fluid: true,
+        responsive: true,
         userActions: { hotkeys: true },
         // muted: true,       
     };
@@ -46,7 +52,7 @@ const VideoPlayer = () => {
     useEffect(() => {
         CrakersFunction()
         const audioElement = document.createElement('audio');
-        audioElement.src = '/assets/Audio.mp3';
+        audioElement.src = '/assets/Audio_1.mp3';
         audioElement.loop = true;
         audioElement.play();
 
@@ -171,14 +177,6 @@ const VideoPlayer = () => {
             document.exitFullscreen();
         }
     };
-    // Handle click event to start playing the video
-    const handleClick = () => {
-        // Check if the player is not disposed before calling play()
-        // if (player.current && !player.current.isDisposed()) {
-        //     player.current.play();
-        //     player.current.muted = false
-        // }
-    };
 
     const CrakersFunction = () => {
         let canvas, ctx, w, h, particles = [], probability = 0.04,
@@ -301,12 +299,46 @@ const VideoPlayer = () => {
 
 
     return (
-        <div className="container" >
+        <div>
 
-            <div id="overlay" className="flex mt-2 items-center text-red-600 font-semibold text-2xl justify-center">
+            <div id="overlay" className="flex mt-2 items-center  text-blue-700 font-semibold text-2xl justify-center">
                 Customized Interactive Video Player
             </div>
-            <div data-vjs-player onClick={handleClick}>
+            <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
+                <video
+                    ref={videoPlayerRef}
+                    className="video-js"
+                />
+            </div>
+            <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
+                <div>
+                    {displayImg &&
+                        <div className="image-container">
+                            <canvas id="canvas" className="canvasCss"></canvas>
+                            <img alt="" src="/assets/video-bg.jpg" />
+                        </div>
+                    }
+                    {/* <video ref={videoPlayerRef} className="video-js" /> */}
+                </div>
+                {displayContent &&
+                    <div className="overlayTitle1 " >
+                        <span className="spanCss1" id="text-to-speech-span1">Hi,</span>
+                        <span className="spanCss1" id="text-to-speech-span2"> {decryptedName}</span><br />
+                    </div>
+                }
+
+                <div id="wrapper">
+                    {displayForm &&
+                        <div id="overlay" className="videoFadeInAni">
+                            <Gift getSkip={handleSkip} getContactForm={displayContactForm} />
+                        </div>
+                    }
+                </div>
+
+            </div>
+
+
+            {/* <div data-vjs-player onClick={handleClick} >
                 {displayImg &&
                     <div className="container1">
                         <canvas id="canvas" className="canvasCss" >
@@ -317,7 +349,7 @@ const VideoPlayer = () => {
                 }
                 <video
                     ref={videoPlayerRef}
-                    className="video-js container"
+                    className="video-js"
                 />
                 <div id="wrapper">
                     {displayForm &&
@@ -334,9 +366,9 @@ const VideoPlayer = () => {
                         {/* <span className="spanCss2">Welcome </span>
                             <span className="spanCss2"> to </span>
                             <span className="spanCss2"> you </span> */}
-                    </div>
+            {/* </div>
                 }
-            </div>
+            </div> */}
 
         </div>
     );

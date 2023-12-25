@@ -259,83 +259,92 @@ const GiftForm = ({ getSkip, getContactForm }) => {
     }
 
     return (
-        <div className="font-poppins  container1 ">
-            <canvas id="canvas" className="canvasCss" >
-            </canvas>
-            <img alt="" src="/assets/video-bg.jpg" className="w-full h-full ">
-            </img>
+        <div className="font-poppins  bg-deep-orange-800">
+            <div className="image-container">
+                
+                <canvas id="canvas" className="canvasCss">
+                </canvas>
+                <img alt="" src="/assets/video-bg.jpg">
+                </img>
 
-            {displayContent &&
-                <div className="">
-                    {/* <span className="font-sans text-[4cqw]">
-                        Surprise Gift to you
-                    </span>
-
-                    <span className="text-[3cqw] mt-4">
-                        <br /> Check your luck
-                    </span> */}
-                    <span className="text-[4cqw] top-0 mt-20 animate-pulse giftBoxContentCss font-poppins">
-                        Try Your Luck
-                    </span>
-                </div>
-            }
-
-            <div className="flex justify-center">
-                {displayGiftBox &&
-                    <div className="w-44 absolute top-44  ">
-                        <img alt=""
-                            src="/assets/Gift-box.png"
-                            className="cursor-pointer giftBoxContentCss"
-                            onClick={handleGiftClick}
-                        />
+                {displayContent &&
+                    <div className="flex justify-center">
+                        <span className="text-[4cqw] top-10 text-white animate-pulse
+                     absolute giftBoxContentCss font-poppins">
+                            Try Your Luck
+                        </span>
                     </div>
                 }
-                {displayGiftBoxOpen &&
-                    <div className="w-52 md:w-64  absolute top-0 animate-pulse giftBoxContentCss">
-                        <img alt="" src="/assets/gift-cover.png" className=" cursor-pointer mt-16" />
-                        <img alt="" src="/assets/gift-bottom.png" className=" cursor-pointer mt-32" />
-                    </div>
-                }
-                {displayGiftBoxCheck &&
-                    <div className="w-16 md:w-28 flex justify-center absolute top-40 giftopenCss animate-fade-up">
-                        <img alt="" src="/assets/small-gift1.png"
-                            className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
-                            onClick={handleGift1Click}
-                        />
-                        <img alt="" src="/assets/small-gift2.png"
-                            className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
-                            onClick={handleGift2Click}
-                        />
-                        <img alt="" src="/assets/small-gift3.png"
-                            className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
-                            onClick={handleGift3Click}
-                        />
-                        <img alt="" src="/assets/small-gift4.png"
-                            className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
-                            onClick={handleGift4Click}
-                        />
-                    </div>
-                }
-                {displayTry &&
-                    <div className="absolute bottom-10 py-2 justify-center">
-                        <a href
-                            className="w-auto p-1.5 font-semibold border-4  border-[#e78b08] text-[20px]  text-deep-purple-900  rounded-xl bg-[#dfcb18] text-center
+
+                <div className="flex justify-center ">
+                    {displayGiftBox &&
+                        <div className=" absolute mobile-giftboxcss z-1">
+                            <img alt=""
+                                src="/assets/Gift-box.png"
+                                className="cursor-pointer giftBoxContentCss "
+                                onClick={handleGiftClick}
+                            />
+                        </div>
+                    }
+                    {displayGiftBoxOpen &&
+
+                        <div className=" absolute animate-pulse top-0 giftBoxContentCss ">
+                            <img alt="" src="/assets/gift-cover.png" className="  mobile-giftboxOpencss" />
+                            <img alt="" src="/assets/gift-bottom.png" className="  mobile-giftboxbottomcss" />
+                        </div>
+                    }
+                    {displayGiftBoxCheck &&
+                        <div className=" flex justify-center absolute z-1 top-0 giftopenCss animate-fade-up mobile-smallboxescss">
+                            <img alt="" src="/assets/small-gift1.png"
+                                className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
+                                onClick={handleGift1Click}
+                            />
+                            <img alt="" src="/assets/small-gift2.png"
+                                className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
+                                onClick={handleGift2Click}
+                            />
+                            <img alt="" src="/assets/small-gift3.png"
+                                className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
+                                onClick={handleGift3Click}
+                            />
+                            <img alt="" src="/assets/small-gift4.png"
+                                className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
+                                onClick={handleGift4Click}
+                            />
+                        </div>
+                    }
+
+                    {displaySkip &&
+                        <div className="text-xl absolute z-1 custom-skip-button">
+                            <button
+                                className="w-16 py-1 px-4 "
+                            //     className="w-24 p-1.5  border-2 border-[#172936] text-[20px] text-white rounded-lg bg-[#e78b08] text-center 
+                            //    cursor-pointer no-underline focus:shadow-outline focus:outline-none"
+                                onClick={getSkip}>
+                                Skip
+                            </button>
+                        </div>
+                    }
+                    {displayTry &&
+                        <div className="absolute bottom-10 py-2 justify-center">
+                            <a href
+                                className="w-auto p-1.5 font-semibold border-4  border-[#e78b08] text-[20px]  text-deep-purple-900  rounded-xl bg-[#dfcb18] text-center
                                cursor-pointer no-underline focus:shadow-outline focus:outline-none"
-                            onClick={handleTry}
-                        >
-                            Try Your Luck Again
-                        </a>
-                    </div>
-                }
+                                onClick={handleTry}
+                            >
+                                Try Your Luck Again
+                            </a>
+                        </div>
+                    }
 
-            </div>
-
-
-            <div className={`gift-form common`}>
+                </div>
 
 
-            </div>
-            {/* {displayGiftBox1 &&
+                <div className={`gift-form common`}>
+
+
+                </div>
+                {/* {displayGiftBox1 &&
                 <div className=" gift1Css
                      transition duration-300 ease-in-out hover:scale-110 ">
                     <img alt=""
@@ -345,29 +354,29 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                 </div>
             } */}
 
-            {displayGiftBox1 &&
-                <GiftVoucherForm handleTryOff={handleTry} />
-            }
-            {displayGiftBox2 &&
-                <UserDetailsForm handleTryOff={handleTry} />
-            }
-            {displayGiftBox4 &&
-                <Gift4Form handleTryOff={handleTry} />
+                {displayGiftBox1 &&
+                    <GiftVoucherForm handleTryOff={handleTry} />
+                }
+                {displayGiftBox2 &&
+                    <UserDetailsForm handleTryOff={handleTry} />
+                }
+                {displayGiftBox4 &&
+                    <Gift4Form handleTryOff={handleTry} />
 
-            }
+                }
 
-            {displayGiftBox3 &&
+                {displayGiftBox3 &&
 
-                <div className="gift3Css transition duration-300 ease-in-out hover:scale-110 ">
+                    <div className="gift3Css transition duration-300 ease-in-out hover:scale-110 ">
 
-                    <img alt=""
-                        src="/assets/greeting.png"
-                        className="w-full"
-                    />
+                        <img alt=""
+                            src="/assets/greeting.png"
+                            className="w-full"
+                        />
 
-                </div>
-            }
-            {/* {displayGiftBox4 &&
+                    </div>
+                }
+                {/* {displayGiftBox4 &&
 
                 <div className="gift4Css transition duration-300 ease-in-out hover:scale-110 ">
                     <img alt=""
@@ -377,20 +386,13 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                 </div>
             } */}
 
-            {displayContactForm &&
-                <ContactForm />
-            }
-            {displaySkip &&
-                <div className="text-xl  custom-skip-button  ">
-                    <button
-                        className="py-1 px-4 "
-                        onClick={getSkip}>
-                        Skip
-                    </button>
-                </div>
-            }
+                {displayContactForm &&
+                    <ContactForm />
+                }
 
-            {/* </canvas> */}
+
+                {/* </canvas> */}
+            </div>
         </div>
     );
 };

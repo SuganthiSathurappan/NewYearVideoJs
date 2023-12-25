@@ -23,71 +23,75 @@ const GetUserForm = ({ handleTryOff }) => {
     return (
         <div className="flex flex-col justify-between items-center font-poppins">
             {showFirstImage ? (
-                <div className="absolute top-0 w-[600px] giftBoxContentCss">
-                    <img alt="" src="/assets/Voucher1.jpg" className="w-full mt-28" />
+                <div className="absolute top-0 gift1Vouchercss giftBoxContentCss">
+                    <img alt="" src="/assets/Voucher1.jpg" />
                 </div>
             ) : (
                 // Changes responsive form
-                <>
-                    <div className="flex justify-center">
-                        <div className="flex absolute top-28 ">
-                            <div className="flex items-center relative left-2 ">
-                                <img alt="" src="/assets/voucher-left.png" className="w-[350px]  h-48 z-10 giftopenCss" />
+                <section className="absolute image-container z-1">
+                    <div className="flex  justify-center top-0  z-1">
+                        <div className="flex m-4">
+                            <div className="flex items-center relative formCoinImage" >
+                                <img alt="" src="/assets/voucher-left.png" className="z-10 giftopenCss" />
                             </div>
-                            <div className="-mt-10 transition-all duration-1000 ease-in-out gift1FormCss -ml-3">
-                                <h1 className={`text-[19px] text-white mx-2`}>
+                            <div className=" transition-all duration-1000 ease-in-out -ml-6 gift1Formeventcss">
+                                <h1 className={`text-white mx-2`}>
                                     To avail the Cash Voucher, kindly fill and submit
                                 </h1>
-                                <div className="rounded-2xl border-4 border-[#669ef3] p-4 bg-black-rgba">
-                                    <div className="flex py-1">
-                                        <input className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline bg-gray-100 text-gray-600 focus:border-white`}
-                                            type="text"
-                                            placeholder="Enter your Name"
-                                        />
-                                    </div>
-                                    <div className="flex py-1">
-                                        <input
-                                            className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline ${darkMode
-                                                ? "bg-[#302E30] text-white focus:border-white"
-                                                : "bg-gray-100 text-black focus:border-black"
-                                                }`}
-                                            type="tel"
-                                            placeholder="Phone Number"
-                                        />
-                                    </div>
-                                    <div className="flex py-1">
-                                        <input
-                                            className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline ${darkMode
-                                                ? "bg-[#302E30] text-white focus:border-white"
-                                                : "bg-gray-100 text-black focus:border-black"
-                                                }`}
-                                            type="tel"
-                                            placeholder="Email Id"
-                                        />
-                                    </div>
-                                    <div className="flex py-1">
-                                        <textarea
-                                            className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline ${darkMode
-                                                ? "bg-[#302E30] text-white focus:border-white"
-                                                : "bg-gray-100 text-black focus:border-black"
-                                                }`}
-                                            type="email"
-                                            placeholder="Address"
-                                        />
-                                    </div>
-                                    <div className="flex justify-center mt-2">
-                                        <a href="#"
-                                            className="w-40  p-1.5  border-3 border-[#669ef3] text-[24px] text-white rounded-lg bg-[#2f49af] text-center 
+                                <div className="border-[#669ef3] px-4 py-4 bg-black-rgba border-4 rounded-lg  gift1VoucherFormcss">
+                                    <form className='h-full'>
+                                        {/* Email input */}
+                                        <div className=" mb-2 " data-te-input-wrapper-init>
+                                            <input className={`w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent placeholder-gray-500 
+                                        text-sm focus:outline-none focus:border-2 focus:outline bg-gray-100 text-gray-600 focus:border-white`}
+                                                type="text"
+                                                placeholder="Enter your Name"
+                                            />
+                                        </div>
+
+                                        {/* Password input */}
+                                        <div className="relative mb-2" data-te-input-wrapper-init>
+                                            <input
+                                                className="w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent
+                                     placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline"
+
+                                                type="tel"
+                                                placeholder="Phone Number"
+                                            />
+                                        </div>
+                                        {/* Password input */}
+                                        <div className="relative mb-2" data-te-input-wrapper-init>
+                                            <input
+                                                className="w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent
+                                           placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline"
+                                                type="tel"
+                                                placeholder="Email Id"
+                                            />
+                                        </div>
+                                        {/* Password input */}
+                                        <div className="relative mb-3   " data-te-input-wrapper-init>
+                                            <textarea
+                                                className="w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent
+                                              placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline"
+                                                type="email"
+                                                placeholder="Address"
+                                            />
+                                        </div>
+
+                                        <div className="relative  text-center" >
+                                            <a href="#"
+                                                className=" px-5 py-2  border-3 border-[#669ef3] text-[20px] text-white rounded-lg bg-[#2f49af] text-center 
                                cursor-pointer no-underline focus:shadow-outline focus:outline-none"
-                                            onClick={() => handleTryOff()}>
-                                            Submit
-                                        </a>
-                                    </div>
+                                                onClick={() => handleTryOff()}>
+                                                Submit
+                                            </a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </>
+                </section>
 
             )
             };

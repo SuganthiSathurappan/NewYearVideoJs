@@ -29,7 +29,7 @@ const GetUserForm = ({ handleTryOff }) => {
             ) : ( */}
                 <>
                     <div className="flex justify-center">
-                        <div className="flex absolute top-28 ">
+                        <div className="flex absolute top-28 z-1">
                             <div className="flex items-center relative -top-2 -left-3 ">
                                 <img alt="" src="/assets/gift-voucher2.png" className="w-56  giftopenCss" />
                             </div>
