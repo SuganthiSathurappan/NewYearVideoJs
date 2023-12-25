@@ -82,7 +82,7 @@ const FormPage = () => {
           <div class="flex justify-start">
             <Link
               class="text-[30px] text-opacity-100 float-left  hover:text-red-600 underline"
-              to={`/video-player/${encryptName(customerName)}`}>Intractive Video Link</Link>
+              to={`/video-player/${encryptName(customerName)}`}>Interactive Video Link</Link>
             {/* <a href="#" class="text-[30px] text-opacity-100 float-left hover:text-red-600 underline">Intractive Video Link</a> */}
           </div>
         </div>
