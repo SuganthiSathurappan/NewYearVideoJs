@@ -303,10 +303,10 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                                 className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
                                 onClick={handleGift2Click}
                             />
-                            <img alt="" src="/assets/small-gift3.png"
+                            {/* <img alt="" src="/assets/small-gift3.png"
                                 className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
                                 onClick={handleGift3Click}
-                            />
+                            /> */}
                             <img alt="" src="/assets/small-gift4.png"
                                 className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
                                 onClick={handleGift4Click}
@@ -317,7 +317,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     {displaySkip &&
                         <div className="text-xl absolute z-1 custom-skip-button">
                             <button
-                                className="w-16 py-1 px-4 "
+                                className="px-2"
                             //     className="w-24 p-1.5  border-2 border-[#172936] text-[20px] text-white rounded-lg bg-[#e78b08] text-center 
                             //    cursor-pointer no-underline focus:shadow-outline focus:outline-none"
                                 onClick={getSkip}>

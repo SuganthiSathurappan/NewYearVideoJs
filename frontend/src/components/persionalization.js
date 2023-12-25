@@ -16,6 +16,40 @@ const Persionalization = () => {
     const decryptedName = decrypt(name);
     console.log(decryptedName)
 
+    let pathName = ""
+    if (decryptedName === "Ajay") {
+        pathName = "Ajay"
+    }
+    else if (decryptedName === "Balaji") {
+        pathName = "Balaji"
+    }
+    else if (decryptedName === "Bougle") {
+        pathName = "JC"
+    }
+    else if (decryptedName === "Juhi") {
+        pathName = "Juhi"
+    }
+    else if (decryptedName === "Marwan") {
+        pathName = "Marwan"
+    }
+    else if (decryptedName === "Nipun") {
+        pathName = "Nipun"
+    }
+    else if (decryptedName === "Rajiv") {
+        pathName = "Rajiv"
+    }
+    else if (decryptedName === "Saravana") {
+        pathName = "Saravana"
+    }
+    else if (decryptedName === "Sophie") {
+        pathName = "Sophie"
+    }
+    else if (decryptedName === "Sunny") {
+        pathName = "Sunny"
+    }
+    else {
+        pathName = "JC"
+    }
     // const isDesktopOrLaptop = useMediaQuery({
     //     query: '(min-device-width: 1224px)'
     // })
@@ -36,7 +70,7 @@ const Persionalization = () => {
 
 
     const videoJSOptions = {
-        videoSrc: '/personalize-video/Ajay.mp4',
+        videoSrc: `/personalize-video/${pathName}.mp4`,
         type: 'video/mp4',
         fluid: true,
         responsive: true,

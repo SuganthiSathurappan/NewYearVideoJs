@@ -12,40 +12,44 @@ const FormPage = () => {
     customerName = "Ajay"
     console.log(customerName)
   }
-  if (id === 'bi2') {
+  else if (id === 'bi2') {
     customerName = "Balaji"
     console.log(customerName)
   }
-  if (id === 'be3') {
+  else if (id === 'be3') {
     customerName = "Bougle"
     console.log(customerName)
   }
-  if (id === 'ji4') {
+  else if (id === 'ji4') {
     customerName = "Juhi"
     console.log(customerName)
   }
-  if (id === 'mn5') {
+  else if (id === 'mn5') {
     customerName = "Marwan"
     console.log(customerName)
   }
-  if (id === 'nn6') {
+  else if (id === 'nn6') {
     customerName = "Nipun"
     console.log(customerName)
   }
-  if (id === 'rv7') {
+  else if (id === 'rv7') {
     customerName = "Rajiv"
     console.log(customerName)
   }
-  if (id === 'sa8') {
+  else if (id === 'sa8') {
     customerName = "Saravana"
     console.log(customerName)
   }
-  if (id === 'se9') {
+  else if (id === 'se9') {
     customerName = "Sophie"
     console.log(customerName)
   }
-  if (id === 'sy10') {
+  else if (id === 'sy10') {
     customerName = "Sunny"
+    console.log(customerName)
+  }
+  else {
+    customerName = "Bougle"
     console.log(customerName)
   }
 
