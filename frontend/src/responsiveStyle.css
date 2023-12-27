@@ -343,11 +343,11 @@ canvas {
   margin: 100px auto;
 }
 .gift1Formeventcss {
-  /* width: 70%; */
-  margin-top: 2%;
+  width: 70%;
+  margin-top: 40px;
 }
 .gift1Formeventcss h1 {
-  font-size: 24px;
+  font-size: 18px;
 }
 .formImage{
   top: 60px;
@@ -482,3 +482,60 @@ canvas {
     font-size: 10px;
   }
 }
+
+/* For Desktop View */
+@media screen and (min-device-width: 1100px) and (max-device-width: 1400px) {
+ 
+.canvasCss {
+  margin-left: 0;
+  margin-top: 0;
+  width: 60%;
+  /* background-color: #e78b08; */
+}
+.mobile-giftboxOpencss {
+  width: 25%;
+  margin: 50px auto;
+}
+
+.mobile-giftboxbottomcss {
+  width: 25%;
+  margin: 100px auto;
+}
+
+.mobile-smallboxescss {
+  margin: 120px auto;
+  width: 12%;
+}
+.gift1Vouchercss {
+  width: 60%;
+  margin: 100px auto;
+}
+.gift1Formeventcss {    
+  margin-top: 40px;
+  width: 70%;
+  /* background-color: #e78b08; */
+}
+.gift1Formeventcss h1 {
+  font-size: 16px;
+}
+.gift1Formeventcss form{   
+  height:202px;
+}
+.formImage{
+  width: 50%;
+  top: 40px;
+}
+.custom-skip-button {
+  margin: -40px auto;
+  right: 2%;
+}
+
+.formCoinImage{
+  width: 25%;
+  margin-right: 50px;
+  margin-left: 0px;
+  top: 25px;
+}
+}
+
+

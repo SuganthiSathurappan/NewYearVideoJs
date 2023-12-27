@@ -90,7 +90,7 @@ const GetUserForm = ({ handleTryOff }) => {
                 // </>
 
                 // Changes responsive form
-                <section className="absolute image-container">
+                <section className="absolute image-container giftopenCss">
                     <div className="flex  justify-center top-0  z-1">
                         <div className="flex m-4">
                             <div className="flex items-center relative formCoinImage formImage" >

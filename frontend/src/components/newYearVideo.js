@@ -302,7 +302,7 @@ const VideoPlayer = () => {
         <div>
 
             <div id="overlay" className="flex mt-2 items-center  text-blue-700 font-semibold text-2xl justify-center">
-                Customized Interactive Video Player
+                {/* Customized Interactive Video Player */}
             </div>
             <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
                 <video
