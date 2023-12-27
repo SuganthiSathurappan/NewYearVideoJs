@@ -424,6 +424,9 @@ canvas {
 /* For Mobile View */
 @media only screen and (max-width: 480px) {
   /* Further adjustments for even smaller screens */
+  .canvasCss{
+    display: none;
+  }
   #overlay{
     font-size: 10px;
 }
@@ -538,4 +541,8 @@ canvas {
 }
 }
 
+/* orientation: landscape for mobile */
 
+@media only screen and (orientation: landscape) {
+  /* styles for landscape orientation */
+  }

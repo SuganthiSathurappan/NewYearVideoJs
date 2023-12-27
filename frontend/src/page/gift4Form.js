@@ -2,18 +2,18 @@ import React, { useEffect, useState } from "react";
 import MobileDeviceForm from "./exampleForm";
 
 const GetUserForm = ({ handleTryOff }) => {
-  
+
     const isMobile = window.innerWidth <= 480;
 
     const [showFirstImage, setShowFirstImage] = useState(true);
     let textContent = "Groceries voucher"
     useEffect(() => {
-        // if (showFirstImage) {
+        if (showFirstImage) {
 
-        //     setTimeout(() => {
-        //         setShowFirstImage(fals);
-        //     }, 4000);
-        // }
+            setTimeout(() => {
+                setShowFirstImage(false);
+            }, 4000);
+        }
         // Cleanup function
         return () => {
 
@@ -22,7 +22,12 @@ const GetUserForm = ({ handleTryOff }) => {
 
     return (
         <div className="flex flex-col justify-between items-center font-poppins">
-             {/* // Changes responsive form */}
+            {showFirstImage ? (
+                <div className="absolute top-0 giftBoxContentCss giftGoldCss">
+                    <img alt="" src="/assets/gift-voucher2.png" className="" />
+                </div>
+            ) : (
+                // Changes responsive form
                 <section className="absolute image-container giftopenCss">
                     <div className="flex  justify-center top-0  z-1">
                         <div className="flex m-4">
@@ -36,7 +41,7 @@ const GetUserForm = ({ handleTryOff }) => {
                                 // Form for other devices
                                 <div className=" transition-all duration-1000 ease-in-out -ml-6 gift1Formeventcss">
                                     <h1 className={`text-white text-center`}>
-                                        To avail the Groceries voucher , kindly fill and submit
+                                        To avail the Lucky gift, kindly fill and submit
                                     </h1>
                                     <div className="border-[#669ef3] px-4 py-4 bg-black-rgba border-4 rounded-lg  gift1VoucherFormcss">
                                         <form className='h-full'>
@@ -94,6 +99,8 @@ const GetUserForm = ({ handleTryOff }) => {
                         </div>
                     </div>
                 </section>
+
+            )}
         </div>
 
     )

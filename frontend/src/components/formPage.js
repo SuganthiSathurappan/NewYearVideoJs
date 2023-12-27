@@ -68,21 +68,31 @@ const FormPage = () => {
       <div class="w-[500px] ">
 
         <div class="w-full mb-2">
-          {/* <div class="flex justify-center">
-          <a href="#" class="text-sm text-opacity-100 float-right mt-6 mb-4 hover:text-blue-600 underline">Forgot Password?</a>
-        </div> */}
-          <div class="flex justify-start">
-            <Link
-              class="text-[30px] text-opacity-100 float-left  hover:text-red-600 underline"
-              to={`/NewYear-Persionalization/${encryptName(customerName)}`}>Persionalization Video Link</Link>
+          <div class="flex justify-center ">
+            <img alt='' src='/assets/Logo-techtist.png'
+              class="w-60 lg:w-50 md:w-50 sm:w-50 mt-6 mb-4 hover:text-blue-600 underline">
+            </img>
+          </div>
+          <div class="flex justify-center">
+            <Link to={`/NewYear-Persionalization/${encryptName(customerName)}`}>
+              <img
+                className="w-[400px] lg:w-50 md:w-50 sm:w-50 hover:w-[420px]"
+                src="/assets/personilized-button.png"  // Replace with the actual path to your image
+                alt="Personalization Video Link"
+              />
+            </Link>
             {/* <a href="#" class="text-[30px] text-opacity-100 float-left  hover:text-red-600 underline">Persionalization Video Link</a> */}
           </div>
         </div>
         <div class="w-full ">
-          <div class="flex justify-start">
-            <Link
-              class="text-[30px] text-opacity-100 float-left  hover:text-red-600 underline"
-              to={`/video-player/${encryptName(customerName)}`}>Interactive Video Link</Link>
+          <div class="flex justify-center">
+            <Link to={`/video-player/${encryptName(customerName)}`}>
+              <img
+                className="w-[400px] lg:w-50 md:w-50 sm:w-50 hover:w-[420px]"
+                src="/assets/intractive-button.png"  // Replace with the actual path to your image
+                alt="Personalization Video Link"
+              />
+            </Link>
             {/* <a href="#" class="text-[30px] text-opacity-100 float-left hover:text-red-600 underline">Intractive Video Link</a> */}
           </div>
         </div>

@@ -22,9 +22,9 @@ const ContactForm = ({ handleTryOff }) => {
 
             {displayContact &&
                 <div className="giftBoxContentCss overlayTitle1">
-                    <div className="mx-auto w-full  space-y-2">
+                    <div className="mx-auto w-full  space-y-8 ">
                         <div className="animate-pulse videoFadeInAni ">
-                            <span className="text-lg md:text-[2cqw] text-[#ffdf60]">
+                            <span className="text-md md:text-[2cqw] text-[#ffdf60]">
                                 Feel free to contact
                             </span>
                             {/* <span className="text-xl md:text-[3cqw] mt-28">
@@ -41,10 +41,10 @@ const ContactForm = ({ handleTryOff }) => {
                                 </a>
                             </div> */}
                         <div className="flex flex-col  justify-center text-center ">
-                            <span className="text-lg md:text-[2.5cqw] lg:py-10 md:py-8">
+                            <span className="text-md md:text-[2.5cqw]  lg:py-0 md:py-2 sm:py-1">
                                 +65 9206 6938  </span>
-                            <span className="text-lg md:text-[2.5cqw] ">
-                                 sales@skie.ai
+                            <span className="text-md md:text-[2.5cqw] ">
+                                 sales@techtist.com
                             </span>
                         </div>
                     </div>
