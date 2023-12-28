@@ -539,10 +539,85 @@ canvas {
   }
 }
 
-
-
 /* orientation: landscape for mobile */
 
-@media only screen and (orientation: landscape) {
-  /* styles for landscape orientation */
+@media screen and (min-device-width: 410px) and (max-device-width: 740px) {
+  /* Further adjustments for even smaller screens */
+  .canvasCss {
+    display: block;
+  }
+  #overlay {
+    font-size: 10px;
+  }
+  .mobile-giftboxcss {
+    width: 20%;
+  }
+
+  .mobile-giftboxOpencss {
+    width: 20%;
+    margin: 40px auto;
+  }
+
+  .mobile-giftboxbottomcss {
+    width: 20%;
+    margin: 50px auto;
+  }
+
+  .mobile-smallboxescss {
+    margin: 80px auto;
+    width: 25px;
+  }
+
+  .gift1Vouchercss {
+    width: 50%;
+    margin: 50px auto;
+  }
+
+  .giftopenCss {
+  }
+
+  .gift1Formeventcss {
+    padding-top: 0px;
+    margin-top: -10px;
+    width: 300px;
+    /* overflow: hidden; */
+    /* background-color: #e78b08; */
+  }
+  .gift1Formeventcss h1 {
+    font-size: 8px;
+  }
+  .gift1Formeventcss textarea {
+    height: 5%;
+    padding-top: -4px;
+    font-size: 10px;
+  }
+  .gift1Formeventcss input {
+    width: 100%;
+    height: 0px;
+    margin-top: -10%;
+    font-size: 10px;
+  }
+  .gift1Formeventcss a {
+    font-size: 10px;
+  }
+  .gift1Formeventcss form {
+    height: 110px;
+    margin-top: -4%;
+  }
+  .formImage {
+    margin-top: -10%;
+    margin-left: -2%;
+    /* display: none; */
+  }
+  .voucherCss{
+    margin-top: -20%;
+    width: 60%;
+    padding-right: 3%;
+  }
+  .custom-skip-button {
+    margin: -35px auto;
+    width: 35px;
+    right: 0px;
+    font-size: 10px;
+  }
 }

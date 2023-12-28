@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import MobileDeviceForm from "./exampleForm";
+import MobileDeviceForm from "./mobileDeviceForm";
 
 const GetUserForm = ({ handleTryOff }) => {
 
     const isMobile = window.innerWidth <= 480;
 
     const [showFirstImage, setShowFirstImage] = useState(true);
-    let textContent = "Groceries voucher"
+    let textContent = "For Grocerry Coupon: To avail the coupon, kindly fill and submit"
     useEffect(() => {
         if (showFirstImage) {
 
@@ -40,7 +40,7 @@ const GetUserForm = ({ handleTryOff }) => {
                             ) : (
                                 // Form for other devices
                                 <div className=" transition-all duration-1000 ease-in-out -ml-6 gift1Formeventcss">
-                                    <h1 className={`text-white text-center`}>
+                                    <h1 className={`text-white text-center h1Giftcss`}>
                                         For Grocerry Coupon: To avail the coupon, kindly fill and submit
                                     </h1>
                                     <div className="border-[#669ef3] px-4 py-4 bg-black-rgba border-4 rounded-lg  gift1VoucherFormcss">
@@ -76,7 +76,7 @@ const GetUserForm = ({ handleTryOff }) => {
                                             {/* Password input */}
                                             <div className="relative mb-3" data-te-input-wrapper-init>
                                                 <textarea
-                                                    className="w-full px-2 py-2 rounded-lg font-medium border-2 border-transparent
+                                                    className="w-full px-2 h-16  rounded-lg font-medium border-2 border-transparent
                                                   placeholder-gray-500 text-sm focus:outline-none focus:border-2 focus:outline"
                                                     type="email"
                                                     placeholder="Address"

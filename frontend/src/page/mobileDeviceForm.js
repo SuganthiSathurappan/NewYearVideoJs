@@ -3,9 +3,9 @@ import React from 'react';
 const MobileDeviceForm = ({ handleTryOff, textContent }) => {
     return (
         // Form for mobile devices
-        <div className=" transition-all duration-1000 ease-in-out -mt-3 w-full">
+        <div className=" transition-all duration-1000 ease-in-out -mt-3 w-full ">
             <h1 className={`text-white text-[8px] text-center`}>
-                {`To avail the ${textContent}, kindly fill and submit`}
+                {`${textContent}`}
             </h1>
             <div className="border-[#669ef3] px-2 py-1 bg-black-rgba border-2 -mt-1 rounded-md  w-[250px]">
                 <form className='h-full'>
