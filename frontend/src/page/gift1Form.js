@@ -103,7 +103,7 @@ const GetUserForm = ({ handleTryOff }) => {
                                 // Form for other devices
                                 <div className=" transition-all duration-1000 ease-in-out -ml-6 gift1Formeventcss">
                                     <h1 className={`text-white text-center`}>
-                                        To avail the Lucky gift, kindly fill and submit
+                                        To avail for Gold Coin, kindly fill and submit
                                     </h1>
                                     <div className="border-[#669ef3] px-4 py-4 bg-black-rgba border-4 rounded-lg  gift1VoucherFormcss">
                                         <form className='h-full'>

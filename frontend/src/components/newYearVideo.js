@@ -23,7 +23,7 @@ const VideoPlayer = () => {
 
     const [displayVideo, setDisplayVideo] = useState(false);
 
-    const isMobile = useMediaQuery({ maxWidth: 767 });
+    const isMobile = useMediaQuery({ maxWidth: 480 });
     const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
 
     const spokenRef = useRef(false);

@@ -349,26 +349,26 @@ canvas {
 .gift1Formeventcss h1 {
   font-size: 18px;
 }
-.formImage{
+.formImage {
   top: 60px;
 }
 
-.giftGoldCss{
-    width: 30%;
-    margin-top: 10%;
+.giftGoldCss {
+  width: 30%;
+  margin-top: 10%;
 }
-.formCoinImage{
-    width: 25%;
-    margin-right: 50px;
-    margin-left: 50px;
-    top: 20px;
+.formCoinImage {
+  width: 25%;
+  margin-right: 50px;
+  margin-left: 50px;
+  top: 20px;
 }
 
-/* For Desktop View */
+/* For Laptop View */
 @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-    #overlay{
-        font-size: 20px;
-    }
+  #overlay {
+    font-size: 20px;
+  }
   .canvasCss {
     margin-left: 0;
     margin-top: 0;
@@ -393,18 +393,18 @@ canvas {
     width: 60%;
     margin: 100px auto;
   }
-  .gift1Formeventcss {    
+  .gift1Formeventcss {
     margin-top: 0px;
     width: 60%;
     /* background-color: #e78b08; */
   }
   .gift1Formeventcss h1 {
-    font-size: 12px;
+    font-size: 10px;
   }
-  .gift1Formeventcss form{   
-    height:202px;
+  .gift1Formeventcss form {
+    height: 202px;
   }
-  .formImage{
+  .formImage {
     width: 50%;
     top: 0px;
   }
@@ -413,23 +413,23 @@ canvas {
     right: 2%;
   }
 
-  .formCoinImage{
+  .formCoinImage {
     width: 25%;
     margin-right: 50px;
     margin-left: 50px;
     top: 25px;
-}
+  }
 }
 
 /* For Mobile View */
 @media only screen and (max-width: 480px) {
   /* Further adjustments for even smaller screens */
-  .canvasCss{
+  .canvasCss {
     display: none;
   }
-  #overlay{
+  #overlay {
     font-size: 10px;
-}
+  }
   .mobile-giftboxcss {
     width: 20%;
   }
@@ -453,8 +453,8 @@ canvas {
     width: 50%;
     margin: 50px auto;
   }
-  .gift1Formeventcss {  
-    padding-top: -10px;  
+  .gift1Formeventcss {
+    padding-top: -10px;
     margin-top: -10px;
     width: 100%;
     overflow: hidden;
@@ -463,86 +463,86 @@ canvas {
   .gift1Formeventcss h1 {
     font-size: 8px;
   }
- .gift1Formeventcss textarea{
+  .gift1Formeventcss textarea {
     height: 1px;
     /* padding: auto; */
-   
- }
-  .gift1Formeventcss input{
+  }
+  .gift1Formeventcss input {
     width: 100%;
     height: 1px;
   }
-  .gift1Formeventcss form{   
-    height:120px;
+  .gift1Formeventcss form {
+    height: 120px;
   }
-  .formImage{
+  .formImage {
     display: none;
   }
   .custom-skip-button {
     margin: -35px auto;
     width: 35px;
-    right:0px;
+    right: 0px;
     font-size: 10px;
   }
 }
 
 /* For Desktop View */
 @media screen and (min-device-width: 1100px) and (max-device-width: 1400px) {
- 
-.canvasCss {
-  margin-left: 0;
-  margin-top: 0;
-  width: 60%;
-  /* background-color: #e78b08; */
-}
-.mobile-giftboxOpencss {
-  width: 25%;
-  margin: 50px auto;
+  .canvasCss {
+    margin-left: 0;
+    margin-top: 0;
+    width: 60%;
+    /* background-color: #e78b08; */
+  }
+  .mobile-giftboxOpencss {
+    width: 25%;
+    margin: 50px auto;
+  }
+
+  .mobile-giftboxbottomcss {
+    width: 25%;
+    margin: 100px auto;
+  }
+
+  .mobile-smallboxescss {
+    margin: 120px auto;
+    width: 12%;
+  }
+  .gift1Vouchercss {
+    width: 60%;
+    margin: 100px auto;
+  }
+  .gift1Formeventcss {
+    margin-top: 40px;
+    width: 70%;
+    /* background-color: #e78b08; */
+  }
+  .gift1Formeventcss h1 {
+    font-size: 14px;
+  }
+  .gift1Formeventcss form {
+    height: 202px;
+  }
+  .formImage {
+    width: 50%;
+    top: 40px;
+  }
+  .custom-skip-button {
+    margin: -40px auto;
+    right: 2%;
+  }
+
+  .formCoinImage {
+    width: 25%;
+    margin-right: 50px;
+    margin-left: 0px;
+    top: 25px;
+  }
 }
 
-.mobile-giftboxbottomcss {
-  width: 25%;
-  margin: 100px auto;
-}
 
-.mobile-smallboxescss {
-  margin: 120px auto;
-  width: 12%;
-}
-.gift1Vouchercss {
-  width: 60%;
-  margin: 100px auto;
-}
-.gift1Formeventcss {    
-  margin-top: 40px;
-  width: 70%;
-  /* background-color: #e78b08; */
-}
-.gift1Formeventcss h1 {
-  font-size: 16px;
-}
-.gift1Formeventcss form{   
-  height:202px;
-}
-.formImage{
-  width: 50%;
-  top: 40px;
-}
-.custom-skip-button {
-  margin: -40px auto;
-  right: 2%;
-}
-
-.formCoinImage{
-  width: 25%;
-  margin-right: 50px;
-  margin-left: 0px;
-  top: 25px;
-}
-}
 
 /* orientation: landscape for mobile */
 
 @media only screen and (orientation: landscape) {
   /* styles for landscape orientation */
-  }
+}
