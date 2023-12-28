@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 import 'videojs-playlist';
 import { useMediaQuery } from 'react-responsive';
 
-
 import Gift from '../page/gift'
 import ContactForm from "../page/contactForm";
 import { decrypt } from "../common/cryptoUtils";
