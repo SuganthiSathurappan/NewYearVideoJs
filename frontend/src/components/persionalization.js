@@ -6,6 +6,9 @@ import "videojs-overlay";
 import { useParams } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 
+// initialize video.js plugins
+import "videojs-landscape-fullscreen";
+
 import { decrypt } from "../common/cryptoUtils";
 
 
@@ -91,6 +94,15 @@ const Persionalization = () => {
 
                 console.log(videoJSOptions)
 
+                // configure plugins
+                player.current.landscapeFullscreen({
+                    fullscreen: {
+                        enterOnRotate: true,
+                        exitOnRotate: true,
+                        alwaysInLandscapeMode: true,
+                        iOS: true
+                    }
+                })
 
                 player.current.on("ended", () => {
 
