@@ -34,14 +34,14 @@ const Login = () => {
 
     const videoJSOptions = {
         sources: [
-            { src: '/assets/Greeting1.mp4', type: 'video/mp4' },
+            { src: '/personalize-video/Ajay.mp4', type: 'video/mp4' },
             { src: '/assets/Greeting2.mp4', type: 'video/mp4' },
         ],
         controls: true,
         fluid: true,
         responsive: true,
         userActions: { hotkeys: true },
-        // muted: true,       
+        muted: true,       
     };
 
     const videoJSOptions1 = {
@@ -52,7 +52,7 @@ const Login = () => {
         fluid: true,
         responsive: true,
         userActions: { hotkeys: true },
-        // muted: true,       
+        muted: true,       
     };
 
     useEffect(() => {
@@ -136,7 +136,7 @@ const Login = () => {
             console.log(spanContent)
             textToAudio(`${spanContent + decryptedName} `);
             // Set the volume to 0.5 (50%)
-            audioElement.volume = 0.5;
+            // audioElement.volume = 0.5;
         }
 
         console.log("out side displayImg", displayImg)
@@ -202,7 +202,8 @@ const Login = () => {
                 // player.current.dispose();
             }
             if (audioElement) {
-                audioElement.pause();
+                // audioElement.src = '';
+                // audioElement.pause();
                 audioElement.remove();
             }
         };

@@ -41,11 +41,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
         // Cleanup function
         return () => {
 
-            // Pause and remove the audio element
-            // if (audioElement) {
-            //     audioElement.pause();
-            //     audioElement.remove();
-            // }
+         
         };
     }, [getContactForm])
 
