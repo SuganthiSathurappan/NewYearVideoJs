@@ -155,11 +155,11 @@ const Persionalization = () => {
 
     return (
         <div>
-            {/* <div id="overlay" className="flex mt-10 items-center text-blue-700 font-semibold text-2xl justify-center">
-                Persionalization Video Player
-            </div> */}
-            <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
-                <video ref={videoPlayerRef} className="video-js " />
+            <div class="fullscreen" id="fullscreen">
+                <video
+                    ref={videoPlayerRef}
+                    className="video-js"
+                />
             </div>
         </div>
     );
