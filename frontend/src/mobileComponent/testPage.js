@@ -34,8 +34,8 @@ const Login = () => {
 
     const videoJSOptions = {
         sources: [
-            { src: 'https://new-year-video-js-fxme.vercel.app/assets/Greeting1.mp4', type: 'video/mp4' },
-            { src: 'https://new-year-video-js-fxme.vercel.app/assets/Greeting2.mp4', type: 'video/mp4' },
+            { src: 'https://new-year-video-js.vercel.app/personalize-video/Ajay.mp4', type: 'video/mp4' },
+            { src: 'https://new-year-video-js.vercel.app/assets/Greeting2.mp4', type: 'video/mp4' },
         ],
         controls: true,
         fluid: true,
@@ -46,7 +46,7 @@ const Login = () => {
 
     const videoJSOptions1 = {
         sources: [
-            { src: 'https://new-year-video-js-fxme.vercel.app/assets/Greeting2.mp4', type: 'video/mp4' },
+            { src: 'https://new-year-video-js.vercel.app/assets/Greeting2.mp4', type: 'video/mp4' },
         ],
         controls: true,
         fluid: true,
