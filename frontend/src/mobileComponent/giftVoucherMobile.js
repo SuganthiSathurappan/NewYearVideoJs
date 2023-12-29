@@ -33,7 +33,7 @@ const GetUserForm = ({ handleTryOff }) => {
                                 <div className="flex items-center portraitImage" >
                                     <img alt="" src="/assets/voucher-left.png" className="z-10 w-[300px]" />
                                 </div>
-                                <div className=" transition-all duration-1000 ease-in-out -ml-5 gift1Formeventcss">
+                                <div className=" transition-all duration-1000 ease-in-out -ml-5 gift1FormeventcssMobile">
                                     <h1 className={`text-white text-center text-sm`}>
                                         To avail the Cash Voucher, kindly fill and submit
                                     </h1>

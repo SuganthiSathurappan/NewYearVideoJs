@@ -33,7 +33,7 @@ const GetCoinForm = ({ handleTryOff }) => {
                                 <div className="flex items-center portraitImage portraitCoinImage" >
                                     <img alt="" src="/assets/Gold-Coin-left.png" className="z-10 w-[300px]" />
                                 </div>
-                                <div className=" transition-all duration-1000 ease-in-out -ml-5 gift1Formeventcss gift1CoinEventcss">
+                                <div className=" transition-all duration-1000 ease-in-out -ml-5 gift1FormeventcssMobile gift1CoinEventcss">
                                     <h1 className={`text-white text-center text-sm`}>
                                     To avail for Gold Coin, kindly fill and submit
                                     </h1>

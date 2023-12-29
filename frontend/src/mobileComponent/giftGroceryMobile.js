@@ -33,11 +33,11 @@ const GetGroceryForm = ({ handleTryOff }) => {
                                 <div className="flex items-center portraitImage portraitGroceryImage" >
                                     <img alt="" src="/assets/gift-voucher2.png" className="z-10 w-[200px]" />
                                 </div>
-                                <div className=" transition-all duration-1000 ease-in-out  gift1Formeventcss gift1GroceryEventcss">
+                                <div className=" transition-all duration-1000 ease-in-out  gift1FormeventcssMobile gift1GroceryEventcss">
                                     <h1 className={`text-white text-center text-sm groceryText`}>
                                         To avail the coupon, kindly fill and submit
                                     </h1>
-                                    <div className="border-[#669ef3] px-4 py-2  bg-black-rgba border-4 rounded-lg gift1Formeventcss gift1CoinEventcss">
+                                    <div className="border-[#669ef3] px-4 py-2  bg-black-rgba border-4 rounded-lg ">
                                         <form className='h-full'>
                                             {/* Email input */}
                                             <div className=" mb-2 " data-te-input-wrapper-init>

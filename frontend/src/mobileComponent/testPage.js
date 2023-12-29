@@ -10,7 +10,7 @@ import 'videojs-playlist';
 import { decrypt } from "../common/cryptoUtils";
 import GiftMobile from './giftMobile'
 
-import '../App.css';
+// import '../App.css';
 const Login = () => {
 
     const [displayForm, setDisplayForm] = useState(false);

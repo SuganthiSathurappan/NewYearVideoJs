@@ -10,7 +10,7 @@ import { useMediaQuery } from 'react-responsive';
 import Gift from '../page/gift'
 import ContactForm from "../page/contactForm";
 import { decrypt } from "../common/cryptoUtils";
-import '../responsiveStyle.css';
+// import '../responsiveStyle.css';
 
 
 const VideoPlayer = () => {

@@ -147,7 +147,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                             </div>
                         }
                         {displayGiftBoxCheck &&
-                            <div className=" flex justify-center z-1 w-36 giftopenCss animate-fade-up mobile-smallboxescss">
+                            <div className=" flex justify-center z-1 w-36 giftopenCss animate-fade-up smallboxesCssMobile">
                                 <img alt="" src="/assets/small-gift1.png"
                                     className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
                                     onClick={handleGift1Click}
@@ -177,7 +177,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                     {displaySkip &&
                     <div className="text-lg z-1 custom-skip-button-div right-0 ">
                             <button
-                                className="px-2 custom-skip-button border-2 border-[#172936] text-[20px] text-white rounded-lg bg-[#e78b08]">
+                                className="px-2 custom-skip-buttonMobile border-2 border-[#172936] text-[20px] text-white rounded-lg bg-[#e78b08]">
                                 Skip
                             </button>
                         </div>
