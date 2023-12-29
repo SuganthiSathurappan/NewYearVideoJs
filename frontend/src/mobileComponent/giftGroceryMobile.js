@@ -21,16 +21,16 @@ const GetGroceryForm = ({ handleTryOff }) => {
     return (
         <>
             {showFirstImage ? (
-                <div className="giftGroceryCss">
+                <div className="giftGroceryCss tryContentCss">
                     <img alt="" src="/assets/gift-voucher2.png" className="w-[200px] " />
                 </div>
 
             ) : (
                 <div>
-                    <section className="">
+                    <section className="minigiftBoxCss">
                         <div className="flex  justify-center  z-1">
                             <div className="flex ">
-                                <div className="flex items-center portraitImage portraitGroceryImage" >
+                                <div className="flex items-center portraitImage portraitGroceryImage " >
                                     <img alt="" src="/assets/gift-voucher2.png" className="z-10 w-[200px]" />
                                 </div>
                                 <div className=" transition-all duration-1000 ease-in-out  gift1FormeventcssMobile gift1GroceryEventcss">

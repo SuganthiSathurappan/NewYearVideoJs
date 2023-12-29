@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import GiftVoucherForm from "./giftVoucherMobile";
 import GiftCoinForm from "./giftCoinMobile";
 import GiftGroceryForm from "./giftGroceryMobile";
+import ContactForm from "./contactMobile";
 
 const GiftForm = ({ getSkip, getContactForm }) => {
     const [displayContent, setDisplayContent] = useState(false)
@@ -32,6 +33,8 @@ const GiftForm = ({ getSkip, getContactForm }) => {
         }
         else {
             setTimeout(() => {
+                setDisplaySkip(false)
+                setDisplayGiftBox4(false)
                 setDisplayContactForm(true);
             }, 1000);
         }
@@ -121,7 +124,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                         {displayContent &&
                             <div className="flex justify-center">
                                 <span className="text-[6cqw] -mt-20 text-white animate-pulse
-                       font-poppins">
+                       font-poppins tryContentCss">
                                     Try Your Luck
                                 </span>
                             </div>
@@ -132,7 +135,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                                 <div className="z-1">
                                     <img alt=""
                                         src="/assets/Gift-box.png"
-                                        className="cursor-pointer w-36 "
+                                        className="cursor-pointer w-36 tryContentCss"
                                         onClick={handleGiftClick}
                                     />
                                 </div>
@@ -141,13 +144,13 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                         </div>
 
                         {displayGiftBoxOpen &&
-                            <div className="  animate-pulse w-36">
+                            <div className="  animate-pulse w-36 tryContentCss">
                                 <img alt="" src="/assets/gift-cover.png" className=" mb-24 " />
                                 <img alt="" src="/assets/gift-bottom.png" className=" " />
                             </div>
                         }
                         {displayGiftBoxCheck &&
-                            <div className=" flex justify-center z-1 w-36 giftopenCss animate-fade-up smallboxesCssMobile">
+                            <div className=" flex justify-center z-1 w-36 minigiftBoxCss animate-fade-up smallboxesCssMobile">
                                 <img alt="" src="/assets/small-gift1.png"
                                     className=" cursor-pointer mx-3  transition duration-300 ease-in-out hover:scale-110 hover:animate-bounce"
                                     onClick={handleGift1Click}
@@ -172,16 +175,21 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                         {displayGiftBox4 &&
                             <GiftGroceryForm handleTryOff={handleTry} />
                         }
-                        
+
                     </form>
                     {displaySkip &&
-                    <div className="text-lg z-1 custom-skip-button-div right-0 ">
+                        <div className="text-lg z-1 custom-skip-button-div right-0 ">
                             <button
-                                className="px-2 custom-skip-buttonMobile border-2 border-[#172936] text-[20px] text-white rounded-lg bg-[#e78b08]">
+                                className="px-2 custom-skip-buttonMobile border-2 border-[#172936] text-[20px] text-white rounded-lg bg-[#e78b08]"
+                                onClick={getSkip}>
+
                                 Skip
                             </button>
                         </div>
-}
+                    }
+                    {displayContactForm &&
+                        <ContactForm />
+                    }
                 </div>
 
             </div>

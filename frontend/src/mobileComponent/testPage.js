@@ -17,7 +17,7 @@ const Login = () => {
     const [displayImg, setDisplayImg] = useState(true);
     const [displayContent, setDisplayContent] = useState(true);
     const [displayContactForm, setDisplayContactForm] = useState(false);
-
+    const [isSkipped, setIsSkipped] = useState(false);
     const videoPlayerRef = useRef(null);
     const { name } = useParams();
 
@@ -44,6 +44,17 @@ const Login = () => {
         // muted: true,       
     };
 
+    const videoJSOptions1 = {
+        sources: [
+            { src: '/assets/Greeting2.mp4', type: 'video/mp4' },
+        ],
+        controls: true,
+        fluid: true,
+        responsive: true,
+        userActions: { hotkeys: true },
+        // muted: true,       
+    };
+
     useEffect(() => {
         if (!displayContent) {
             if (videoPlayerRef.current) {
@@ -52,7 +63,7 @@ const Login = () => {
                     player.current.playlist(videoJSOptions.sources);
 
                     // Add custom style to hide controls
-                    // player.current.addClass("hide-controls");
+                    player.current.addClass("hide-controls");
                     // player.current.play();
                     console.log(videoJSOptions)
 
@@ -80,7 +91,7 @@ const Login = () => {
                     // Set the volume to 0.5 (50%)
                     // Check if the player is not disposed before calling play()
                     if (player.current && !player.current.isDisposed()) {
-                        player.current.addClass("videoFadeInAni");
+                        player.current.addClass("imgToVideoFadeInAni");
                         player.current.play();
                         setDisplayContent(false)
 
@@ -212,31 +223,59 @@ const Login = () => {
             document.exitFullscreen();
         }
     };
-    const handleSkip = () => {
-        // Check if the player is not disposed before updating the playlist
-        if (player.current && !player.current.isDisposed()) {
-            setDisplayForm(false)
-            player.current.src([
-                { src: '/assets/Greeting2.mp4', type: 'video/mp4' },
-            ]);
-            setDisplayContactForm(true)
+    
+    useEffect(() => {
+        if ( isSkipped) {
+            if (videoPlayerRef.current) {
+                player.current = videojs(videoPlayerRef.current, videoJSOptions1, () => {
+                    // player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
+                    player.current.playlist(videoJSOptions.sources);
 
-            // Play the video
-            player.current.play();
+                    // Add custom style to hide controls
+                    player.current.addClass("hide-controls");
+                    // player.current.play();
+                    console.log(videoJSOptions)
 
-            player.current.one("ended", () => {
-                // Set displayForm to false after the second video ends
+               
+                    player.current.on("ended", () => {
+                        setDisplayForm(true)
+                        setIsSkipped(false)
+                        // setDisplayContactForm(true)
+                        player.current.el().classList.add('hide-controls');
+                        if (player.current.controlBar) {
+                            player.current.controlBar.hide(); // Hide control bar
+                        }
+                        console.log("ended");
 
-                setDisplayForm(true);
-                console.log(setDisplayContactForm)
-            });
+                    });
 
+                    // Set a timer to start playing the video after 4 seconds
+                    // setDisplayImg(true)
+                    // Set the volume to 0.5 (50%)
+                    // Check if the player is not disposed before calling play()
+                    if (player.current && !player.current.isDisposed()) {
+                        player.current.addClass("imgToVideoFadeInAni");
+                        player.current.play();
+                        // setDisplayContent(false)
 
-            // Log the current item index after a short delay
-            setTimeout(() => {
-                console.log(player.current.playlist.currentItem()); // Log the current item index
-            }, 100);
+                    }
+                    console.log("Player Ready")
+
+                    // console.log("Player Ready")
+                });
+            }
         }
+    }, [isSkipped])
+
+
+    const handleSkip = () => {
+        console.log("handleSkip")
+       
+        setDisplayForm(false)
+        setDisplayContactForm(true)
+        setIsSkipped(true)
+        // Check if the player is not disposed before updating the playlist
+        
     };
 
     return (
@@ -245,11 +284,13 @@ const Login = () => {
                 <div class="fullscreen" id="fullscreen">
                     <div id="formDiv">
                         <form method="post" >
-                            <div className="flex justify-center">
+                            <div className="flex justify-center spanAnimation z-1">
                                 <span id="text-to-speech-span1" className="text-[6cqw] text-white animate-pulse
                        font-poppins">
-                                    Hi, {decryptedName}
+                                    Hi, 
                                 </span>
+                                <span className="text-[6cqw] px-2 text-white animate-pulse
+                       font-poppins" id="text-to-speech-span2"> {decryptedName} </span>
                             </div>
                             {/* <div className="overlayTitle1 z-1">
                                 <span className="spanCss1" id="text-to-speech-span1">Hi, {decryptedName}</span>
@@ -270,8 +311,16 @@ const Login = () => {
                     />
                 </div>
             }
+            {isSkipped &&
+                <div class="fullscreen" id="fullscreen">
+                    <video
+                        ref={videoPlayerRef}
+                        className="video-js"
+                    />
+                </div>
+            }
             {displayForm &&
-                <div >
+                <div className="imgToVideoFadeInAni">
                     <GiftMobile getSkip={handleSkip} getContactForm={displayContactForm} />
                 </div>
             }

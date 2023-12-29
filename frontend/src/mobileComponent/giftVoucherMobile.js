@@ -21,13 +21,13 @@ const GetUserForm = ({ handleTryOff }) => {
     return (
         <>
             {showFirstImage ? (
-                <div className="giftVoucherCss">
+                <div className="giftVoucherCss tryContentCss">
                     <img alt="" src="/assets/Voucher1.jpg" className="w-[400px] " />
                 </div>
 
             ) : (
                 <div>
-                    <section className="">
+                    <section className="minigiftBoxCss">
                         <div className="flex  justify-center  z-1">
                             <div className="flex ">
                                 <div className="flex items-center portraitImage" >
