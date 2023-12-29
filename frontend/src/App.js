@@ -13,7 +13,7 @@ import React, { useState } from "react";
 import { useMediaQuery } from 'react-responsive';
 
 function App() {
-  const isMobile = useMediaQuery({ maxWidth: 680 });
+  const isMobile = useMediaQuery({ maxWidth: 940 });
   // const isMobile = window.innerWidth <= 480;
   // const [showFirstImage, setShowFirstImage] = useState(true);
   return (
