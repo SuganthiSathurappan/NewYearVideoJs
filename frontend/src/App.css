@@ -1,11 +1,11 @@
 #fullscreen {
   height: 100vh;
   display: flex;
-  background-image: url("../public/assets/video-bg.jpg");
+  /* background-image: url("../public/assets/video-bg.jpg"); */
   justify-content: center;
   align-items: center;
   border: 1px solid black;
-  /* background-color: blue; */
+  background-color: blue;
 }
 #formDiv {
   position: relative;

@@ -11,8 +11,13 @@ import "videojs-landscape-fullscreen";
 
 import { decrypt } from "../common/cryptoUtils";
 
+import GiftMobile from './giftMobile'
 
 const Persionalization = () => {
+    const [displayForm, setDisplayForm] = useState(false);
+    const [displayContactForm, setDisplayContactForm] = useState(false);
+    const [isSkipped, setIsSkipped] = useState(true);
+
     const { name } = useParams();
     console.log(name)
     // Decrypt the name
@@ -73,7 +78,8 @@ const Persionalization = () => {
 
 
     const videoJSOptions = {
-        videoSrc: `/personalize-video/${pathName}.mp4`,
+        // videoSrc: `/personalize-video/${pathName}.mp4`,
+        videoSrc:'https://new-year-video-js.vercel.app/assets/Greeting1.mp4',
         type: 'video/mp4',
         fluid: true,
         responsive: true,
@@ -105,7 +111,8 @@ const Persionalization = () => {
                 })
 
                 player.current.on("ended", () => {
-
+                    setDisplayForm(true)
+                    setIsSkipped(false)
                     player.current.el().classList.add('hide-controls');
                     if (player.current.controlBar) {
                         player.current.controlBar.hide(); // Hide control bar
@@ -151,16 +158,30 @@ const Persionalization = () => {
         }
     };
 
-
+    const handleSkip = () => {
+        console.log("handleSkip")
+       
+        setDisplayForm(false)
+        setDisplayContactForm(true)
+      
+        
+    };
 
     return (
         <div>
+            {isSkipped &&
             <div class="fullscreen" id="fullscreen">
                 <video
                     ref={videoPlayerRef}
                     className="video-js"
                 />
             </div>
+}
+            {displayForm &&
+                <div className="imgToVideoFadeInAni">
+                    <GiftMobile getSkip={handleSkip} getContactForm={displayContactForm} />
+                </div>
+            }
         </div>
     );
 };
