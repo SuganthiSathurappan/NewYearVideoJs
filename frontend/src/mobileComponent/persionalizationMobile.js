@@ -73,8 +73,7 @@ const Persionalization = () => {
 
 
     const videoJSOptions = {
-        // videoSrc: `/personalize-video/${pathName}.mp4`,
-        videoSrc: 'https://new-year-video-js.vercel.app/assets/Greeting1.mp4',
+        videoSrc: `/personalize-video/${pathName}.mp4`,
         type: 'video/mp4',
         fluid: true,
         responsive: true,
