@@ -12,6 +12,10 @@ const fs = require("fs");
 // Parsing the form of body to take 
 // input from forms 
 const bodyParser = require("body-parser");
+const path = require("path");
+
+// Serving static files from the "src" folder
+app.use(express.static(path.join(__dirname, "src")));
 
 // Configuring express to use body-parser 
 // as middle-ware 
@@ -19,10 +23,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Get request for root of the app 
-app.get("/App", function (req, res) {
+app.get("/", function (req, res) {
 
 // Sending index.html to the browser 
-  res.sendFile(__dirname + "/App");
+  // res.sendFile(__dirname + "/App");
+  res.sendFile(path.join(__dirname, "src", "index.js"));
+
 });
 
 // Post request for geetting input from 
@@ -33,7 +39,7 @@ app.post("/mssg", function (req, res) {
   console.log(req.body);
 
   // Redirecting to the root 
-  res.redirect("/App");
+  res.redirect("/");
 });
 
 // Creating object of key and certificate 
