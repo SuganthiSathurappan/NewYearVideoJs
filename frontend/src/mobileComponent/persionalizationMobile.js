@@ -12,12 +12,14 @@ import "videojs-landscape-fullscreen";
 import { decrypt } from "../common/cryptoUtils";
 
 import GiftMobile from './giftMobile'
+import SecondVideoJs from "./secondVideoJs";
 
 const Persionalization = () => {
     const [displayForm, setDisplayForm] = useState(false);
     const [displayContactForm, setDisplayContactForm] = useState(false);
     const [isSkipped, setIsSkipped] = useState(true);
     const [displayContent, setDisplayContent] = useState(true);
+    const [displaySecVideo, setDisplaySecVideo] = useState(false);
 
     const { name } = useParams();
     console.log(name)
@@ -25,53 +27,7 @@ const Persionalization = () => {
     const decryptedName = decrypt(name);
     console.log(decryptedName)
 
-    let pathName = ""
-    if (decryptedName === "Ajay") {
-        pathName = "Ajay"
-    }
-    else if (decryptedName === "Balaji") {
-        pathName = "Balaji"
-    }
-    else if (decryptedName === "Bougle") {
-        pathName = "JC"
-    }
-    else if (decryptedName === "Juhi") {
-        pathName = "Juhi"
-    }
-    else if (decryptedName === "Marwan") {
-        pathName = "Marwan"
-    }
-    else if (decryptedName === "Nipun") {
-        pathName = "Nipun"
-    }
-    else if (decryptedName === "Rajiv") {
-        pathName = "Rajiv"
-    }
-    else if (decryptedName === "Saravana") {
-        pathName = "Saravana"
-    }
-    else if (decryptedName === "Sophie") {
-        pathName = "Sophie"
-    }
-    else if (decryptedName === "Sunny") {
-        pathName = "Sunny"
-    }
-    else {
-        pathName = "JC"
-    }
-    // const isDesktopOrLaptop = useMediaQuery({
-    //     query: '(min-device-width: 1224px)'
-    // })
-    // const isBigScreen = useMediaQuery({ query: '(min-device-width: 1824px)' })
-    // const isTabletOrMobileDevice = useMediaQuery({
-    //     query: '(max-device-width: 1224px)'
-    // })
-    const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
-    const isRetina = useMediaQuery({ query: '(min-resolution: 2dppx)' })
 
-    const isMobile = useMediaQuery({ maxWidth: 767 });
-    const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
-    const isDesktop = useMediaQuery({ minWidth: 992 });
 
     const videoPlayerRef = useRef(null);
     const player = useRef(null);
@@ -89,6 +45,7 @@ const Persionalization = () => {
         // muted: true,
     };
 
+    // This useEffect using play video purpose
     useEffect(() => {
 
         if (!displayContent) {
@@ -110,9 +67,9 @@ const Persionalization = () => {
                             iOS: true
                         }
                     })
-                  
+
                     // setIsSkipped(true)
-                    
+
                     if (player.current && !player.current.isDisposed()) {
                         setDisplayContent(false)
                         player.current.addClass("imgToVideoFadeInAni");
@@ -156,6 +113,8 @@ const Persionalization = () => {
         setDisplayContent(false)
     }, 5000);
 
+
+    // This useEffect using display name purpose
     useEffect(() => {
 
         const audioElement = document.createElement('audio');
@@ -220,9 +179,8 @@ const Persionalization = () => {
         console.log("handleSkip")
 
         setDisplayForm(false)
+        setDisplaySecVideo(true)
         setDisplayContactForm(true)
-
-
     };
 
     return (
@@ -261,6 +219,11 @@ const Persionalization = () => {
             {displayForm &&
                 <div className="imgToVideoFadeInAni">
                     <GiftMobile getSkip={handleSkip} getContactForm={displayContactForm} />
+                </div>
+            }
+            {displaySecVideo &&
+                <div className="imgToVideoFadeInAni">
+                    <SecondVideoJs getSecVideo={displaySecVideo}/>
                 </div>
             }
         </div>
