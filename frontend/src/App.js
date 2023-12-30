@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 import './responsiveStyle.css';
 // import VideoPlayer from "./components/newYearVideo";
-import MobilePersionalization from "./components/persionalization";
+import MobilePersionalization from "./mobileComponent/persionalizationMobile";
 import Persionalization from "./components/persionalization";
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
