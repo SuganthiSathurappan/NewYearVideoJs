@@ -65,9 +65,7 @@
 }
 /* For Mobile View */
 @media only screen and (max-width: 480px) {
-  #formDiv img {
-    /* width: 30vw; */
-  }
+  
   .smallboxesCssMobile {
     position: absolute;
     top: 15%;

@@ -14,7 +14,7 @@ import { decrypt } from "../common/cryptoUtils";
 import GiftMobile from './giftMobile'
 import SecondVideoJs from "./secondVideoJs";
 
-const Persionalization = () => {
+const Interactive = () => {
     const [displayForm, setDisplayForm] = useState(false);
     const [displayContactForm, setDisplayContactForm] = useState(false);
     const [isSkipped, setIsSkipped] = useState(true);
@@ -34,6 +34,8 @@ const Persionalization = () => {
 
     const spokenRef = useRef(false);
 
+     const audioElement = document.createElement('audio');
+
     const videoJSOptions = {
         // videoSrc: `/personalize-video/${pathName}.mp4`,
         videoSrc: 'https://new-year-video-js.vercel.app/assets/Greeting1.mp4',
@@ -42,7 +44,7 @@ const Persionalization = () => {
         responsive: true,
         controls: true,
         userActions: { hotkeys: true },
-        // muted: true,
+        muted: true,
     };
 
     // This useEffect using play video purpose
@@ -69,12 +71,11 @@ const Persionalization = () => {
                     })
 
                     // setIsSkipped(true)
-
+                    player.current.play();
                     if (player.current && !player.current.isDisposed()) {
-                        setDisplayContent(false)
-                        player.current.addClass("imgToVideoFadeInAni");
-                        player.current.play();
 
+                        // setDisplayContent(false)
+                        player.current.addClass("imgToVideoFadeInAni");
                     }
                     console.log("Player Ready")
 
@@ -110,16 +111,16 @@ const Persionalization = () => {
     }, [displayContent]);
 
     window.setTimeout(() => {
-        setDisplayContent(false)
+        setDisplayContent(false)       
     }, 5000);
 
 
     // This useEffect using display name purpose
     useEffect(() => {
 
-        const audioElement = document.createElement('audio');
+       
         audioElement.src = '/assets/Audio_1.mp3';
-        audioElement.loop = true;
+        // audioElement.loop = true;
         audioElement.play();
 
         const textToAudio = (spanContent) => {
@@ -192,7 +193,7 @@ const Persionalization = () => {
                             <div className="flex justify-center spanAnimation z-1">
                                 <span id="text-to-speech-span1" className="text-[6cqw] text-white animate-pulse
                        font-poppins">
-                                    Hi,
+                                    Hi
                                 </span>
                                 <span className="text-[6cqw] px-2 text-white animate-pulse
                        font-poppins" id="text-to-speech-span2"> {decryptedName} </span>
@@ -223,11 +224,11 @@ const Persionalization = () => {
             }
             {displaySecVideo &&
                 <div className="imgToVideoFadeInAni">
-                    <SecondVideoJs getSecVideo={displaySecVideo}/>
+                    <SecondVideoJs getSecVideo={displaySecVideo} />
                 </div>
             }
         </div>
     );
 };
 
-export default Persionalization;
+export default Interactive;

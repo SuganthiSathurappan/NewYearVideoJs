@@ -3,21 +3,64 @@ import videojs from "video.js";
 import 'video.js/dist/video-js.css';
 import "videojs-contextmenu-ui";
 import "videojs-overlay";
-import ContactForm from "./contactMobile";
+import { useParams } from 'react-router-dom';
+import { useMediaQuery } from 'react-responsive';
 
 // initialize video.js plugins
 import "videojs-landscape-fullscreen";
 
+import { decrypt } from "../common/cryptoUtils";
 
 
-const SecondVideoJs = () => {
-    const [displayContactForm, setDisplayContactForm] = useState(false)
-    const [displayVideo, setDisplayVideo] = useState(true)
+const Persionalization = () => {
+    const { name } = useParams();
+    console.log(name)
+    // Decrypt the name
+    const decryptedName = decrypt(name);
+    console.log(decryptedName)
+
+    let pathName = ""
+    if (decryptedName === "Ajay") {
+        pathName = "Ajay"
+    }
+    else if (decryptedName === "Balaji") {
+        pathName = "Balaji"
+    }
+    else if (decryptedName === "Bougle") {
+        pathName = "JC"
+    }
+    else if (decryptedName === "Juhi") {
+        pathName = "Juhi"
+    }
+    else if (decryptedName === "Marwan") {
+        pathName = "Marwan"
+    }
+    else if (decryptedName === "Nipun") {
+        pathName = "Nipun"
+    }
+    else if (decryptedName === "Rajiv") {
+        pathName = "Rajiv"
+    }
+    else if (decryptedName === "Saravana") {
+        pathName = "Saravana"
+    }
+    else if (decryptedName === "Sophie") {
+        pathName = "Sophie"
+    }
+    else if (decryptedName === "Sunny") {
+        pathName = "Sunny"
+    }
+    else {
+        pathName = "JC"
+    }
+ 
     const videoPlayerRef = useRef(null);
     const player = useRef(null);
 
+
+
     const videoJSOptions = {
-        videoSrc: 'https://new-year-video-js.vercel.app/assets/Greeting2.mp4',
+        videoSrc: `/personalize-video/${pathName}.mp4`,
         type: 'video/mp4',
         fluid: true,
         responsive: true,
@@ -49,8 +92,7 @@ const SecondVideoJs = () => {
                 })
 
                 player.current.on("ended", () => {
-                    setDisplayContactForm(true)
-                    setDisplayVideo(false)
+
                     player.current.el().classList.add('hide-controls');
                     if (player.current.controlBar) {
                         player.current.controlBar.hide(); // Hide control bar
@@ -79,7 +121,7 @@ const SecondVideoJs = () => {
 
         };
 
-    }, [displayContactForm]);
+    }, []);
 
 
     const toggleFullScreen = async () => {
@@ -100,25 +142,11 @@ const SecondVideoJs = () => {
 
     return (
         <div>
-            {displayVideo &&
-                <div class="fullscreen" id="fullscreen">
-                    <video
-                        ref={videoPlayerRef}
-                        className="video-js"
-                    />
-                </div>
-            }
-            {displayContactForm &&
-                <div class="fullscreen" id="fullscreen">
-                    <div id="formDiv">
-
-                        <ContactForm />
-
-                    </div>
-                </div>
-            }
+            <div class="fullscreen" id="fullscreen">
+                <video ref={videoPlayerRef} className="video-js " />
+            </div>
         </div>
     );
 };
 
-export default SecondVideoJs;
+export default Persionalization;

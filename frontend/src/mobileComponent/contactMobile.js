@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 
 const ContactForm = ({ handleTryOff }) => {
-    const [darkMode, setDarkMode] = useState(false);
     const [displayContact, setDisplayContact] = useState(true);
     const [displayForm, setDisplayForm] = useState(false);
     const navigate = useNavigate()
@@ -19,14 +18,14 @@ const ContactForm = ({ handleTryOff }) => {
     return (
         <div >
             <div className="animate-pulse">
-                <span className="text-md md:text-[2cqw] text-[#ffdf60] ">
+                <span className="text-md md:text-[3cqw] text-[#ffdf60] ">
                     Feel free to contact
                 </span>
 
-                <div className="flex flex-col  justify-center text-center mt-5 ">
-                    <span className="text-md md:text-[2.5cqw]  lg:py-0 md:py-2 sm:py-1">
+                <div className="flex flex-col  justify-center text-center mt-3 ">
+                    <span className="text-md md:text-[4.5cqw]  lg:py-0 md:py-2 sm:py-1">
                         +65 9206 6938  </span>
-                    <span className="text-md md:text-[2.5cqw] ">
+                    <span className="text-md md:text-[3.5cqw] ">
                         sales@techtist.com
                     </span>
                 </div>
