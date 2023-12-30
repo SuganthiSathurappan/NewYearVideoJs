@@ -120,7 +120,7 @@ const Interactive = () => {
 
        
         audioElement.src = '/assets/Audio_1.mp3';
-        // audioElement.loop = true;
+        audioElement.loop = true;
         audioElement.play();
 
         const textToAudio = (spanContent) => {
