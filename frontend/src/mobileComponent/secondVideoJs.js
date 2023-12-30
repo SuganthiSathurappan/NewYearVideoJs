@@ -12,6 +12,7 @@ import "videojs-landscape-fullscreen";
 
 const SecondVideoJs = () => {
     const [displayContactForm, setDisplayContactForm] = useState(false)
+    const [displayVideo, setDisplayVideo] = useState(true)
     const videoPlayerRef = useRef(null);
     const player = useRef(null);
 
@@ -49,6 +50,7 @@ const SecondVideoJs = () => {
 
                 player.current.on("ended", () => {
                     setDisplayContactForm(true)
+                    setDisplayVideo(false)
                     player.current.el().classList.add('hide-controls');
                     if (player.current.controlBar) {
                         player.current.controlBar.hide(); // Hide control bar
@@ -98,15 +100,23 @@ const SecondVideoJs = () => {
 
     return (
         <div>
-            <div class="fullscreen" id="fullscreen">
-                <video
-                    ref={videoPlayerRef}
-                    className="video-js"
-                />
-            </div>
+            {displayVideo &&
+                <div class="fullscreen" id="fullscreen">
+                    <video
+                        ref={videoPlayerRef}
+                        className="video-js"
+                    />
+                </div>
+            }
             {displayContactForm &&
-                        <ContactForm />
-                    }
+                <div class="fullscreen" id="fullscreen">
+                    <div id="formDiv">
+                        <form method="post" >
+                            <ContactForm />
+                        </form>
+                    </div>
+                </div>
+            }
         </div>
     );
 };
