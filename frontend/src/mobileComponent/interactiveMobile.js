@@ -20,6 +20,8 @@ const Interactive = () => {
     const [isSkipped, setIsSkipped] = useState(true);
     const [displayContent, setDisplayContent] = useState(true);
     const [displaySecVideo, setDisplaySecVideo] = useState(false);
+    const [displayUnmute, setDisplayUnmute] = useState(true);
+    const [displayMute, setDisplayMute] = useState(false);
 
     const { name } = useParams();
     console.log(name)
@@ -34,7 +36,7 @@ const Interactive = () => {
 
     const spokenRef = useRef(false);
 
-    const audioElement = document.createElement('audio');
+    const audioElementRef = useRef(false);
 
     const videoJSOptions = {
         // videoSrc: `/personalize-video/${pathName}.mp4`,
@@ -47,7 +49,7 @@ const Interactive = () => {
         muted: true,
     };
 
-    // This useEffect using play video purpose
+    // // This useEffect using play video purpose
     useEffect(() => {
 
         if (!displayContent) {
@@ -55,6 +57,9 @@ const Interactive = () => {
                 player.current = videojs(videoPlayerRef.current, videoJSOptions, () => {
                     player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
                     // player.current.playlist(videoJSOptions.sources);
+                    player.current.controlBar.removeChild('MuteToggle');
+                    // Remove the VolumePanel button
+                    player.current.controlBar.removeChild('VolumePanel');
 
                     player.current.addClass("hide-controls");
 
@@ -71,7 +76,7 @@ const Interactive = () => {
                     })
 
                     // setIsSkipped(true)
-                    // player.current.play();
+                    player.current.play();
                     if (player.current && !player.current.isDisposed()) {
 
                         // setDisplayContent(false)
@@ -80,9 +85,9 @@ const Interactive = () => {
                     console.log("Player Ready")
 
                     player.current.on("ended", () => {
-                        // setDisplayForm(true)
-                        // setIsSkipped(false)
-                        // setDisplayContent(false)
+                        setDisplayForm(true)
+                        setIsSkipped(false)
+                        setDisplayContent(false)
                         player.current.el().classList.add('hide-controls');
                         if (player.current.controlBar) {
                             player.current.controlBar.hide(); // Hide control bar
@@ -111,17 +116,13 @@ const Interactive = () => {
     }, [displayContent]);
 
     window.setTimeout(() => {
-        // setDisplayContent(false)       
+        setDisplayContent(false)
     }, 5000);
 
 
     // This useEffect using display name purpose
     useEffect(() => {
-
-
-        audioElement.src = '/assets/Audio_1.mp3';
-        audioElement.loop = true;
-        audioElement.play();
+        audioElementRef.current.play()
 
         const textToAudio = (spanContent) => {
             let speech = new SpeechSynthesisUtterance();
@@ -152,11 +153,7 @@ const Interactive = () => {
             if (player.current) {
                 // player.current.dispose();
             }
-            if (audioElement.onplaying) {
-                audioElement.src = '';
-                // audioElement.pause();
-                // audioElement.remove();
-            }
+
         };
 
 
@@ -183,57 +180,102 @@ const Interactive = () => {
         setDisplaySecVideo(true)
         setDisplayContactForm(true)
     };
+    const handleunMuteClick = () => {
+        console.log("handleunMuteClick")
+        setDisplayUnmute(false)
+        setDisplayMute(true)
+        audioElementRef.current.pause()
+    };
+    const handleUnmuteClick = () => {
+        console.log("handleunUnmuteClick")
+        setDisplayMute(false)
+        setDisplayUnmute(true)
+
+        audioElementRef.current.play();
+    };
 
     return (
+
         <div>
-            {displayContent &&
-                <div class="fullscreen" id="fullscreen">
+            <audio src="/assets/Audio_1.mp3" type="audio/mp3" ref={audioElementRef}>
+
+            </audio>
+            <div>
+                {displayUnmute &&
                     <img alt="" src="/assets/unmute.png"
-                        className=" cursor-pointer mx-3 top-2 absolute z-1 px-2 right-0 w-9 rounded-full border-2 border-black
+                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
                                     transition duration-300 ease-in-out hover:border-white hover:w-10"
-                    // onClick={handleMuteClick}
+                        onClick={handleunMuteClick}
                     />
-                    <div id="formDiv">
+                }
+                {displayMute &&
+                    <img alt="" src="/assets/mute.png"
+                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
+                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
+                        onClick={handleUnmuteClick}
+                    />
+                }
 
-                        <form method="post" >
-                            <div className="flex justify-center spanAnimation z-1">
-                                <span id="text-to-speech-span1" className="text-[6cqw] text-white animate-pulse
+                {displayContent &&
+                    <div class="fullscreen" id="fullscreen">
+                        {displayUnmute &&
+                            <img alt="" src="/assets/unmute.png"
+                                className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
+                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
+                                onClick={handleunMuteClick}
+                            />
+                        }
+                        {displayMute &&
+                            <img alt="" src="/assets/mute.png"
+                                className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
+                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
+                                onClick={handleUnmuteClick}
+                            />
+                        }
+                        <div id="formDiv">
+
+                            <form method="post" >
+                                <div className="flex justify-center spanAnimation z-1">
+                                    <span id="text-to-speech-span1" className="text-[6cqw] text-white animate-pulse
                        font-poppins">
-                                    Hi
-                                </span>
-                                <span className="text-[6cqw] px-2 text-white animate-pulse
+                                        Hi
+                                    </span>
+                                    <span className="text-[6cqw] px-2 text-white animate-pulse
                        font-poppins" id="text-to-speech-span2"> {decryptedName} </span>
-                            </div>
+                                </div>
 
-                            {/* <div className="overlayTitle1 z-1">
+                                {/* <div className="overlayTitle1 z-1">
                                 <span className="spanCss1" id="text-to-speech-span1">Hi, {decryptedName}</span>
                                 {/* <span className="spanCss1" id="text-to-speech-span2"> </span><br /> 
 
                             </div> */}
 
-                        </form>
+                            </form>
 
+                        </div>
                     </div>
-                </div>
-            }
-            {!displayContent && isSkipped &&
-                <div class="fullscreen" id="fullscreen">
-                    <video
-                        ref={videoPlayerRef}
-                        className="video-js"
-                    />
-                </div>
-            }
-            {displayForm &&
-                <div className="imgToVideoFadeInAni">
-                    <GiftMobile getSkip={handleSkip} getContactForm={displayContactForm} />
-                </div>
-            }
-            {displaySecVideo &&
-                <div className="imgToVideoFadeInAni">
-                    <SecondVideoJs getSecVideo={displaySecVideo} />
-                </div>
-            }
+                }
+
+                {!displayContent && isSkipped &&
+                    <div class="fullscreen" id="fullscreen">
+                        <video
+                            ref={videoPlayerRef}
+                            className="video-js"
+                        />
+                    </div>
+                }
+
+                {displayForm &&
+                    <div className="imgToVideoFadeInAni">
+                        <GiftMobile getSkip={handleSkip} getContactForm={displayContactForm} />
+                    </div>
+                }
+                {displaySecVideo &&
+                    <div className="imgToVideoFadeInAni">
+                        <SecondVideoJs getSecVideo={displaySecVideo} />
+                    </div>
+                }
+            </div>
         </div>
     );
 };

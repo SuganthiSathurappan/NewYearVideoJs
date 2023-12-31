@@ -20,6 +20,8 @@ const VideoPlayer = () => {
     const [displayImg, setDisplayImg] = useState(true);
     const [displayContent, setDisplayContent] = useState(true);
     const [displayContactForm, setDisplayContactForm] = useState(false);
+    const [displayUnmute, setDisplayUnmute] = useState(true);
+    const [displayMute, setDisplayMute] = useState(false);
 
     const [displayVideo, setDisplayVideo] = useState(false);
 
@@ -28,7 +30,7 @@ const VideoPlayer = () => {
 
     const spokenRef = useRef(false);
     const player = useRef(null);
-
+    const audioElementRef = useRef(false);
 
     console.log(name)
     // Decrypt the name
@@ -51,10 +53,7 @@ const VideoPlayer = () => {
 
     useEffect(() => {
         CrakersFunction()
-        const audioElement = document.createElement('audio');
-        audioElement.src = '/assets/Audio_1.mp3';
-        audioElement.loop = true;
-        audioElement.play();
+        audioElementRef.current.play()
 
         const textToAudio = (spanContent) => {
             let speech = new SpeechSynthesisUtterance();
@@ -75,8 +74,7 @@ const VideoPlayer = () => {
             let spanContent = document.getElementById('text-to-speech-span1').innerText;
             console.log(spanContent)
             textToAudio(`${spanContent + decryptedName} `);
-            // Set the volume to 0.5 (50%)
-            audioElement.volume = 0.5;
+
         }
 
         if (videoPlayerRef.current) {
@@ -84,6 +82,11 @@ const VideoPlayer = () => {
                 // player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
                 player.current.playlist(videoJSOptions.sources);
                 setDisplayForm(false)
+                // player.current.playlist(videoJSOptions.sources);
+                player.current.controlBar.removeChild('MuteToggle');
+                // Remove the VolumePanel button
+                player.current.controlBar.removeChild('VolumePanel');
+
                 // Add custom style to hide controls
                 player.current.addClass("hide-controls");
 
@@ -106,8 +109,7 @@ const VideoPlayer = () => {
 
                 // Set a timer to start playing the video after 4 seconds
                 window.setTimeout(() => {
-                    // Set the volume to 0.5 (50%)
-                    audioElement.volume = 0.6;
+
                     // Check if the player is not disposed before calling play()
                     if (player.current && !player.current.isDisposed()) {
                         player.current.addClass("videoFadeInAni");
@@ -129,10 +131,7 @@ const VideoPlayer = () => {
             if (player.current) {
                 // player.current.dispose();
             }
-            if (audioElement) {
-                audioElement.pause();
-                audioElement.remove();
-            }
+
         };
 
     }, [name]);
@@ -296,10 +295,26 @@ const VideoPlayer = () => {
             window.removeEventListener("resize", resizeCanvas);
         };
     }
+    const handleunMuteClick = () => {
+        console.log("handleunMuteClick")
+        setDisplayUnmute(false)
+        setDisplayMute(true)
+        audioElementRef.current.pause()
+    };
+    const handleUnmuteClick = () => {
+        console.log("handleunUnmuteClick")
+        setDisplayMute(false)
+        setDisplayUnmute(true)
 
+        audioElementRef.current.play();
+    };
 
     return (
         <div>
+            <audio src="/assets/Audio_1.mp3" type="audio/mp3" ref={audioElementRef}>
+
+            </audio>
+
 
             <div id="overlay" className="flex mt-2 items-center  text-blue-700 font-semibold text-2xl justify-center">
                 {/* Customized Interactive Video Player */}
@@ -311,9 +326,42 @@ const VideoPlayer = () => {
                 />
             </div>
             <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
+                {displayUnmute &&
+                    <img alt="" src="/assets/unmute.png"
+                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
+                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
+                        onClick={handleunMuteClick}
+                    />
+                }
+                {displayMute &&
+                    <img alt="" src="/assets/mute.png"
+                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
+                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
+                        onClick={handleUnmuteClick}
+                    />
+                }
+
+            </div>
+            <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
                 <div>
                     {displayImg &&
                         <div className="image-container">
+                            <div className="muteCss">
+                                {displayUnmute &&
+                                    <img alt="" src="/assets/unmute.png"
+                                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
+                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
+                                        onClick={handleunMuteClick}
+                                    />
+                                }
+                                {displayMute &&
+                                    <img alt="" src="/assets/mute.png"
+                                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
+                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
+                                        onClick={handleUnmuteClick}
+                                    />
+                                }
+                            </div>
                             <canvas id="canvas" className="canvasCss"></canvas>
                             <img alt="" src="/assets/video-bg.jpg" />
                         </div>
@@ -322,16 +370,20 @@ const VideoPlayer = () => {
                 </div>
                 {displayContent &&
                     <div className="overlayTitle1 " >
-                        <span className="spanCss1" id="text-to-speech-span1">Hi,</span>
+                        <span className="spanCss1" id="text-to-speech-span1">Hi</span>
                         <span className="spanCss1" id="text-to-speech-span2"> {decryptedName}</span><br />
                     </div>
                 }
 
                 <div id="wrapper">
                     {displayForm &&
-                        <div id="overlay" className="videoFadeInAni">
-                            <Gift getSkip={handleSkip} getContactForm={displayContactForm} />
-                        </div>
+                        <>
+
+                            <div id="overlay" className="videoFadeInAni">
+
+                                <Gift getSkip={handleSkip} getContactForm={displayContactForm} />
+                            </div>
+                        </>
                     }
                 </div>
 

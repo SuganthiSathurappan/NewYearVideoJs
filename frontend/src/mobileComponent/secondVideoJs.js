@@ -33,6 +33,10 @@ const SecondVideoJs = () => {
             player.current = videojs(videoPlayerRef.current, videoJSOptions, () => {
                 player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
                 // player.current.playlist(videoJSOptions.sources);
+                // player.current.playlist(videoJSOptions.sources);
+                player.current.controlBar.removeChild('MuteToggle');
+                // Remove the VolumePanel button
+                player.current.controlBar.removeChild('VolumePanel');
 
                 player.current.addClass("hide-controls");
 

@@ -63,6 +63,9 @@
 .portraitGroceryImage {
   margin-right: 5%;
 }
+.groceryText {
+  /* font-size: 16px; */
+}
 /* For Mobile View */
 @media only screen and (max-width: 480px) {
   

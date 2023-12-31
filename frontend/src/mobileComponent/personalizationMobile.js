@@ -50,6 +50,12 @@ const Persionalization = () => {
     else if (decryptedName === "Sunny") {
         pathName = "Sunny"
     }
+    else if (decryptedName === "Kevin") {
+        pathName = "Kevin"
+    }
+    else if (decryptedName === "Sridhar") {
+        pathName = "Sridhar"
+    }
     else {
         pathName = "JC"
     }

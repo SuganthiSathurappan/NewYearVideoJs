@@ -41,7 +41,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
         // Cleanup function
         return () => {
 
-
+         
         };
     }, [getContactForm])
 
@@ -115,11 +115,6 @@ const GiftForm = ({ getSkip, getContactForm }) => {
     return (
         <>
             <div className="fullscreen font-poppins" id="fullscreen">
-                <img alt="" src="/assets/mute.png"
-                    className=" cursor-pointer mx-3 top-2 absolute z-1 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                // onClick={handleGift1Click}
-                />
                 <div id="formDiv">
                     <form method="post" >
                         {displayContent &&

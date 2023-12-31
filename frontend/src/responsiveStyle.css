@@ -262,7 +262,10 @@
 }
 
 /* Persionalization */
-
+.muteCss{
+  position: relative;
+  z-index: 2147483647;
+}
 /* Video Js .css */
 .video-container {
   position: absolute;

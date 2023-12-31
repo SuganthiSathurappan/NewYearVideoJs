@@ -48,6 +48,14 @@ const FormPage = () => {
     customerName = "Sunny"
     console.log(customerName)
   }
+  else if (id === 'sr11') {
+    customerName = "Sridhar"
+    console.log(customerName)
+  }
+  else if (id === 'kn12') {
+    customerName = "Kevin"
+    console.log(customerName)
+  }
   else {
     customerName = "Bougle"
     console.log(customerName)
@@ -56,7 +64,7 @@ const FormPage = () => {
   const encryptName = (name) => encrypt(name);
 
   return (
-    <div className='flex justify-center mt-10'>
+    <div className='flex justify-center mt-10 font-poppins'>
       {/* //   <h1>Form Page</h1>
     //   <Link to={`/video-player/${encryptName('Toben')}`}>Toben's Link</Link>
     //   <br />
@@ -68,16 +76,17 @@ const FormPage = () => {
       <div class="w-[500px] ">
 
         <div class="w-full mb-2">
-          <div class="flex justify-center ">
-            <img alt='' src='/assets/Logo-techtist.png'
+          <div class="flex justify-center text-center mb-2">
+            <span class="text-[60px]  text-blue-600">Skie.AI</span>
+            {/* <img alt='' src='/assets/Logo-techtist.png'
               class="w-60 lg:w-50 md:w-50 sm:w-50 mt-6 mb-4 hover:text-blue-600 underline">
-            </img>
+            </img> */}
           </div>
           <div class="flex justify-center">
             <Link to={`/NewYear-Persionalization/${encryptName(customerName)}`}>
               <img
                 className="w-[400px] lg:w-50 md:w-50 sm:w-50 hover:w-[420px]"
-                src="/assets/personilized-button.png"  // Replace with the actual path to your image
+                src="/assets/apv-button.png"  // Replace with the actual path to your image
                 alt="Personalization Video Link"
               />
             </Link>
@@ -85,11 +94,11 @@ const FormPage = () => {
           </div>
         </div>
         <div class="w-full ">
-          <div class="flex justify-center">
+          <div class="flex justify-center mb-2">
             <Link to={`/video-player/${encryptName(customerName)}`}>
               <img
                 className="w-[400px] lg:w-50 md:w-50 sm:w-50 hover:w-[420px]"
-                src="/assets/intractive-button.png"  // Replace with the actual path to your image
+                src="/assets/dice-button.png"  // Replace with the actual path to your image
                 alt="Personalization Video Link"
               />
             </Link>
