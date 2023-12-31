@@ -144,6 +144,10 @@ padding-top: 4px;
   }
 }
 
+.muteCss{
+  position: relative;
+}
+
 /* animattion in video fade in/out */
 .imgToVideoFadeInAni {
   animation: fadeInAnimation ease 2s;

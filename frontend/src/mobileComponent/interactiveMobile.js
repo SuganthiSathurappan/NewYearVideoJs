@@ -34,7 +34,7 @@ const Interactive = () => {
 
     const spokenRef = useRef(false);
 
-     const audioElement = document.createElement('audio');
+    const audioElement = document.createElement('audio');
 
     const videoJSOptions = {
         // videoSrc: `/personalize-video/${pathName}.mp4`,
@@ -71,7 +71,7 @@ const Interactive = () => {
                     })
 
                     // setIsSkipped(true)
-                    player.current.play();
+                    // player.current.play();
                     if (player.current && !player.current.isDisposed()) {
 
                         // setDisplayContent(false)
@@ -80,9 +80,9 @@ const Interactive = () => {
                     console.log("Player Ready")
 
                     player.current.on("ended", () => {
-                        setDisplayForm(true)
-                        setIsSkipped(false)
-                        setDisplayContent(false)
+                        // setDisplayForm(true)
+                        // setIsSkipped(false)
+                        // setDisplayContent(false)
                         player.current.el().classList.add('hide-controls');
                         if (player.current.controlBar) {
                             player.current.controlBar.hide(); // Hide control bar
@@ -111,14 +111,14 @@ const Interactive = () => {
     }, [displayContent]);
 
     window.setTimeout(() => {
-        setDisplayContent(false)       
+        // setDisplayContent(false)       
     }, 5000);
 
 
     // This useEffect using display name purpose
     useEffect(() => {
 
-       
+
         audioElement.src = '/assets/Audio_1.mp3';
         audioElement.loop = true;
         audioElement.play();
@@ -188,7 +188,13 @@ const Interactive = () => {
         <div>
             {displayContent &&
                 <div class="fullscreen" id="fullscreen">
+                    <img alt="" src="/assets/unmute.png"
+                        className=" cursor-pointer mx-3 top-2 absolute z-1 px-2 right-0 w-9 rounded-full border-2 border-black
+                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
+                    // onClick={handleMuteClick}
+                    />
                     <div id="formDiv">
+
                         <form method="post" >
                             <div className="flex justify-center spanAnimation z-1">
                                 <span id="text-to-speech-span1" className="text-[6cqw] text-white animate-pulse
@@ -198,6 +204,7 @@ const Interactive = () => {
                                 <span className="text-[6cqw] px-2 text-white animate-pulse
                        font-poppins" id="text-to-speech-span2"> {decryptedName} </span>
                             </div>
+
                             {/* <div className="overlayTitle1 z-1">
                                 <span className="spanCss1" id="text-to-speech-span1">Hi, {decryptedName}</span>
                                 {/* <span className="spanCss1" id="text-to-speech-span2"> </span><br /> 
