@@ -56,6 +56,14 @@ const FormPage = () => {
     customerName = "Kevin"
     console.log(customerName)
   }
+  else if (id === 'san13') {
+    customerName = "Sankaran"
+    console.log(customerName)
+  }
+  else if (id === 'srn14') {
+    customerName = "Srivathsan"
+    console.log(customerName)
+  }
   else {
     customerName = "Bougle"
     console.log(customerName)
