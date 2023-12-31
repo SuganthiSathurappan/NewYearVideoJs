@@ -197,7 +197,7 @@ const Interactive = () => {
     return (
 
         <div>
-            <audio src="/assets/Audio_1.mp3" type="audio/mp3" ref={audioElementRef}>
+            <audio src="/assets/Audio_1.mp3" type="audio/mp3" ref={audioElementRef} loop>
 
             </audio>
             <div>
