@@ -5,6 +5,8 @@ import './responsiveStyle.css';
 import MobilePersionalization from "./mobileComponent/personalizationMobile";
 import Persionalization from "./components/persionalization";
 
+import DemoDesign from './referenceDesign/demoDesign'
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import FormPage from './components/formPage';
 import MobileVideoPlayer from './mobileComponent/interactiveMobile';
@@ -25,6 +27,7 @@ function App() {
             <Route path="/NewYear/:id" element={<FormPage />} />
             <Route path="/video-player/:name" element={<MobileVideoPlayer />} />
             <Route path="/NewYear-Persionalization/:name" element={<MobilePersionalization />} />
+            <Route path="/Demo" element={<DemoDesign />} />
           </Routes>
         </Router>
       ) : (
@@ -34,6 +37,7 @@ function App() {
             <Route path="/NewYear/:id" element={<FormPage />} />
             <Route path="/video-player/:name" element={<VideoPlayer />} />
             <Route path="/NewYear-Persionalization/:name" element={<Persionalization />} />
+            <Route path="/Demo" element={<DemoDesign />} />
           </Routes>
         </Router>
       )
