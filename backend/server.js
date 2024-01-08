@@ -15,13 +15,19 @@ app.use(cors())
 app.use(express.json())
 app.use(body_parse.json());
 app.use(express.urlencoded({ extended: true }))
-// app.use(body_parse.urlencoded({ extended: true }))
+app.use(body_parse.urlencoded({ extended: true }))
+
+// routers
+const router = require("./app/router/master_router")
+
+app.use('/api', router)
 
 
-app.get("/", (req, res) => {
-    console.log('message:Welcome to backend API')
-    res.json({ message: 'Welcome to backend API' })
-});
+
+// app.get("/", (req, res) => {
+//     console.log('message:Welcome to backend API')
+//     res.json({ message: 'Welcome to backend API' })
+// });
 
 //port 
 const PORT = process.env.PORT || 8080
