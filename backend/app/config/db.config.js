@@ -14,7 +14,7 @@
 
 console.log('db connect')
 module.exports = {
-    HOST: "localhost",
+    HOST: "13.232.110.68",
     USER: "magicdb1",
     DB: 'magicseeds',
     PASSWORD: 'cAr*bLacK@75',
