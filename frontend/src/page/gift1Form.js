@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import MobileDeviceForm from "./mobileDeviceForm";
+import axios from 'axios'
 
 
 const GetUserForm = ({ handleTryOff }) => {
@@ -7,6 +8,15 @@ const GetUserForm = ({ handleTryOff }) => {
     const isMobile = window.innerWidth <= 480;
     const [showFirstImage, setShowFirstImage] = useState(true);
     let textContent = "To avail for Gold Coin, kindly fill and submit"
+
+     useEffect(() => {
+        const url = "http://localhost:8080/api/getAllCampaignType";
+        axios.get(url).then(response => {           
+            console.log("Full Data : ", response.data)
+        })
+
+    }, [])
+
     useEffect(() => {
         if (showFirstImage) {
 
