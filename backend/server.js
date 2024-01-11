@@ -3,6 +3,9 @@ const cors = require('cors');
 const app = express();
 const body_parse = require("body-parser")
 
+const fs = require('fs');
+const https = require('https');
+
 const corsOptions = {
     origin: '*',
     credentials: true,
@@ -22,20 +25,26 @@ const router = require("./app/router/master_router")
 
 app.use('/api', router)
 
-
+// Set up HTTPS server
+const privateKey = fs.readFileSync('/usr/share/source/media-techtist.key', 'utf8');
+const certificate = fs.readFileSync('/usr/share/source/certificate.crt', 'utf8');
+const credentials = { key: privateKey, cert: certificate };
+const httpsServer = https.createServer(credentials, app);
 
 // app.get("/", (req, res) => {
 //     console.log('message:Welcome to backend API')
 //     res.json({ message: 'Welcome to backend API' })
 // });
 
-//port 
-const PORT = process.env.PORT || 8080
-//server
-app.listen(PORT, () => {
-    console.log(`Server in running on port ${PORT}`)
-});
-// db.sequelize.sync();
-// db.sequelize.sync({force : false}).then(()=> {
-//     console.log('Synced database and tables created');
+// //port 
+// const PORT = process.env.PORT || 8080
+// //server
+// app.listen(PORT, () => {
+//     console.log(`Server in running on port ${PORT}`)
 // });
+
+// Start the HTTPS server
+const PORT = process.env.PORT || 443;
+httpsServer.listen(PORT, () => {
+  console.log(`Server is running on https://localhost:${PORT}`);
+});
