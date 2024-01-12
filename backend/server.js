@@ -37,7 +37,7 @@ app.use('/api', router)
 // });
 
 //port 
-const PORT = process.env.PORT || 8080
+const PORT = process.env.PORT || 3000
 //server
 app.listen(PORT, () => {
     console.log(`Server in running on port ${PORT}`)
