@@ -44,7 +44,7 @@ const httpsServer = https.createServer(credentials, app);
 // });
 
 // Start the HTTPS server
-const PORT = process.env.PORT || 443;
+const PORT = process.env.PORT || 3000;
 httpsServer.listen(PORT, () => {
   console.log(`Server is running on https://localhost:${PORT}`);
 });
