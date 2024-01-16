@@ -40,7 +40,7 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 8081
 //server
 app.listen(PORT, () => {
-    console.log(`Server is running on https://localhost:${PORT}`)
+    console.log(`Server is running on https://13.232.110.68:${PORT}`)
 });
 
 // // Start the HTTPS server
