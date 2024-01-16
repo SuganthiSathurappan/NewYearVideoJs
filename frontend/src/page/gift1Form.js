@@ -10,8 +10,8 @@ const GetUserForm = ({ handleTryOff }) => {
     let textContent = "To avail for Gold Coin, kindly fill and submit"
 
      useEffect(() => {
-        // const url = "https://13.232.110.68:3000/api/getAllCampaignType";
-        const url = "http://localhost:3000/api/getAllCampaignType";
+        const url = "https://13.232.110.68:3000/api/getAllCampaignType";
+        // const url = "https://localhost:3000/api/getAllCampaignType";
         axios.get(url).then(response => {           
             console.log("Full Data : ", response.data)
         })
