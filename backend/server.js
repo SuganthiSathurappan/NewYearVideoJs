@@ -31,16 +31,16 @@ app.use('/api', router)
 // const credentials = { key: privateKey, cert: certificate };
 // const httpsServer = https.createServer(credentials, app);
 
-// app.get("/", (req, res) => {
-//     console.log('message:Welcome to backend API')
-//     res.json({ message: 'Welcome to backend API' })
-// });
+app.get("/", (req, res) => {
+    console.log('message:Welcome to backend API')
+    res.json({ message: 'Welcome to backend API' })
+});
 
 //port 
 const PORT = process.env.PORT || 3000
 //server
 app.listen(PORT, () => {
-    console.log(`Server in running on port ${PORT}`)
+    console.log(`Server is running on https://localhost:${PORT}`)
 });
 
 // // Start the HTTPS server
