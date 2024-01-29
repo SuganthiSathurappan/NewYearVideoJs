@@ -37,10 +37,10 @@ app.get("/", (req, res) => {
 });
 
 // //port 
-// const PORT = process.env.PORT || 3000
+// const PORT = process.env.PORT || 8080
 // //server
 // app.listen(PORT, () => {
-//     console.log(`Server is running on https://13.232.110.68:${PORT}`)
+//     console.log(`Server is running on http://localhost:${PORT}`)
 // });
 
 // Start the HTTPS server

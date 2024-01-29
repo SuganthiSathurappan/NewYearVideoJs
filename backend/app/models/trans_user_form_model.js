@@ -36,6 +36,14 @@ module.exports = (sequelizedb, Sequelize) => {
                 model: 'customer_interactive_options_tbl', // Referenced table name
                 key: 'cus_interact_options_id' // Referenced column name
             }
+        },
+        cus_custom_options_id: {   
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model:'customer_custom_form_tbl', //reference table name
+                key: 'cus_custom_options_id'
+            }
         }
     }, {
         freezeTableName: true,

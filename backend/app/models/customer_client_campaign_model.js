@@ -21,6 +21,10 @@ module.exports = (sequelizedb, Sequelize) => {
             type : Sequelize.STRING,
             allowNull : false,
         },
+        cus_client_campaign_key : {
+            type : Sequelize.STRING,
+            allowNull : false,
+        },
         cus_client_id: {
             type: Sequelize.INTEGER,
             allowNull: false,

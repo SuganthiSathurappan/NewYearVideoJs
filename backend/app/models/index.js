@@ -80,10 +80,10 @@ db.customerClientCampaign.belongsTo(db.customerClient,{
 })
 
 db.customerCampaign.hasMany(db.customerClientCampaign,{
-    foreignKey: 'ad_cus_campaign_id'
+    foreignKey: 'cus_campaign_id'
 })
 db.customerClientCampaign.belongsTo(db.customerCampaign,{
-    foreignKey:'ad_cus_campaign_id'
+    foreignKey:'cus_campaign_id'
 })
 
 db.customerVoice.hasMany(db.customerClientCampaign,{
@@ -158,8 +158,14 @@ db.transUserForm.belongsTo(db.transUserInteract,{
 db.customerInteractiveOptions.hasMany(db.transUserForm, {
     foreignKey: 'cus_interact_options_id'
 })
-db.transUserForm.hasMany(db.customerInteractiveOptions, {
+db.transUserForm.belongsTo(db.customerInteractiveOptions, {
     foreignKey: 'cus_interact_options_id'
+})
+db.customerCustomForm.hasMany(db.transUserForm, {
+    foreignKey: 'cus_custom_options_id'
+})
+db.transUserForm.belongsTo(db.customerCustomForm, {
+    foreignKey: 'cus_custom_options_id'
 })
 
 db.sequelize.sync({ force : false })
