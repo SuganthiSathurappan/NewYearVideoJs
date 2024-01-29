@@ -261,7 +261,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
     return (
         <div className="font-poppins  bg-deep-orange-800">
             <div className="image-container">
-                
+
                 <canvas id="canvas" className="canvasCss">
                 </canvas>
                 <img alt="" src="/assets/video-bg.jpg">
@@ -318,8 +318,8 @@ const GiftForm = ({ getSkip, getContactForm }) => {
                         <div className="text-xl absolute z-1 custom-skip-button">
                             <button
                                 className="px-2"
-                            //     className="w-24 p-1.5  border-2 border-[#172936] text-[20px] text-white rounded-lg bg-[#e78b08] text-center 
-                            //    cursor-pointer no-underline focus:shadow-outline focus:outline-none"
+                                //     className="w-24 p-1.5  border-2 border-[#172936] text-[20px] text-white rounded-lg bg-[#e78b08] text-center 
+                                //    cursor-pointer no-underline focus:shadow-outline focus:outline-none"
                                 onClick={getSkip}>
                                 Skip
                             </button>
