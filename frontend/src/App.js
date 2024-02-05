@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-// import './App.css';
+import './App.css';
 import './responsiveStyle.css';
 // import VideoPlayer from "./components/newYearVideo";
 import MobilePersionalization from "./mobileComponent/personalizationMobile";

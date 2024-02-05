@@ -15,22 +15,22 @@ import React from 'react'
 // import sc6 from '../../../public/assets/hdfc/image/women.png'
 // import Image from '../../../public/assets/hdfc/image/insurance-policy.png'
 
-function VideoIa() {
+function InsurancePolicyForm({ getSkip, getChildPlan }) {
     return (
-        <div className='w-full'>
-            <div className="image-container">
+        <div className='w-full bg-white '>
+            <div className="image-container policyFormCss">
                 <div className='p-1' style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)' }}>
                     <div className='flex justify-between md:justify-center gap-1 mt-2'>
                         {/* 1 */}
-                        <div className='flex flex-col items-center'>
+                        <div className='flex flex-col items-center  animate fadeIn three'>
                             <img src='/assets/hdfc/image/icon-saving&investments.png' alt="" className='w-[50px] lg:w-[80px]' />
                             {/* content */}
                             <img src='/assets/hdfc/image/savings-investments.png' alt="" className='w-[80px] hidden lg:block lg:w-[180px] p-2 ' />
                             <h1 className='block lg:hidden text-[13px] text-[rgb(171,15,37)] font-semibold '>Savings & <br /> <span className='relative -top-2 '>Investment</span></h1>
-
+        
                         </div>
                         {/* 2 */}
-                        <div className='flex flex-col items-center'>
+                        <div className='flex flex-col items-center animate fadeIn four' >
                             <img src='/assets/hdfc/image/icon-health.png' alt="" className='w-[60px] lg:w-[80px]' />
                             {/* content */}
                             <img src='/assets/hdfc/image/health.png' alt="" className='w-[80px]  hidden lg:block  lg:w-[180px] p-2 ' />
@@ -39,7 +39,7 @@ function VideoIa() {
                     </div>
                     <div className='relative md:mx-14 my-3 md:m-0 flex justify-between md:justify-around gap-44'>
                         {/* 1 */}
-                        <div className='flex flex-col items-center  relative '>
+                        <div className='flex flex-col items-center  animate fadeIn two  relative'>
                             <img src='/assets/hdfc/image/icon-pension.png' alt="" className='w-[60px] lg:w-[80px]' />
                             {/* content */}
                             <img src='/assets/hdfc/image/pension.png' alt="" className='w-[80px] hidden lg:block lg:w-[180px] p-2 ' />
@@ -47,7 +47,7 @@ function VideoIa() {
                         </div>
 
                         {/* 2 */}
-                        <div className='flex flex-col items-center cursor-pointer'>
+                        <div className='flex flex-col items-center cursor-pointer animate fadeIn five' onClick={getChildPlan}>
                             <img src='/assets/hdfc/image/icon-child.png' alt="" className='w-[60px] lg:w-[80px] animate-pulse' />
                             {/* content */}
                             <img src='/assets/hdfc/image/child.png' alt="" className='w-[80px] hidden lg:block lg:w-[180px] p-2 ' />
@@ -61,7 +61,7 @@ function VideoIa() {
 
                     <div className='md:mx-14 md:mt-7  flex justify-between relative '>
                         {/* 1 */}
-                        <div className='flex flex-col  items-center cursor-pointer'>
+                        <div className='flex flex-col  items-center cursor-pointer animate fadeIn one'>
                             <img src='/assets/hdfc/image/icon-protection.png' alt="" className='w-[60px] lg:w-[80px] ' />
                             {/* content */}
                             <img src='/assets/hdfc/image/protection.png' alt="" className='w-[80px]  hidden lg:block lg:w-[180px] p-2 ' />
@@ -72,18 +72,28 @@ function VideoIa() {
                             <img src='/assets/hdfc/image/insurance-policy.png' alt="" className='w-[100px] lg:w-[226px]' />
                         </div>
                         {/* 2 */}
-                        <div className='flex flex-col items-center'>
+                        <div className='flex flex-col items-center animate fadeIn six'>
                             <img src='/assets/hdfc/image/icon-women.png' alt="" className='w-[60px] lg:w-[80px]' />
                             {/* content */}
                             <img src='/assets/hdfc/image/women.png' alt="" className='w-[80px]  hidden lg:block lg:w-[180px] p-2 ' />
                             <h1 className='block lg:hidden text-[13px] text-[rgb(171,15,37)] font-semibold'>Women</h1>
                         </div>
                     </div>
-                </div>
 
+                </div>
+                <div className='mt-1 relative animate fadeIn insuranceSkip' >
+                    <div className='absolute bottom-3 right-2'>
+                        <button
+                            className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
+                            onClick={getSkip}
+                        >
+                            Skip
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     )
 }
 
-export default VideoIa
+export default InsurancePolicyForm

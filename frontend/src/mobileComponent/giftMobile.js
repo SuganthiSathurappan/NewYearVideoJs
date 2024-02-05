@@ -17,7 +17,7 @@ const GiftForm = ({ getSkip, getContactForm }) => {
     const [displayTry, setDisplayTry] = useState(false)
 
     const [displayContactForm, setDisplayContactForm] = useState(false)
-
+-
     useEffect(() => {
 
         // CrakersFunction()

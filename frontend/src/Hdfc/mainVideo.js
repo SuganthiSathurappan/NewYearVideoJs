@@ -40,7 +40,7 @@ const MainVideoPlayer = () => {
 
     const videoJSOptions = {
         sources: [
-            { src: '/assets/hdfc/video/Chapter1-Video.mp4', type: 'video/mp4' },
+            { src: '/assets/hdfc/video/Chapter-1/Video1_1.mp4', type: 'video/mp4' },
         ],
         controls: true,
         fluid: true,
@@ -76,6 +76,7 @@ const MainVideoPlayer = () => {
         if (videoPlayerRef.current) {
             player.current = videojs(videoPlayerRef.current, videoJSOptions, () => {
                 // player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
+
                 player.current.playlist(videoJSOptions.sources);
                 setDisplayForm(false)
                 // player.current.playlist(videoJSOptions.sources);
@@ -92,12 +93,12 @@ const MainVideoPlayer = () => {
                 player.current.on("ended", () => {
                     // player.current.src({ src: '/assets/Gift-bg.jpg', type: 'image/jpg' });
                     // Add background audio
-
-                    setDisplayForm(true)
-                    player.current.el().classList.add('hide-controls');
-                    if (player.current.controlBar) {
-                        player.current.controlBar.hide(); // Hide control bar
-                    }
+                    // audioElementRef.current.play()
+                    // setDisplayForm(true)
+                    // player.current.el().classList.add('hide-controls');
+                    // if (player.current.controlBar) {
+                    //     player.current.controlBar.hide(); // Hide control bar
+                    // }
                     console.log("ended");
                     // Set thumbnail image (poster)
 
@@ -108,12 +109,25 @@ const MainVideoPlayer = () => {
 
                     // Check if the player is not disposed before calling play()
                     if (player.current && !player.current.isDisposed()) {
-                        player.current.addClass("videoFadeInAni");
-                        player.current.play();
+                        player.current.addClass("videoFadeInAni");  
+                        player.current.play();                       
                         setDisplayContent(false)
                         setDisplayImg(false)
+                        // Set a timer to pause the player after 10 seconds
+                        window.setTimeout(() => {
+                            // Check if the player is not disposed before pausing
+                            if (player.current && !player.current.isDisposed()) {
+                                player.current.pause();                           
+                                // Add background audio
+                                audioElementRef.current.play()
+                                setDisplayForm(true)                               
+
+                            }
+                        }, 13100); // Pause the player after 10 seconds
                     }
-                }, 5000);
+
+                }, 3000);
+
                 console.log("Player Ready")
             });
 
@@ -152,19 +166,65 @@ const MainVideoPlayer = () => {
         console.log("handleunMuteClick")
         setDisplayUnmute(false)
         setDisplayMute(true)
+        audioElementRef.current.pause()
 
     };
     const handleUnmuteClick = () => {
         console.log("handleunUnmuteClick")
         setDisplayMute(false)
         setDisplayUnmute(true)
-
-
+        audioElementRef.current.play();
     };
 
+    const handleSkip = () => {
+    
+        // Check if the player is not disposed before taking any actions
+        if (player.current && !player.current.isDisposed()) {
+            // Hide the form and show controls if needed
+            setDisplayForm(false);
+            player.current.tech().el().style.opacity = '1';
+            player.current.el().classList.remove('hide-controls');
+
+            // Resume playback
+            player.current.play();
+        }
+    };
+
+    const handleChildPlan1 = () => {
+        // Check if the player is not disposed before updating the playlist
+        if (player.current && !player.current.isDisposed()) {
+            setDisplayForm(false)
+            player.current.src([
+                { src: '/assets/hdfc/video/ChildPlan/Child_Plan1.mp4', type: 'video/mp4' },
+            ]);
+
+
+            // Play the video
+            player.current.play();
+
+            player.current.one("ended", () => {
+                // Set displayForm to false after the second video ends
+
+                setTimeout(() => {
+                    audioElementRef.current.pause();
+                    setDisplayForm(false);
+                    console.log("ended");
+                }, 100); // Adjust the duration as needed
+            });
+
+
+            // Log the current item index after a short delay
+            setTimeout(() => {
+                console.log(player.current.playlist.currentItem()); // Log the current item index
+            }, 100);
+        }
+    };
     return (
         <div>
 
+            <audio src="/assets/hdfc/video/Chapter-1/Audio1_2.mp3" type="audio/mp3" ref={audioElementRef}>
+
+            </audio>
 
             <div id="overlay" className="flex mt-2 items-center  text-blue-700 font-semibold text-2xl justify-center">
                 {/* Customized Interactive Video Player */}
@@ -175,7 +235,7 @@ const MainVideoPlayer = () => {
                     className="video-js"
                 />
             </div>
-            <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
+            {/* <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
                 {displayUnmute &&
                     <img alt="" src="/assets/unmute.png"
                         className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
@@ -191,12 +251,12 @@ const MainVideoPlayer = () => {
                     />
                 }
 
-            </div>
+            </div> */}
             <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
                 <div>
                     {displayImg &&
                         <div className="image-container">
-                            <div className="muteCss">
+                            {/* <div className="muteCss">
                                 {displayUnmute &&
                                     <img alt="" src="/assets/unmute.png"
                                         className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
@@ -211,7 +271,7 @@ const MainVideoPlayer = () => {
                                         onClick={handleUnmuteClick}
                                     />
                                 }
-                            </div>
+                            </div> */}
 
                             <img alt="" src="/assets/hdfc/image/bg-insurance.jpg" />
                         </div>
@@ -230,7 +290,7 @@ const MainVideoPlayer = () => {
 
                             <div id="overlay" className="videoFadeInAni">
 
-                                <InsurancePolicyForm />
+                                <InsurancePolicyForm getSkip={handleSkip} getChildPlan={handleChildPlan1} />
                             </div>
                         </>
                     }
@@ -242,3 +302,4 @@ const MainVideoPlayer = () => {
 };
 
 export default MainVideoPlayer;
+

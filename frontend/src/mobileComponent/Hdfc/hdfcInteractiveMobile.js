@@ -29,18 +29,20 @@ const HdfcInteractiveMobile = () => {
     console.log(decryptedName)
 
 
-
+    const audioElementRef = useRef(false);
     const videoPlayerRef = useRef(null);
     const player = useRef(null);
 
     const spokenRef = useRef(false);
 
-   
+
 
     const videoJSOptions = {
         // videoSrc: `/personalize-video/${pathName}.mp4`,
-        videoSrc: '/assets/hdfc/video/Chapter1-Video.mp4',
-        type: 'video/mp4',
+        // videoSrc: '/assets/hdfc/video/Chapter1-Video1_1.mp4',
+        sources: [
+            { src: '/assets/hdfc/video/Chapter-1/Video1_1.mp4', type: 'video/mp4' },
+        ],
         fluid: true,
         responsive: true,
         controls: true,
@@ -54,8 +56,8 @@ const HdfcInteractiveMobile = () => {
         if (!displayContent) {
             if (videoPlayerRef.current) {
                 player.current = videojs(videoPlayerRef.current, videoJSOptions, () => {
-                    player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
-                    // player.current.playlist(videoJSOptions.sources);
+                    // player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
+                    player.current.playlist(videoJSOptions.sources);
                     player.current.controlBar.removeChild('MuteToggle');
                     // Remove the VolumePanel button
                     player.current.controlBar.removeChild('VolumePanel');
@@ -76,22 +78,39 @@ const HdfcInteractiveMobile = () => {
 
                     // setIsSkipped(true)
                     player.current.play();
-                    if (player.current && !player.current.isDisposed()) {
+                    // if (player.current && !player.current.isDisposed()) {
 
-                        // setDisplayContent(false)
+                    //     setDisplayContent(false)
+                    //     player.current.addClass("imgToVideoFadeInAni");
+                    // }
+                    // Check if the player is not disposed before calling play()
+                    if (player.current && !player.current.isDisposed()) {
                         player.current.addClass("imgToVideoFadeInAni");
+                        // player.current.play();
+                        window.setTimeout(() => {
+                            // Check if the player is not disposed before pausing
+                            if (player.current && !player.current.isDisposed()) {
+                                player.current.pause();
+                                // Add background audio
+                                audioElementRef.current.play()
+                                setDisplayForm(true)
+                            }
+                        }, 13100); // Pause the player after 10 seconds
                     }
+
+
+
                     console.log("Player Ready")
 
                     player.current.on("ended", () => {
-                        setDisplayForm(true)
-                        setDisplayMute(false)
-                        setIsSkipped(false)
-                        setDisplayContent(false)
-                        player.current.el().classList.add('hide-controls');
-                        if (player.current.controlBar) {
-                            player.current.controlBar.hide(); // Hide control bar
-                        }
+                        // setDisplayForm(true)
+                        // setDisplayMute(false)
+                        // setIsSkipped(false)
+                        // setDisplayContent(false)
+                        // player.current.el().classList.add('hide-controls');
+                        // if (player.current.controlBar) {
+                        //     player.current.controlBar.hide(); // Hide control bar
+                        // }
                         console.log("ended");
                         // Set thumbnail image (poster)
 
@@ -117,12 +136,13 @@ const HdfcInteractiveMobile = () => {
 
     window.setTimeout(() => {
         setDisplayContent(false)
-    }, 5000);
 
+
+    }, 5000);
 
     // This useEffect using display name purpose
     useEffect(() => {
-       
+
 
         const textToAudio = (spanContent) => {
             let speech = new SpeechSynthesisUtterance();
@@ -176,59 +196,63 @@ const HdfcInteractiveMobile = () => {
     const handleSkip = () => {
         console.log("handleSkip")
 
-        setDisplayForm(false)
-        setDisplaySecVideo(true)
-        setDisplayContactForm(true)
-    };
-    const handleunMuteClick = () => {
-        console.log("handleunMuteClick")
-        setDisplayUnmute(false)
-        setDisplayMute(true)
-        
-    };
-    const handleUnmuteClick = () => {
-        console.log("handleunUnmuteClick")
-        setDisplayMute(false)
-        setDisplayUnmute(true)
+        // setDisplayForm(false)
+        // setDisplaySecVideo(true)
+        // setDisplayContactForm(true)
+        // Check if the player is not disposed before taking any actions
+        if (player.current && !player.current.isDisposed()) {
+            // Hide the form and show controls if needed
+            setDisplayForm(false);
+            player.current.tech().el().style.opacity = '1';
+            player.current.el().classList.remove('hide-controls');
 
-       
+            // Resume playback
+            player.current.play();
+        }
+    };
+
+
+    const handleChildPlan1 = () => {
+        // Check if the player is not disposed before updating the playlist
+        if (player.current && !player.current.isDisposed()) {
+            setDisplayForm(false)
+            player.current.src([
+                { src: '/assets/hdfc/video/ChildPlan/Child_Plan1.mp4', type: 'video/mp4' },
+            ]);
+
+
+            // Play the video
+            player.current.play();
+
+            player.current.one("ended", () => {
+                // Set displayForm to false after the second video ends
+
+                setTimeout(() => {
+                    audioElementRef.current.pause();
+                    setDisplayForm(false);
+                    console.log("ended");
+                }, 100); // Adjust the duration as needed
+            });
+
+
+            // Log the current item index after a short delay
+            setTimeout(() => {
+                console.log(player.current.playlist.currentItem()); // Log the current item index
+            }, 100);
+        }
     };
 
     return (
 
-        <div>            
-            <div>
-                {displayUnmute &&
-                    <img alt="" src="/assets/unmute.png"
-                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                        onClick={handleunMuteClick}
-                    />
-                }
-                {displayMute &&
-                    <img alt="" src="/assets/mute.png"
-                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                        onClick={handleUnmuteClick}
-                    />
-                }
+        <div>
+            <audio src="/assets/hdfc/video/Chapter-1/Audio1_2.mp3" type="audio/mp3" ref={audioElementRef}>
 
+            </audio>
+
+            <div >
                 {displayContent &&
-                    <div class="fullscreen" id="fullscreen" style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)'}}>
-                        {displayUnmute &&
-                            <img alt="" src="/assets/unmute.png"
-                                className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                                onClick={handleunMuteClick}
-                            />
-                        }
-                        {displayMute &&
-                            <img alt="" src="/assets/mute.png"
-                                className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                                onClick={handleUnmuteClick}
-                            />
-                        }
+                    <div class="fullscreen" id="fullscreen" style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)' }}>
+
                         <div id="formDiv">
 
                             <form method="post" >
@@ -240,13 +264,6 @@ const HdfcInteractiveMobile = () => {
                                     <span className="text-[6cqw] px-2 text-black animate-pulse
                        font-poppins" id="text-to-speech-span2"> {decryptedName} </span>
                                 </div>
-
-                                {/* <div className="overlayTitle1 z-1">
-                                <span className="spanCss1" id="text-to-speech-span1">Hi, {decryptedName}</span>
-                                {/* <span className="spanCss1" id="text-to-speech-span2"> </span><br /> 
-
-                            </div> */}
-
                             </form>
 
                         </div>
@@ -254,7 +271,7 @@ const HdfcInteractiveMobile = () => {
                 }
 
                 {!displayContent && isSkipped &&
-                    <div class="fullscreen" id="fullscreen" style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)'}}>
+                    <div class="fullscreen" id="fullscreen" style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)' }}>
                         <video
                             ref={videoPlayerRef}
                             className="video-js"
@@ -264,10 +281,10 @@ const HdfcInteractiveMobile = () => {
 
                 {displayForm &&
                     <div className="imgToVideoFadeInAni">
-                         <InsurancePolicyForm />
+                        <InsurancePolicyForm getSkip={handleSkip} getChildPlan={handleChildPlan1} />
                     </div>
                 }
-               
+
             </div>
         </div>
     );

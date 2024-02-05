@@ -262,7 +262,7 @@
 }
 
 /* Persionalization */
-.muteCss{
+.muteCss {
   position: relative;
   z-index: 2147483647;
 }
@@ -486,6 +486,11 @@ canvas {
     right: 0px;
     font-size: 10px;
   }
+
+  /* Hdfc Insurance Form */
+  .policyFormCss {
+    top: 30%;
+  }
 }
 
 /* For Desktop View */
@@ -576,7 +581,6 @@ canvas {
     margin: 50px auto;
   }
 
- 
   .gift1Formeventcss {
     padding-top: 0px;
     margin-top: -10px;
@@ -610,7 +614,7 @@ canvas {
     margin-left: -2%;
     /* display: none; */
   }
-  .voucherCss{
+  .voucherCss {
     margin-top: -20%;
     width: 60%;
     padding-right: 3%;
@@ -621,4 +625,87 @@ canvas {
     right: 0px;
     font-size: 10px;
   }
+
+   /* Hdfc Insurance Form */
+   .policyFormCss {
+    top: 25%;
+  }
+}
+
+@media screen and (min-device-width: 410px) and (max-device-width: 1024px) {
+     /* Hdfc Insurance Form */
+     .policyFormCss {
+      top: 33%;
+    }
+}
+
+/* Hdfc Insurance policy css */
+/*=== Trigger  ===*/
+.animate {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.one {
+  -webkit-animation-delay: 0.3s;
+  -moz-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+}
+
+.two {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  animation-delay: 1s;
+}
+.three {
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
+  animation-delay: 2s;
+}
+.four {
+  -webkit-animation-delay: 3s;
+  -moz-animation-delay: 3s;
+  animation-delay: 3s;
+}
+.five {
+  -webkit-animation-delay: 4s;
+  -moz-animation-delay: 4s;
+  animation-delay: 4s;
+}
+.six {
+  -webkit-animation-delay: 5s;
+  -moz-animation-delay: 5s;
+  animation-delay: 5s;
+}
+
+.insuranceSkip {
+  -webkit-animation-delay: 6s;
+  -moz-animation-delay: 6s;
+  animation-delay: 6s;
+}
+
+/*=== FADE IN  ===*/
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
 }
