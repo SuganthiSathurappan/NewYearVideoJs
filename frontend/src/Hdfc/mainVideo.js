@@ -10,6 +10,7 @@ import { useMediaQuery } from 'react-responsive';
 import { decrypt } from "../common/cryptoUtils";
 
 import InsurancePolicyForm from '../page/Hdfc/insurancePolicyForm'
+import ChildPlan from "../page/Hdfc/childPlan";
 // import '../responsiveStyle.css';
 
 
@@ -19,6 +20,8 @@ const MainVideoPlayer = () => {
     const [displayForm, setDisplayForm] = useState(false);
     const [displayImg, setDisplayImg] = useState(true);
     const [displayContent, setDisplayContent] = useState(true);
+    const [displayChildPlanForm, setDisplayChildPlanForm] = useState(false);
+
 
     const [displayUnmute, setDisplayUnmute] = useState(true);
     const [displayMute, setDisplayMute] = useState(false);
@@ -109,18 +112,18 @@ const MainVideoPlayer = () => {
 
                     // Check if the player is not disposed before calling play()
                     if (player.current && !player.current.isDisposed()) {
-                        player.current.addClass("videoFadeInAni");  
-                        player.current.play();                       
+                        player.current.addClass("videoFadeInAni");
+                        player.current.play();
                         setDisplayContent(false)
                         setDisplayImg(false)
                         // Set a timer to pause the player after 10 seconds
                         window.setTimeout(() => {
                             // Check if the player is not disposed before pausing
                             if (player.current && !player.current.isDisposed()) {
-                                player.current.pause();                           
+                                player.current.pause();
                                 // Add background audio
                                 audioElementRef.current.play()
-                                setDisplayForm(true)                               
+                                setDisplayForm(true)
 
                             }
                         }, 13100); // Pause the player after 10 seconds
@@ -177,7 +180,7 @@ const MainVideoPlayer = () => {
     };
 
     const handleSkip = () => {
-    
+
         // Check if the player is not disposed before taking any actions
         if (player.current && !player.current.isDisposed()) {
             // Hide the form and show controls if needed
@@ -204,7 +207,7 @@ const MainVideoPlayer = () => {
 
             player.current.one("ended", () => {
                 // Set displayForm to false after the second video ends
-
+                setDisplayChildPlanForm(true)
                 setTimeout(() => {
                     audioElementRef.current.pause();
                     setDisplayForm(false);
@@ -291,6 +294,18 @@ const MainVideoPlayer = () => {
                             <div id="overlay" className="videoFadeInAni">
 
                                 <InsurancePolicyForm getSkip={handleSkip} getChildPlan={handleChildPlan1} />
+                            </div>
+                        </>
+                    }
+                </div>
+
+                <div id="wrapper">
+                    {displayChildPlanForm &&
+                        <>
+
+                            <div id="overlay" className="videoFadeInAni">
+
+                                <ChildPlan />
                             </div>
                         </>
                     }

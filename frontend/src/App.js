@@ -21,6 +21,8 @@ import MainFormPage from "./Hdfc/mainFormPage"
 // Hdfc Mobile
 import HdfcInteractiveMobile from "./mobileComponent/Hdfc/hdfcInteractiveMobile";
 
+import ChildPlan from "./page/Hdfc/childPlan";
+
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 940 });
   // const isMobile = window.innerWidth <= 480;
