@@ -21,7 +21,7 @@ function InsurancePolicyForm({ getSkip, getChildPlan }) {
             <div className="image-container policyFormCss">
                 <div className='p-1' style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)' }}>
                     <div className='flex justify-between md:justify-center gap-1 mt-2'>
-                        {/* 1 */}
+                        {/* 1 */}   
                         <div className='flex flex-col items-center  animate fadeIn three'>
                             <img src='/assets/hdfc/image/icon-saving&investments.png' alt="" className='w-[50px] lg:w-[80px]' />
                             {/* content */}

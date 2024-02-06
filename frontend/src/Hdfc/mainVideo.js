@@ -222,6 +222,34 @@ const MainVideoPlayer = () => {
             }, 100);
         }
     };
+
+    const handleChildSkip = () => {
+        // Check if the player is not disposed before updating the playlist
+        if (player.current && !player.current.isDisposed()) {
+            setDisplayChildPlanForm(false)
+            player.current.src([
+                { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
+            ]);
+
+
+            // Play the video
+            player.current.play();
+
+            player.current.one("ended", () => {
+                // setTimeout(() => {
+
+                //     setDisplayChildPlanForm(false);
+                console.log("ended");
+                // }, 100); // Adjust the duration as needed
+            });
+
+
+            // Log the current item index after a short delay
+            setTimeout(() => {
+                console.log(player.current.playlist.currentItem()); // Log the current item index
+            }, 100);
+        }
+    };
     return (
         <div>
 
@@ -305,7 +333,7 @@ const MainVideoPlayer = () => {
 
                             <div id="overlay" className="videoFadeInAni">
 
-                                <ChildPlan />
+                                <ChildPlan getChildSkip={handleChildSkip} />
                             </div>
                         </>
                     }
