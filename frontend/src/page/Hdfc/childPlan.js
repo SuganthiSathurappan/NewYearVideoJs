@@ -34,7 +34,7 @@ const ChildPlan = ({ getChildSkip }) => {
                                     </div>
                                 </div>
                                 <div className='mt-2' onClick={openModal} >
-                                    <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[60px] lg:w-[160px] cursor-pointer' />
+                                    <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[60px] lg:w-[160px] cursor-pointer animate-pulse' />
                                 </div>
                             </div>
 
