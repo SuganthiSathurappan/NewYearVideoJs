@@ -46,5 +46,5 @@ app.get("/", (req, res) => {
 // Start the HTTPS server
 const PORT = process.env.PORT || 3000;
 httpsServer.listen(PORT, () => {
-  console.log(`Server is running on https://13.232.110.68:${PORT}`);
+  console.log(`Server is running on https://media.techtist.com:${PORT}`);
 });
