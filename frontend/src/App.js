@@ -22,6 +22,7 @@ import MainFormPage from "./Hdfc/mainFormPage"
 import HdfcInteractiveMobile from "./mobileComponent/Hdfc/hdfcInteractiveMobile";
 
 import ChildPlan from "./page/Hdfc/childPlan";
+import TexttoSpeech from './components/TextToSpeechComponent'
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 940 });
@@ -53,7 +54,7 @@ function App() {
             <Route path="/NewYear-Persionalization/:name" element={<Persionalization />} />
 
             {/* HDFC Routes */}
-            <Route path="/" element={<InsurancePolicyForm />} />
+            <Route path="/" element={<TexttoSpeech />} />
             <Route path="/hdfc/:id" element={<MainFormPage />} />
             <Route path="/hdfc-player/:name" element={<MainVideoPlayer />} />
           </Routes>
