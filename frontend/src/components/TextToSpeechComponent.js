@@ -10,7 +10,7 @@ const YourComponent = () => {
 
   const postData = {
     text: "Hi suganthi,  welcome to you",
-    model_id: "eleven_monolingual_v1",
+    model_id: "eleven_multilingual_v2",
     voice_settings: {
       similarity_boost: 0.5,
       stability: 0.5,
@@ -20,7 +20,7 @@ const YourComponent = () => {
   const handlePostRequest = async () => {
     try {
       const response = await axios.post(
-        `https://api.elevenlabs.io/v1/text-to-speech/FNSXTaEGsfW92M9EUcTg`, postData,
+        `https://api.elevenlabs.io/v1/text-to-speech/fczKPxiN0r7mINJ9tt1n`, postData,
         {
           headers: {
             'Content-Type': 'application/json',
