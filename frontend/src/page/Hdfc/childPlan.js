@@ -1,13 +1,32 @@
-import React from 'react'
-import { useState } from 'react';
+import React, { useState, useRef } from 'react';
 // import bgimg from '../assets/Chapter1/bg-insurance.jpg'
 // import img1 from '../../../public/assets/hdfc/image/Chapter2-childplan/Academia.png';
 // import img2 from '../../../public/assets/hdfc/image/Chapter2-childplan/aspiration.png'
 // import img3 from '../../../public/assets/hdfc/image/Chapter2-childplan/career.png'
 // import btn from '../../../public/assets/hdfc/image/Chapter2-childplan/explore.png'
 
-const ChildPlan = ({ getChildSkip }) => {
+const ChildPlan = ({ getChildSkip, getHandleOk }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isOpens, setIsOpens] = useState(false);
+    const [formData, setFormData] = useState({
+        principalAmount: '',
+        tenure: '',
+        appliedInterest: '',
+    });
+
+    const handleChange = (e) => {
+        //update form state with new input value
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value,
+        });
+    };
+    console.log(formData);
+    const PA = parseFloat(formData.principalAmount);
+    const T = parseFloat(formData.tenure);
+    const I = parseFloat(formData.appliedInterest);
+    const totalOutstandingAmount = PA + ((PA * T * I) / 100);
+    console.log('totalOutstandingAmount', totalOutstandingAmount);
 
     const openModal = () => {
         setIsModalOpen(true);
@@ -15,7 +34,16 @@ const ChildPlan = ({ getChildSkip }) => {
 
     const closeModal = () => {
         setIsModalOpen(false);
+        setIsOpens(false);
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // console.log('Form submitted with data:', formData);
+        setIsOpens(true);
+        setIsModalOpen(false);
+    };
+
     return (
         <>
             <div className='image-container  w-full'>
@@ -37,7 +65,6 @@ const ChildPlan = ({ getChildSkip }) => {
                                     <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[60px] lg:w-[160px] cursor-pointer animate-pulse' />
                                 </div>
                             </div>
-
                             {/* Content-2 */}
                             <div className='hidden md:flex flex-col items-center '>
                                 <div>
@@ -85,38 +112,98 @@ const ChildPlan = ({ getChildSkip }) => {
                             <div className="absolute  inset-0 bg-black bg-transparent flex items-center justify-center">
                                 <div className="bg-white p-4 rounded-3xl">
                                     {/* Your modal content goes here */}
+
                                     <div className='flex justify-end'>
                                         <button className='font-extrabold text-black text-sm w-[20px] ' onClick={closeModal}>X</button>
                                     </div>
+                                    <form action="#" onSubmit={handleSubmit} >
+                                        <div>
+                                            <div className='flex flex-col justify-center'>
+                                                <p className='text-[22px] text-[#BC1425] font-semibold'>Calculate Your Premium</p>
+                                                <div className='flex  justify-between mt-4'>
+                                                    <div className='flex items-center'>
+                                                        <h1 className='text-[19px] hidden md:block font-semibold'>Principal Amount</h1>
+                                                    </div>
+                                                    <div className='md:mx-4'>
+                                                        <input type="text" name='principalAmount' className='border p-3 w-80 rounded-xl' required
+                                                            placeholder='Enter Your Principal Amount' onChange={handleChange} />
+                                                    </div>
+                                                </div>
+                                                <div className='flex justify-between mt-4'>
+                                                    <div className='flex items-center'>
+                                                        <h1 className='text-[19px] hidden md:block font-semibold'>Tenure (Years)</h1>
+                                                    </div>
+                                                    <div className='md:mx-4'>
+                                                        <input type="text" name='tenure' className='border p-3 w-80 rounded-xl' required
+                                                            placeholder='10' onChange={handleChange} />
+                                                    </div>
+                                                </div>
+                                                <div className='flex justify-between mt-4'>
+                                                    <div className='flex items-center'>
+                                                        <h1 className='text-[19px] hidden md:block font-semibold'>Applied Interest</h1>
+                                                    </div>
+                                                    <div className='md:mx-4'>
+                                                        <input type="text" name='appliedInterest' className='border p-3 w-80 rounded-xl' required
+                                                            placeholder='7%' onChange={handleChange} />
+                                                    </div>
+                                                </div>
+                                                <button type='submit' className='flex justify-center md:justify-end m-4'>
+                                                    <img src="/assets/hdfc/image/Chapter2-childplan/calculate.png" alt="" className='w-[100px] lg:w-[160px] ' />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        )}
+                        {isOpens && (
+                            <div className="absolute   inset-0 z-1 flex items-center justify-center " >
+                                <div className="bg-white p-4 rounded-3xl ">
+                                    {/* Your modal content goes here */}
+
                                     <div>
-                                        <div className='flex flex-col justify-center'>
-                                            <p className='text-[22px] text-[#BC1425] font-semibold'>Calculate Your Premium</p>
-                                            <div className='flex  justify-between mt-4'>
+                                        <div className='flex flex-col justify-center '>
+                                            <p className='text-[22px] text-[#BC1425] font-semibold text-center'>Your Earning </p>
+                                            <div className='flex  justify-between mt-1'>
                                                 <div className='flex items-center'>
-                                                    <h1 className='text-[19px] hidden md:block font-semibold'>Principal Amount</h1>
+                                                    <h1 className='text-[19px] hidden md:block font-semibold'>Total Outstanding Amount</h1>
                                                 </div>
                                                 <div className='md:mx-4'>
-                                                    <input type="text" className='border p-3 w-80 rounded-xl' placeholder='Enter Your Principal Amount' />
+
+                                                    <div className='border flex justify-center p-2 rounded-xl w-32'>
+                                                        <h1 className='text-xl '>{totalOutstandingAmount}</h1>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div className='border-b my-3 text-start'>
+                                                <h1 className='text-[26px] font-bold'>Summary</h1>
+                                            </div>
+                                            <div className='mx-auto mt-2 items-start'>
+                                                <div className='text-[18px] font-semibold'>
+                                                    <p className="flex justify-between">
+                                                        <span>Premium Amount:</span>
+                                                        <span className='px-10 font-normal'>{formData.principalAmount}</span>
+                                                    </p>
+                                                    <p className="flex justify-between">
+                                                        <span>Tenure Year:</span>
+                                                        <span className='px-10 font-normal'>{formData.tenure} Years</span>
+                                                    </p>
+                                                    <p className="flex justify-between">
+                                                        <span>Payment Annual:</span>
+                                                        <span className='px-10 font-normal'>5 Years</span>
+                                                    </p>
+                                                    <p className="flex justify-between">
+                                                        <span>Applied Interest:</span>
+                                                        <span className='px-10 font-normal'>{formData.appliedInterest}%</span>
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <div className='flex justify-between mt-4'>
-                                                <div className='flex items-center'>
-                                                    <h1 className='text-[19px] hidden md:block font-semibold'>Tenure (Years)</h1>
-                                                </div>
-                                                <div className='md:mx-4'>
-                                                    <input type="text" className='border p-3 w-80 rounded-xl' placeholder='10%' />
-                                                </div>
-                                            </div>
-                                            <div className='flex justify-between mt-4'>
-                                                <div className='flex items-center'>
-                                                    <h1 className='text-[19px] hidden md:block font-semibold'>Applied Intrest</h1>
-                                                </div>
-                                                <div className='md:mx-4'>
-                                                    <input type="text" className='border p-3 w-80 rounded-xl' placeholder='7' />
-                                                </div>
-                                            </div>
-                                            <div className='flex justify-center md:justify-end m-4'>
-                                                <img src="/assets/hdfc/image/Chapter2-childplan/calculate.png" alt="" className='w-[100px] lg:w-[160px] ' />
+
+                                            <div className='flex justify-end'>
+                                                <button className='font-extrabold text-white bg-[#BC1425] border p-2  text-lg rounded-xl '
+                                                    onClick={getHandleOk}>Okay</button>
                                             </div>
                                         </div>
                                     </div>

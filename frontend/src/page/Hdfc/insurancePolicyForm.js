@@ -1,19 +1,6 @@
 import React from 'react'
 
-// import bgimg from '../../../public/assets/hdfc/image/bg-insurance.jpg'
-// import img1 from 'src/public/assets/hdfc/image/icon-saving&investments.png'
-// import sc1 from '../../../public/assets/hdfc/image/savings-investments.png'
-// import img2 from '../../../public/assets/hdfc/image/icon-health.png'
-// import sc2 from '../../../public/assets/hdfc/image/health.png'
-// import img3 from '../../../public/assets/hdfc/image/icon-pension.png'
-// import sc3 from '../../../public/assets/hdfc/image/pension.png'
-// import img4 from '../../../public/assets/hdfc/image/icon-child.png'
-// import sc4 from '../../../public/assets/hdfc/image/child.png'
-// import img5 from '../../../public/assets/hdfc/image/icon-protection.png'
-// import sc5 from '../../../public/assets/hdfc/image/protection.png'
-// import img6 from '../../../public/assets/hdfc/image/icon-women.png'
-// import sc6 from '../../../public/assets/hdfc/image/women.png'
-// import Image from '../../../public/assets/hdfc/image/insurance-policy.png'
+
 
 function InsurancePolicyForm({ getSkip, getChildPlan }) {
     return (

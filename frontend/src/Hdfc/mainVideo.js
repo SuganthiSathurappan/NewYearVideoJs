@@ -6,13 +6,15 @@ import "videojs-overlay";
 import { useParams } from 'react-router-dom';
 import 'videojs-playlist';
 import { useMediaQuery } from 'react-responsive';
+import axios from 'axios';
 
 import { decrypt } from "../common/cryptoUtils";
 
 import InsurancePolicyForm from '../page/Hdfc/insurancePolicyForm'
 import ChildPlan from "../page/Hdfc/childPlan";
+import ChildExplore from "../page/Hdfc/childExplore"
 // import '../responsiveStyle.css';
-
+import { handlePostRequest, playAudio } from "../app/api/textToSpeechApi";
 
 const MainVideoPlayer = () => {
     const videoPlayerRef = useRef(null);
@@ -21,11 +23,10 @@ const MainVideoPlayer = () => {
     const [displayImg, setDisplayImg] = useState(true);
     const [displayContent, setDisplayContent] = useState(true);
     const [displayChildPlanForm, setDisplayChildPlanForm] = useState(false);
+    const [displayExploreForm, setDisplayExpolreForm] = useState(false);
 
-
-    const [displayUnmute, setDisplayUnmute] = useState(true);
-    const [displayMute, setDisplayMute] = useState(false);
-
+    const [audioContext, setAudioContext] = useState(new (window.AudioContext || window.webkitAudioContext)());
+    const [source, setSource] = useState(null);
 
     const isMobile = useMediaQuery({ maxWidth: 480 });
     const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 991 });
@@ -52,28 +53,18 @@ const MainVideoPlayer = () => {
         muted: false,
     };
 
+
     useEffect(() => {
-
-        const textToAudio = (spanContent) => {
-            let speech = new SpeechSynthesisUtterance();
-            speech.lang = 'en-US';
-            speech.text = spanContent;
-            speech.volume = 1;
-            speech.rate = 1;
-            speech.pitch = 1;
-            // Check if speech synthesis is already speaking, and cancel it if necessary
-            if (window.speechSynthesis.speaking) {
-                window.speechSynthesis.cancel();
-            }
-            window.speechSynthesis.speak(speech);
-
-        };
 
         if (!spokenRef.current) {
             let spanContent = document.getElementById('text-to-speech-span1').innerText;
             console.log(spanContent)
-            textToAudio(`${spanContent + decryptedName} `);
-
+            // textToAudio(`${spanContent + decryptedName} `);
+            // let spanContent = document.getElementById('text-to-speech-span1').innerText;
+            // Call handlePostRequest from the imported api.js file
+            handlePostRequest(`${spanContent + decryptedName} `, (audioData) => {
+                playAudio(audioData, audioContext, setAudioContext, setSource);
+            });
         }
 
         if (videoPlayerRef.current) {
@@ -82,7 +73,7 @@ const MainVideoPlayer = () => {
 
                 player.current.playlist(videoJSOptions.sources);
                 setDisplayForm(false)
-                // player.current.playlist(videoJSOptions.sources);
+
                 player.current.controlBar.removeChild('MuteToggle');
                 // Remove the VolumePanel button
                 player.current.controlBar.removeChild('VolumePanel');
@@ -121,6 +112,10 @@ const MainVideoPlayer = () => {
                             // Check if the player is not disposed before pausing
                             if (player.current && !player.current.isDisposed()) {
                                 player.current.pause();
+                                player.current.el().classList.add('hide-controls');
+                                if (player.current.controlBar) {
+                                    player.current.controlBar.hide(); // Hide control bar
+                                }
                                 // Add background audio
                                 audioElementRef.current.play()
                                 setDisplayForm(true)
@@ -129,7 +124,7 @@ const MainVideoPlayer = () => {
                         }, 13100); // Pause the player after 10 seconds
                     }
 
-                }, 3000);
+                }, 4000);
 
                 console.log("Player Ready")
             });
@@ -164,21 +159,6 @@ const MainVideoPlayer = () => {
         }
     };
 
-
-    const handleunMuteClick = () => {
-        console.log("handleunMuteClick")
-        setDisplayUnmute(false)
-        setDisplayMute(true)
-        audioElementRef.current.pause()
-
-    };
-    const handleUnmuteClick = () => {
-        console.log("handleunUnmuteClick")
-        setDisplayMute(false)
-        setDisplayUnmute(true)
-        audioElementRef.current.play();
-    };
-
     const handleSkip = () => {
 
         // Check if the player is not disposed before taking any actions
@@ -187,7 +167,9 @@ const MainVideoPlayer = () => {
             setDisplayForm(false);
             player.current.tech().el().style.opacity = '1';
             player.current.el().classList.remove('hide-controls');
-
+            if (player.current.controlBar) {
+                player.current.controlBar.show(); // Show control bar
+            }
             // Resume playback
             player.current.play();
         }
@@ -197,6 +179,10 @@ const MainVideoPlayer = () => {
         // Check if the player is not disposed before updating the playlist
         if (player.current && !player.current.isDisposed()) {
             setDisplayForm(false)
+            player.current.el().classList.remove('hide-controls');
+            if (player.current.controlBar) {
+                player.current.controlBar.show(); // Show control bar
+            }
             player.current.src([
                 { src: '/assets/hdfc/video/ChildPlan/Child_Plan1.mp4', type: 'video/mp4' },
             ]);
@@ -231,7 +217,6 @@ const MainVideoPlayer = () => {
                 { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
             ]);
 
-
             // Play the video
             player.current.play();
 
@@ -250,6 +235,54 @@ const MainVideoPlayer = () => {
             }, 100);
         }
     };
+
+    // child plan ok button
+    const handleOk = () => {
+        setDisplayChildPlanForm(false)
+        setDisplayExpolreForm(true)
+    }
+
+    // Yes, to Continue button click - go to thank you video
+    const handleContinue = () => {
+        // Check if the player is not disposed before updating the playlist
+        if (player.current && !player.current.isDisposed()) {
+            setDisplayExpolreForm(false)
+            player.current.src([
+                { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
+            ]);
+
+            // Play the video
+            player.current.play();
+
+            player.current.one("ended", () => {           
+                console.log("ended");
+               
+            });
+
+        }
+    };
+        // Explore button click - go to next video
+        const handleExplore= () => {
+            // Check if the player is not disposed before updating the playlist
+            if (player.current && !player.current.isDisposed()) {
+                setDisplayExpolreForm(false)
+                player.current.src([
+                    { src: '/assets/hdfc/video/ChildPlan/Chapter2_V2.mp4', type: 'video/mp4' },
+                ]);
+    
+                // Play the video
+                player.current.play();
+    
+                player.current.one("ended", () => {           
+                    console.log("ended");
+                    player.current.src([
+                        { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
+                    ]);        
+                    player.current.play();
+                });
+    
+            }
+        };
     return (
         <div>
 
@@ -266,44 +299,11 @@ const MainVideoPlayer = () => {
                     className="video-js"
                 />
             </div>
-            {/* <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
-                {displayUnmute &&
-                    <img alt="" src="/assets/unmute.png"
-                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                        onClick={handleunMuteClick}
-                    />
-                }
-                {displayMute &&
-                    <img alt="" src="/assets/mute.png"
-                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                        onClick={handleUnmuteClick}
-                    />
-                }
 
-            </div> */}
             <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
                 <div>
                     {displayImg &&
                         <div className="image-container">
-                            {/* <div className="muteCss">
-                                {displayUnmute &&
-                                    <img alt="" src="/assets/unmute.png"
-                                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                                        onClick={handleunMuteClick}
-                                    />
-                                }
-                                {displayMute &&
-                                    <img alt="" src="/assets/mute.png"
-                                        className=" cursor-pointer mx-3 top-2 absolute z-1 p-2 right-0 w-9 rounded-full border-2 border-black
-                                    transition duration-300 ease-in-out hover:border-white hover:w-10"
-                                        onClick={handleUnmuteClick}
-                                    />
-                                }
-                            </div> */}
-
                             <img alt="" src="/assets/hdfc/image/bg-insurance.jpg" />
                         </div>
                     }
@@ -318,9 +318,7 @@ const MainVideoPlayer = () => {
                 <div id="wrapper">
                     {displayForm &&
                         <>
-
                             <div id="overlay" className="videoFadeInAni">
-
                                 <InsurancePolicyForm getSkip={handleSkip} getChildPlan={handleChildPlan1} />
                             </div>
                         </>
@@ -330,10 +328,17 @@ const MainVideoPlayer = () => {
                 <div id="wrapper">
                     {displayChildPlanForm &&
                         <>
-
                             <div id="overlay" className="videoFadeInAni">
-
-                                <ChildPlan getChildSkip={handleChildSkip} />
+                                <ChildPlan getChildSkip={handleChildSkip} getHandleOk={handleOk} />
+                            </div>
+                        </>
+                    }
+                </div>
+                <div id="wrapper">
+                    {displayExploreForm &&
+                        <>
+                            <div id="overlay" className="videoFadeInAni">
+                                <ChildExplore getContinue={handleContinue} getExplore={handleExplore}/>
                             </div>
                         </>
                     }
