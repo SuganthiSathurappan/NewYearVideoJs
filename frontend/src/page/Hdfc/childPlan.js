@@ -25,9 +25,10 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
     const PA = parseFloat(formData.principalAmount);
     const T = parseFloat(formData.tenure);
     const I = parseFloat(formData.appliedInterest);
-    const totalOutstandingAmount = PA + ((PA * T * I) / 100);
+    let totalOutstandingAmount = PA + ((PA * T * I) / 100);
+    totalOutstandingAmount = Math.round(totalOutstandingAmount * 100) / 100; // rounding off to two decimal places
     console.log('totalOutstandingAmount', totalOutstandingAmount);
-
+    
     const openModal = () => {
         setIsModalOpen(true);
     };
