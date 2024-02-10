@@ -34,6 +34,7 @@ const MainVideoPlayer = () => {
     const spokenRef = useRef(false);
     const player = useRef(null);
     const audioElementRef = useRef(false);
+    const audioMusicElementRef = useRef(false);
 
     console.log(name)
     // Decrypt the name
@@ -194,6 +195,7 @@ const MainVideoPlayer = () => {
             player.current.one("ended", () => {
                 // Set displayForm to false after the second video ends
                 setDisplayChildPlanForm(true)
+                audioMusicElementRef.current.play()
                 setTimeout(() => {
                     audioElementRef.current.pause();
                     setDisplayForm(false);
@@ -214,7 +216,7 @@ const MainVideoPlayer = () => {
         if (player.current && !player.current.isDisposed()) {
             setDisplayChildPlanForm(false)
             player.current.src([
-                { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
+                { src: '/assets/hdfc/video/Thankyou_video.mp4', type: 'video/mp4' },
             ]);
 
             // Play the video
@@ -238,6 +240,7 @@ const MainVideoPlayer = () => {
 
     // child plan ok button
     const handleOk = () => {
+        
         setDisplayChildPlanForm(false)
         setDisplayExpolreForm(true)
     }
@@ -245,6 +248,7 @@ const MainVideoPlayer = () => {
     // Yes, to Continue button click - go to thank you video
     const handleContinue = () => {
         // Check if the player is not disposed before updating the playlist
+        audioMusicElementRef.current.pause()
         if (player.current && !player.current.isDisposed()) {
             setDisplayExpolreForm(false)
             player.current.src([
@@ -254,40 +258,46 @@ const MainVideoPlayer = () => {
             // Play the video
             player.current.play();
 
-            player.current.one("ended", () => {           
+            player.current.one("ended", () => {
                 console.log("ended");
-               
+
             });
 
         }
     };
-        // Explore button click - go to next video
-        const handleExplore= () => {
-            // Check if the player is not disposed before updating the playlist
-            if (player.current && !player.current.isDisposed()) {
-                setDisplayExpolreForm(false)
+    // Explore button click - go to next video
+    const handleExplore = () => {
+        // Check if the player is not disposed before updating the playlist
+        audioMusicElementRef.current.pause()
+        if (player.current && !player.current.isDisposed()) {
+            setDisplayExpolreForm(false)
+            player.current.src([
+                { src: '/assets/hdfc/video/ChildPlan/Chapter2_V2.mp4', type: 'video/mp4' },
+            ]);
+
+            // Play the video
+            player.current.play();
+
+            player.current.one("ended", () => {
+                console.log("ended");
                 player.current.src([
-                    { src: '/assets/hdfc/video/ChildPlan/Chapter2_V2.mp4', type: 'video/mp4' },
+                    { src: '/assets/hdfc/video/Thankyou_video.mp4', type: 'video/mp4' },
                 ]);
-    
-                // Play the video
                 player.current.play();
-    
-                player.current.one("ended", () => {           
-                    console.log("ended");
-                    player.current.src([
-                        { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
-                    ]);        
-                    player.current.play();
-                });
-    
-            }
-        };
+            });
+
+        }
+    };
     return (
         <div>
 
             <audio src="/assets/hdfc/video/Chapter-1/Audio1_2.mp3" type="audio/mp3" ref={audioElementRef}>
+                {/* Insurance interactive audio */}
+            </audio>
 
+            <audio src="/assets/hdfc/video/ChildPlan/HDFC-Life music.mp3" type="audio/mp3" loop
+             ref={audioMusicElementRef}>
+                {/* only play music */}
             </audio>
 
             <div id="overlay" className="flex mt-2 items-center  text-blue-700 font-semibold text-2xl justify-center">
@@ -338,7 +348,7 @@ const MainVideoPlayer = () => {
                     {displayExploreForm &&
                         <>
                             <div id="overlay" className="videoFadeInAni">
-                                <ChildExplore getContinue={handleContinue} getExplore={handleExplore}/>
+                                <ChildExplore getContinue={handleContinue} getExplore={handleExplore} />
                             </div>
                         </>
                     }

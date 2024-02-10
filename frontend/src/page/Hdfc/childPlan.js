@@ -22,13 +22,27 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
         });
     };
     console.log(formData);
-    const PA = parseFloat(formData.principalAmount);
-    const T = parseFloat(formData.tenure);
+    // const PA = parseFloat(formData.principalAmount);
+    // const T = parseFloat(formData.tenure);
+    // const I = parseFloat(formData.appliedInterest);
+    // let totalOutstandingAmount = (PA * T * I) / 100;
+    // totalOutstandingAmount = Math.round(totalOutstandingAmount * 100) / 100; // rounding off to two decimal places
+    // console.log('totalOutstandingAmount', totalOutstandingAmount);
+    const P = parseFloat(formData.principalAmount);
+    const t = parseFloat(formData.tenure);
+    const n = 1; //number of time compound yearly
     const I = parseFloat(formData.appliedInterest);
-    let totalOutstandingAmount = PA + ((PA * T * I) / 100);
-    totalOutstandingAmount = Math.round(totalOutstandingAmount * 100) / 100; // rounding off to two decimal places
-    console.log('totalOutstandingAmount', totalOutstandingAmount);
-    
+    const r = I / 100;
+    // const totalOutstandingAmount = Math.round(P + ((P*T*I)/100));
+    // console.log('totalOutstandingAmount',totalOutstandingAmount);
+    // const totalOutstandingAmount = ((P*t) * Math.pow(1 + r / n, n * t)).toFixed(2);
+    let totalOutstandingAmount = 0;
+    for (let i = 1; i <= t; i++) {
+        totalOutstandingAmount += P * Math.pow(1 + r, i).toFixed(2);
+    }
+    console.log("Future value of the SIP investment:", totalOutstandingAmount);
+
+
     const openModal = () => {
         setIsModalOpen(true);
     };
@@ -48,7 +62,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
     return (
         <>
             <div className='image-container  w-full'>
-                <div className=' h-auto   py-11 bg-[#6FB3F2] '>
+                <div className=' h-auto   py-16 bg-[#6FB3F2] '>
                     <div className='relative '>
                         <div className='flex  justify-around items-center mt-4'>
                             {/* Content-1 */}
@@ -56,7 +70,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                 <div >
                                     <img src="/assets/hdfc/image/Chapter2-childplan/Academia.png" alt="" className='w-[60px] lg:w-[140px] ' />
                                 </div>
-                                <div className=''>
+                                <div className='text-center'>
                                     <h1 className='text-[14px] lg:text-[28px] font-semibold text-[#BC1425]'>ACADEMIA</h1>
                                     <div className=' lg:w-[250px] mt-3'>
                                         <p className='text-[12px] lg:text-[16px] font-medium text-white  '>(Moneyback benefit) Payouts during last 5 policy years with first guranteed payout higher than subsequent guranteed payouts</p>
@@ -71,7 +85,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                 <div>
                                     <img src='/assets/hdfc/image/Chapter2-childplan/aspiration.png' alt="" className='w-[60px] lg:w-[140px] ' />
                                 </div>
-                                <div className=''>
+                                <div className='text-center'>
                                     <h1 className='text-[14px] lg:text-[28px] font-semibold text-[#BC1425]'>ASPIRATION</h1>
                                     <div className='lg:w-[250px] lg:h-[100px] mt-3'>
                                         <p className='text-[12px] lg:text-[16px] font-medium text-white '>(Endownment benefit) Lump Sum payment at maturity </p>
@@ -86,7 +100,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                 <div>
                                     <img src='/assets/hdfc/image/Chapter2-childplan/career.png' alt="" className='w-[60px] lg:w-[140px] ' />
                                 </div>
-                                <div className=''>
+                                <div className='text-center'>
                                     <h1 className='text-[14px] lg:text-[28px] font-semibold text-[#BC1425]'>CARRER</h1>
                                     <div className='lg:w-[250px] mt-2'>
                                         <p className='text-[12px] lg:text-[16px] font-medium text-white '>(Moneyback benefit) Payouts during last 5 policy years with first guranteed payout higher than subsequent guranteed payouts</p>
