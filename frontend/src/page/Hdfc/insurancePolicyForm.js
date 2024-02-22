@@ -5,16 +5,16 @@ import React from 'react'
 function InsurancePolicyForm({ getSkip, getChildPlan }) {
     return (
         <div className='w-full bg-white '>
-            <div className="image-container policyFormCss">
+            <div className="image-container policyFormCss ">
                 <div className='p-1' style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)' }}>
                     <div className='flex justify-between md:justify-center gap-1 mt-2'>
-                        {/* 1 */}   
-                        <div className='flex flex-col items-center  animate fadeIn three'>
+                        {/* 1 */}
+                        <div className='flex flex-col items-center  animate fadeIn four'>
                             <img src='/assets/hdfc/image/icon-saving&investments.png' alt="" className='w-[50px] lg:w-[80px]' />
                             {/* content */}
                             <img src='/assets/hdfc/image/savings-investments.png' alt="" className='w-[80px] hidden lg:block lg:w-[180px] p-2 ' />
                             <h1 className='block lg:hidden text-[13px] text-[rgb(171,15,37)] font-semibold '>Savings & <br /> <span className='relative -top-2 '>Investment</span></h1>
-        
+
                         </div>
                         {/* 2 */}
                         <div className='flex flex-col items-center animate fadeIn four' >
@@ -26,7 +26,7 @@ function InsurancePolicyForm({ getSkip, getChildPlan }) {
                     </div>
                     <div className='relative md:mx-14 my-3 md:m-0 flex justify-between md:justify-around gap-44'>
                         {/* 1 */}
-                        <div className='flex flex-col items-center  animate fadeIn two  relative'>
+                        <div className='flex flex-col items-center  animate fadeIn four relative'>
                             <img src='/assets/hdfc/image/icon-pension.png' alt="" className='w-[60px] lg:w-[80px]' />
                             {/* content */}
                             <img src='/assets/hdfc/image/pension.png' alt="" className='w-[80px] hidden lg:block lg:w-[180px] p-2 ' />
@@ -34,21 +34,26 @@ function InsurancePolicyForm({ getSkip, getChildPlan }) {
                         </div>
 
                         {/* 2 */}
-                        <div className='flex flex-col items-center cursor-pointer animate fadeIn five' onClick={getChildPlan}>
-                            <img src='/assets/hdfc/image/icon-child.png' alt="" className='w-[60px] lg:w-[80px] animate-pulse' />
-                            {/* content */}
-                            <img src='/assets/hdfc/image/child.png' alt="" className='w-[80px] hidden lg:block lg:w-[180px] p-2 ' />
-                            <h1 className='block lg:hidden text-[13px] text-[rgb(171,15,37)] font-semibold'>Child</h1>
+                        <div className='flex  animate fadeIn four'>
+                            <div className='flex flex-col items-center cursor-pointer' onClick={getChildPlan}>
+                                <img src='/assets/hdfc/image/icon-child.png' alt="" className='w-[60px] lg:w-[80px] ' />
+                                {/* content */}
+                                <img src='/assets/hdfc/image/child.png' alt="" className='w-[80px] hidden lg:block lg:w-[180px] p-2 ' />
+                                <h1 className='block lg:hidden text-[13px] text-[rgb(171,15,37)] font-semibold'>Child</h1>
+                            </div>
+                            <div className='-mr-14 -rotate-12 '> 
+                                <img src='/assets/hdfc/image/arrow.png' alt="" className='w-[30px] lg:w-[80px] animate-pulse' />
+                            </div>
                         </div>
                         {/* Mobile Width */}
-                        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:hidden px-2'>
+                        <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 md:hidden px-2 animate fadeIn two'>
                             <img src='/assets/hdfc/image/insurance-policy.png' alt="" className='w-[130px] lg:w-[250px]' />
                         </div>
                     </div>
 
                     <div className='md:mx-14 md:mt-7  flex justify-between relative '>
                         {/* 1 */}
-                        <div className='flex flex-col  items-center cursor-pointer animate fadeIn one'>
+                        <div className='flex flex-col  items-center cursor-pointer animate fadeIn four'>
                             <img src='/assets/hdfc/image/icon-protection.png' alt="" className='w-[60px] lg:w-[80px] ' />
                             {/* content */}
                             <img src='/assets/hdfc/image/protection.png' alt="" className='w-[80px]  hidden lg:block lg:w-[180px] p-2 ' />
@@ -59,7 +64,7 @@ function InsurancePolicyForm({ getSkip, getChildPlan }) {
                             <img src='/assets/hdfc/image/insurance-policy.png' alt="" className='w-[100px] lg:w-[226px]' />
                         </div>
                         {/* 2 */}
-                        <div className='flex flex-col items-center animate fadeIn six'>
+                        <div className='flex flex-col items-center animate fadeIn four'>
                             <img src='/assets/hdfc/image/icon-women.png' alt="" className='w-[60px] lg:w-[80px]' />
                             {/* content */}
                             <img src='/assets/hdfc/image/women.png' alt="" className='w-[80px]  hidden lg:block lg:w-[180px] p-2 ' />
@@ -68,7 +73,7 @@ function InsurancePolicyForm({ getSkip, getChildPlan }) {
                     </div>
 
                 </div>
-                <div className='mt-1 relative animate fadeIn insuranceSkip' >
+                <div className='mt-1 relative animate fadeIn five' >
                     <div className='absolute bottom-3 right-2'>
                         <button
                             className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'

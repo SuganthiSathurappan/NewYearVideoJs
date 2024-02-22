@@ -12,15 +12,20 @@ import "videojs-landscape-fullscreen";
 import { decrypt } from "../../common/cryptoUtils";
 
 import InsurancePolicyForm from '../../page/Hdfc/insurancePolicyForm'
+import { handlePostRequest, playAudio } from "../../app/api/textToSpeechApi";
+import ChildPlan from '../../page/Hdfc/childPlan'
+import ChildExplore from "../../page/Hdfc/childExplore"
 
 const HdfcInteractiveMobile = () => {
     const [displayForm, setDisplayForm] = useState(false);
-    const [displayContactForm, setDisplayContactForm] = useState(false);
     const [isSkipped, setIsSkipped] = useState(true);
     const [displayContent, setDisplayContent] = useState(true);
-    const [displaySecVideo, setDisplaySecVideo] = useState(false);
-    const [displayUnmute, setDisplayUnmute] = useState(true);
-    const [displayMute, setDisplayMute] = useState(false);
+    
+    const [displayChildPlanForm, setDisplayChildPlanForm] = useState(false);
+    const [displayExploreForm, setDisplayExpolreForm] = useState(false);
+
+    const [audioContext, setAudioContext] = useState(new (window.AudioContext || window.webkitAudioContext)());
+    const [source, setSource] = useState(null);
 
     const { name } = useParams();
     console.log(name)
@@ -28,7 +33,7 @@ const HdfcInteractiveMobile = () => {
     const decryptedName = decrypt(name);
     console.log(decryptedName)
 
-
+    const audioMusicElementRef = useRef(false);
     const audioElementRef = useRef(false);
     const videoPlayerRef = useRef(null);
     const player = useRef(null);
@@ -143,31 +148,16 @@ const HdfcInteractiveMobile = () => {
     // This useEffect using display name purpose
     useEffect(() => {
 
-
-        const textToAudio = (spanContent) => {
-            let speech = new SpeechSynthesisUtterance();
-            speech.lang = 'en-US';
-            speech.text = spanContent;
-            speech.volume = 1;
-            speech.rate = 1;
-            speech.pitch = 1;
-            // Check if speech synthesis is already speaking, and cancel it if necessary
-            if (window.speechSynthesis.speaking) {
-                window.speechSynthesis.cancel();
-            }
-            window.speechSynthesis.speak(speech);
-
-        };
-
         if (!spokenRef.current) {
             let spanContent = document.getElementById('text-to-speech-span1').innerText;
             console.log(spanContent)
-            textToAudio(`${spanContent + decryptedName} `);
-            // Set the volume to 0.5 (50%)
-            // audioElement.volume = 0.5;
+            // textToAudio(`${spanContent + decryptedName} `);
+            // let spanContent = document.getElementById('text-to-speech-span1').innerText;
+            // Call handlePostRequest from the imported api.js file
+            handlePostRequest(`${spanContent + decryptedName} `, (audioData) => {
+                playAudio(audioData, audioContext, setAudioContext, setSource);
+            });
         }
-
-
         return () => {
             // // Clean up if needed
             if (player.current) {
@@ -226,7 +216,7 @@ const HdfcInteractiveMobile = () => {
 
             player.current.one("ended", () => {
                 // Set displayForm to false after the second video ends
-
+                setDisplayChildPlanForm(true)
                 setTimeout(() => {
                     audioElementRef.current.pause();
                     setDisplayForm(false);
@@ -242,13 +232,95 @@ const HdfcInteractiveMobile = () => {
         }
     };
 
+    
+    const handleChildSkip = () => {
+        // Check if the player is not disposed before updating the playlist
+        if (player.current && !player.current.isDisposed()) {
+            setDisplayChildPlanForm(false)
+            player.current.src([
+                { src: '/assets/hdfc/video/Thankyou_video.mp4', type: 'video/mp4' },
+            ]);
+
+            // Play the video
+            player.current.play();
+
+            player.current.one("ended", () => {
+                // setTimeout(() => {
+
+                //     setDisplayChildPlanForm(false);
+                console.log("ended");
+                // }, 100); // Adjust the duration as needed
+            });
+
+
+            // Log the current item index after a short delay
+            setTimeout(() => {
+                console.log(player.current.playlist.currentItem()); // Log the current item index
+            }, 100);
+        }
+    };
+
+    // child plan ok button
+    const handleOk = () => {
+
+        setDisplayChildPlanForm(false)
+        setDisplayExpolreForm(true)
+    }
+
+    // Yes, to Continue button click - go to thank you video
+    const handleContinue = () => {
+        // Check if the player is not disposed before updating the playlist
+        audioMusicElementRef.current.pause()
+        if (player.current && !player.current.isDisposed()) {
+            setDisplayExpolreForm(false)
+            player.current.src([
+                { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
+            ]);
+
+            // Play the video
+            player.current.play();
+
+            player.current.one("ended", () => {
+                console.log("ended");
+
+            });
+
+        }
+    };
+    // Explore button click - go to next video
+    const handleExplore = () => {
+        // Check if the player is not disposed before updating the playlist
+        audioMusicElementRef.current.pause()
+        if (player.current && !player.current.isDisposed()) {
+            setDisplayExpolreForm(false)
+            player.current.src([
+                { src: '/assets/hdfc/video/ChildPlan/Chapter2_V2.mp4', type: 'video/mp4' },
+            ]);
+
+            // Play the video
+            player.current.play();
+
+            player.current.one("ended", () => {
+                console.log("ended");
+                player.current.src([
+                    { src: '/assets/hdfc/video/Thankyou_video.mp4', type: 'video/mp4' },
+                ]);
+                player.current.play();
+            });
+
+        }
+    };
+
     return (
 
         <div>
             <audio src="/assets/hdfc/video/Chapter-1/Audio1_2.mp3" type="audio/mp3" ref={audioElementRef}>
 
             </audio>
-
+            <audio src="/assets/hdfc/video/ChildPlan/HDFC-Life music.mp3" type="audio/mp3" loop
+                ref={audioMusicElementRef}>
+                {/* only play music */}
+            </audio>
             <div >
                 {displayContent &&
                     <div class="fullscreen" id="fullscreen" style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)' }}>
@@ -284,6 +356,24 @@ const HdfcInteractiveMobile = () => {
                         <InsurancePolicyForm getSkip={handleSkip} getChildPlan={handleChildPlan1} />
                     </div>
                 }
+                <div id="wrapper">
+                    {displayChildPlanForm &&
+                        <>
+                            <div id="overlay" className="videoFadeInAni">
+                                <ChildPlan getChildSkip={handleChildSkip} getHandleOk={handleOk} />
+                            </div>
+                        </>
+                    }
+                </div>
+                <div id="wrapper">
+                    {displayExploreForm &&
+                        <>
+                            <div id="overlay" className="videoFadeInAni">
+                                <ChildExplore getContinue={handleContinue} getExplore={handleExplore} />
+                            </div>
+                        </>
+                    }
+                </div>
 
             </div>
         </div>

@@ -13,6 +13,7 @@ import { decrypt } from "../common/cryptoUtils";
 import InsurancePolicyForm from '../page/Hdfc/insurancePolicyForm'
 import ChildPlan from "../page/Hdfc/childPlan";
 import ChildExplore from "../page/Hdfc/childExplore"
+import YesContinue from "../page/Hdfc/yesContinue";
 // import '../responsiveStyle.css';
 import { handlePostRequest, playAudio } from "../app/api/textToSpeechApi";
 
@@ -24,6 +25,7 @@ const MainVideoPlayer = () => {
     const [displayContent, setDisplayContent] = useState(true);
     const [displayChildPlanForm, setDisplayChildPlanForm] = useState(false);
     const [displayExploreForm, setDisplayExpolreForm] = useState(false);
+    const [displayYesContinue, setDisplayYesContinue] = useState(false);
 
     const [audioContext, setAudioContext] = useState(new (window.AudioContext || window.webkitAudioContext)());
     const [source, setSource] = useState(null);
@@ -45,7 +47,7 @@ const MainVideoPlayer = () => {
 
     const videoJSOptions = {
         sources: [
-            { src: '/assets/hdfc/video/Chapter-1/Video1_1.mp4', type: 'video/mp4' },
+            { src: '/assets/hdfc/video/Chapter-1/Chapter1-Video.mp4', type: 'video/mp4' },
         ],
         controls: true,
         fluid: true,
@@ -108,21 +110,40 @@ const MainVideoPlayer = () => {
                         player.current.play();
                         setDisplayContent(false)
                         setDisplayImg(false)
-                        // Set a timer to pause the player after 10 seconds
-                        window.setTimeout(() => {
-                            // Check if the player is not disposed before pausing
-                            if (player.current && !player.current.isDisposed()) {
-                                player.current.pause();
-                                player.current.el().classList.add('hide-controls');
-                                if (player.current.controlBar) {
-                                    player.current.controlBar.hide(); // Hide control bar
-                                }
-                                // Add background audio
-                                audioElementRef.current.play()
-                                setDisplayForm(true)
+                        // Pause the player when the overlay is shown
+                        player.current.on('timeupdate', () => {
+                            console.log('Current Time:', player.current.currentTime());
+                            const buffer = 0.2;
+                            if (player.current.currentTime() >= 18.8 - buffer && player.current.currentTime() <= 19 + buffer) {
+                                // Check if the player is not disposed before pausing
+                                if (player.current && !player.current.isDisposed()) {
+                                    player.current.pause();
+                                    player.current.el().classList.add('hide-controls');
+                                    if (player.current.controlBar) {
+                                        player.current.controlBar.hide(); // Hide control bar
+                                    }
+                                    // Add background audio
+                                    // audioElementRef.current.play()
+                                    setDisplayForm(true)
 
+                                }
                             }
-                        }, 13100); // Pause the player after 10 seconds
+                        })
+                        // // Set a timer to pause the player after 10 seconds
+                        // window.setTimeout(() => {
+                        //     // Check if the player is not disposed before pausing
+                        //     if (player.current && !player.current.isDisposed()) {
+                        //         player.current.pause();
+                        //         player.current.el().classList.add('hide-controls');
+                        //         if (player.current.controlBar) {
+                        //             player.current.controlBar.hide(); // Hide control bar
+                        //         }
+                        //         // Add background audio
+                        //         audioElementRef.current.play()
+                        //         setDisplayForm(true)
+
+                        //     }
+                        // }, 18900); // Pause the player after 10 seconds
                     }
 
                 }, 4000);
@@ -194,6 +215,10 @@ const MainVideoPlayer = () => {
 
             player.current.one("ended", () => {
                 // Set displayForm to false after the second video ends
+                player.current.el().classList.add('hide-controls');
+                if (player.current.controlBar) {
+                    player.current.controlBar.hide(); // Hide control bar
+                }
                 setDisplayChildPlanForm(true)
                 audioMusicElementRef.current.play()
                 setTimeout(() => {
@@ -215,6 +240,10 @@ const MainVideoPlayer = () => {
         // Check if the player is not disposed before updating the playlist
         if (player.current && !player.current.isDisposed()) {
             setDisplayChildPlanForm(false)
+            player.current.el().classList.remove('hide-controls');
+            if (player.current.controlBar) {
+                player.current.controlBar.show(); // Show control bar
+            }
             player.current.src([
                 { src: '/assets/hdfc/video/Thankyou_video.mp4', type: 'video/mp4' },
             ]);
@@ -240,30 +269,36 @@ const MainVideoPlayer = () => {
 
     // child plan ok button
     const handleOk = () => {
-        
+
         setDisplayChildPlanForm(false)
         setDisplayExpolreForm(true)
+        player.current.el().classList.remove('hide-controls');
+        if (player.current.controlBar) {
+            player.current.controlBar.show(); // Show control bar
+        }
     }
 
     // Yes, to Continue button click - go to thank you video
     const handleContinue = () => {
         // Check if the player is not disposed before updating the playlist
-        audioMusicElementRef.current.pause()
-        if (player.current && !player.current.isDisposed()) {
-            setDisplayExpolreForm(false)
-            player.current.src([
-                { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
-            ]);
+        // audioMusicElementRef.current.pause()
+        setDisplayExpolreForm(false)
+        setDisplayYesContinue(true)
+        // if (player.current && !player.current.isDisposed()) {
+        //     setDisplayExpolreForm(false)
+        //     player.current.src([
+        //         { src: '/assets/hdfc/video/ChildPlan/Chapter2_V1.2.mp4', type: 'video/mp4' },
+        //     ]);
 
-            // Play the video
-            player.current.play();
+        //     // Play the video
+        //     player.current.play();
 
-            player.current.one("ended", () => {
-                console.log("ended");
+        //     player.current.one("ended", () => {
+        //         console.log("ended");
 
-            });
+        //     });
 
-        }
+        // }
     };
     // Explore button click - go to next video
     const handleExplore = () => {
@@ -295,8 +330,8 @@ const MainVideoPlayer = () => {
                 {/* Insurance interactive audio */}
             </audio>
 
-            <audio src="/assets/hdfc/video/ChildPlan/HDFC-Life music.mp3" type="audio/mp3" loop
-             ref={audioMusicElementRef}>
+            <audio src="/assets/hdfc/video/ChildPlan/background-music.mp3" type="audio/mp3" loop
+                ref={audioMusicElementRef}>
                 {/* only play music */}
             </audio>
 
@@ -333,9 +368,7 @@ const MainVideoPlayer = () => {
                             </div>
                         </>
                     }
-                </div>
 
-                <div id="wrapper">
                     {displayChildPlanForm &&
                         <>
                             <div id="overlay" className="videoFadeInAni">
@@ -343,12 +376,18 @@ const MainVideoPlayer = () => {
                             </div>
                         </>
                     }
-                </div>
-                <div id="wrapper">
+
                     {displayExploreForm &&
                         <>
                             <div id="overlay" className="videoFadeInAni">
                                 <ChildExplore getContinue={handleContinue} getExplore={handleExplore} />
+                            </div>
+                        </>
+                    }
+                    {displayYesContinue &&
+                        <>
+                            <div id="overlay" className="videoFadeInAni">
+                                <YesContinue />
                             </div>
                         </>
                     }

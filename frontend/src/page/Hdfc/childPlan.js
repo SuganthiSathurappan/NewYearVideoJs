@@ -62,9 +62,9 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
     return (
         <>
             <div className='image-container  w-full'>
-                <div className=' h-auto   py-16 bg-[#6FB3F2] '>
+                <div className=' h-auto md:py-7  lg:py-12 bg-[#6FB3F2] '>
                     <div className='relative '>
-                        <div className='flex  justify-around items-center mt-4'>
+                        <div className='flex  justify-around items-center mt-4 animate fadeIn three'>
                             {/* Content-1 */}
                             <div className='hidden md:flex flex-col items-center'>
                                 <div >
@@ -101,7 +101,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                     <img src='/assets/hdfc/image/Chapter2-childplan/career.png' alt="" className='w-[60px] lg:w-[140px] ' />
                                 </div>
                                 <div className='text-center'>
-                                    <h1 className='text-[14px] lg:text-[28px] font-semibold text-[#BC1425]'>CARRER</h1>
+                                    <h1 className='text-[14px] lg:text-[28px] font-semibold text-[#BC1425]'>CAREER</h1>
                                     <div className='lg:w-[250px] mt-2'>
                                         <p className='text-[12px] lg:text-[16px] font-medium text-white '>(Moneyback benefit) Payouts during last 5 policy years with first guranteed payout higher than subsequent guranteed payouts</p>
                                     </div>
@@ -114,7 +114,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                             </div>
 
                         </div>
-                        <div className='absolute  right-1 my-2'>
+                        <div className='absolute  right-1 my-2 animate fadeIn three'>
                             <button
                                 className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
                                 onClick={getChildSkip}
@@ -150,7 +150,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                                     </div>
                                                     <div className='md:mx-4'>
                                                         <input type="text" name='tenure' className='border p-3 w-80 rounded-xl' required
-                                                            placeholder='10' onChange={handleChange} />
+                                                             onChange={handleChange} />
                                                     </div>
                                                 </div>
                                                 <div className='flex justify-between mt-4'>
@@ -159,7 +159,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                                     </div>
                                                     <div className='md:mx-4'>
                                                         <input type="text" name='appliedInterest' className='border p-3 w-80 rounded-xl' required
-                                                            placeholder='7%' onChange={handleChange} />
+                                                            placeholder='%' onChange={handleChange} />
                                                     </div>
                                                 </div>
                                                 <button type='submit' className='flex justify-center md:justify-end m-4'>
@@ -198,19 +198,19 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                             <div className='mx-auto mt-2 items-start'>
                                                 <div className='text-[18px] font-semibold'>
                                                     <p className="flex justify-between">
-                                                        <span>Premium Amount:</span>
+                                                        <span>Premium Amount :</span>
                                                         <span className='px-10 font-normal'>{formData.principalAmount}</span>
                                                     </p>
                                                     <p className="flex justify-between">
-                                                        <span>Tenure Year:</span>
+                                                        <span>Tenure Year :</span>
                                                         <span className='px-10 font-normal'>{formData.tenure} Years</span>
                                                     </p>
                                                     <p className="flex justify-between">
-                                                        <span>Payment Annual:</span>
+                                                        <span>Payment Annual :</span>
                                                         <span className='px-10 font-normal'>5 Years</span>
                                                     </p>
                                                     <p className="flex justify-between">
-                                                        <span>Applied Interest:</span>
+                                                        <span>Applied Interest :</span>
                                                         <span className='px-10 font-normal'>{formData.appliedInterest}%</span>
                                                     </p>
                                                 </div>
@@ -218,7 +218,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
 
                                             <div className='flex justify-end'>
                                                 <button className='font-extrabold text-white bg-[#BC1425] border p-2  text-lg rounded-xl '
-                                                    onClick={getHandleOk}>Okay</button>
+                                                    onClick={getHandleOk}>Submit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -261,7 +261,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                 <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[100px] lg:w-[190px] ' />
                             </div>
                             <div className='flex flex-col justify-start'>
-                                <h1 className='text-[14px] font-semibold text-[#BC1425]'>CARRER</h1>
+                                <h1 className='text-[14px] font-semibold text-[#BC1425]'>CAREER</h1>
                                 <div className='mt-3 w-[230px] mx-2'>
                                     <p className='text-[10px] text-justify font-medium text-white  '>(Moneyback benefit) Payouts during last 5 policy years with first guranteed payout higher than subsequent guranteed payouts</p>
                                 </div>

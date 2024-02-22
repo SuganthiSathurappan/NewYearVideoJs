@@ -24,6 +24,8 @@
     "redux": "^5.0.1",
     "tailwindcss": "^3.3.6",
     "tesseract.js": "^5.0.3",
+    "typed-js": "^0.2.3",
+    "typed.js": "^2.1.0",
     "video.js": "^8.6.1",
     "videojs-contextmenu-ui": "^7.0.0",
     "videojs-landscape-fullscreen": "^11.1111.0",
