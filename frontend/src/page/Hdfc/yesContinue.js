@@ -39,7 +39,7 @@ function YesContinue() {
         const text2Options = {
             strings: [
                 "If You would like to enroll in the child plan, you can do so by clicking on this link : " +
-                " <a href='https://www.hdfclife.com/children-insurance-plans' style='color: black; text-transform: lowercase;'>https://www.hdfclife.com/children-insurance-plans</a>",
+                " <a href='https://www.hdfclife.com/children-insurance-plans' style='color: red; text-transform: lowercase;'>https://www.hdfclife.com/children-insurance-plans</a>",
             ],
             typeSpeed: 20,
             showCursor: false,
@@ -60,7 +60,7 @@ function YesContinue() {
                         {/* <h1 className="text-[33px] text-white font-medium" ref={typedTextRef}> </h1> */}
                     </div>
                     {/* Content-2 */}
-                    <div className="flex flex-col ">
+                    <div className="flex flex-col">
                         <h1
                             ref={text1Ref}
                             className="text-[19px] uppercase w-[860px] text-center text-white font-medium leading-loose"
@@ -87,9 +87,9 @@ function YesContinue() {
                                     <img src={'/assets/hdfc/image/Chapter2-childplan/email.png'} alt="email_image" className="w-96 " />
                                 </div>
                                 <div className="flex items-center ml-3 absolute mt-6 ">
-                                    <a href="mailto:service@hdfclife.com">
+                                    <a href="mailto:service@hdfclife.com" className="hover:text-blue-600">
                                         {" "}
-                                        <span className=" text-[22px] font-light  pl-9 text-black">
+                                        <span className=" text-[22px] font-light  pl-9 text-black ">
                                             service@hdfclife.com
                                         </span>
                                     </a>
@@ -99,10 +99,10 @@ function YesContinue() {
                         <div
                             ref={contentRef}
                             style={{ display: "none" }}
-                            className="flex"
+                            className="flex mx-5"
                         >
                             <h1
-                                className="text-[19px] uppercase w-[800px] text-center text-white font-medium leading-loose"
+                                className="text-[19px] uppercase w-[800px] text-center items-center text-white font-medium leading-loose"
                                 ref={text2Ref}
                             ></h1>
                             {/* <a href="https://www.hdfclife.com/children-insurance-plans">                   
