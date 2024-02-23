@@ -18,10 +18,10 @@ const FormPage = () => {
     const encryptName = (name) => encrypt(name);
 
     return (
-        <div className='flex justify-center mt-10 font-poppins'>
+        <div className='flex justify-center mt-10 font-CaviarDreams'>
 
             <div class="w-[500px] ">
-
+            
                 <div class="w-full ">
                     <div class="flex justify-center mb-2">
                         <Link to={`/hdfc-player/${encryptName(customerName)}`}>

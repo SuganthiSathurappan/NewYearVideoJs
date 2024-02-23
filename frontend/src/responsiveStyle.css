@@ -1,7 +1,11 @@
 /* App.css */
+body{
+  font-family: 'CaviarDreams';
+}
 #overlay {
   z-index: 2147483647;
-  font-family: poppins;
+  /* font-family: poppins; */
+  /* font-family: Caviar Dreams; */
   /* background-image: url('../public/assets/Template-Video.jpg'); */
 }
 /* overlay text animated */
@@ -708,4 +712,15 @@ canvas {
 .fadeIn {
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
+}
+
+/* Arrow Animation */
+@keyframes moveRight {
+  0% { transform: translateX(-30%) rotateZ(-5deg); }
+  50% { transform: translateX(30%) rotateZ(5deg); }
+  100% { transform: translateX(-30%) rotateZ(-5deg); }
+}
+
+.arrow {
+  animation: moveRight 2.5s linear infinite; /* Adjust animation duration and timing function as needed */
 }

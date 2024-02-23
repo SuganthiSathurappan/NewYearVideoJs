@@ -14,7 +14,8 @@ import InsurancePolicyForm from '../page/Hdfc/insurancePolicyForm'
 import ChildPlan from "../page/Hdfc/childPlan";
 import ChildExplore from "../page/Hdfc/childExplore"
 import YesContinue from "../page/Hdfc/yesContinue";
-// import '../responsiveStyle.css';
+import Thankyou from "../page/Hdfc/thankYou";
+
 import { handlePostRequest, playAudio } from "../app/api/textToSpeechApi";
 
 const MainVideoPlayer = () => {
@@ -26,6 +27,9 @@ const MainVideoPlayer = () => {
     const [displayChildPlanForm, setDisplayChildPlanForm] = useState(false);
     const [displayExploreForm, setDisplayExpolreForm] = useState(false);
     const [displayYesContinue, setDisplayYesContinue] = useState(false);
+    const [displayThankyou, setDisplayThankyou] = useState(false);
+
+    const [isFirstVideoPlayed, setIsFirstVideoPlayed] = useState(true);
 
     const [audioContext, setAudioContext] = useState(new (window.AudioContext || window.webkitAudioContext)());
     const [source, setSource] = useState(null);
@@ -56,116 +60,82 @@ const MainVideoPlayer = () => {
         muted: false,
     };
 
+    useEffect(() => {
+        if (!spokenRef.current) {
+            // Check if the element with ID 'text-to-speech-span1' exists
+            const spanElement = document.getElementById('text-to-speech-span1');
+            if (spanElement) {
+                const spanContent = spanElement.innerText;
+                console.log(spanContent);
+                // Now you can perform your operations with spanContent
+                handlePostRequest(`${spanContent + decryptedName} `, (audioData) => {
+                    playAudio(audioData, audioContext, setAudioContext, setSource);
+                });
+            }
+        }
+    }, [spokenRef]);
 
     useEffect(() => {
+        const timeUpdateHandler = () => {
+            console.log(isFirstVideoPlayed)
+            if (isFirstVideoPlayed && player.current.currentTime() >= 18.8 && player.current.currentTime() <= 19) {
 
-        if (!spokenRef.current) {
-            let spanContent = document.getElementById('text-to-speech-span1').innerText;
-            console.log(spanContent)
-            // textToAudio(`${spanContent + decryptedName} `);
-            // let spanContent = document.getElementById('text-to-speech-span1').innerText;
-            // Call handlePostRequest from the imported api.js file
-            handlePostRequest(`${spanContent + decryptedName} `, (audioData) => {
-                playAudio(audioData, audioContext, setAudioContext, setSource);
-            });
-        }
+                if (player.current && !player.current.isDisposed()) {
+                    player.current.pause();
+                    player.current.el().classList.add('hide-controls');
+                    if (player.current.controlBar) {
+                        player.current.controlBar.hide(); // Hide control bar
+                    }
+                    setTimeout(() => {
+                        setDisplayForm(true);
+                    }, 1000);
+                }
+            }
+        };
 
         if (videoPlayerRef.current) {
             player.current = videojs(videoPlayerRef.current, videoJSOptions, () => {
-                // player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
-
                 player.current.playlist(videoJSOptions.sources);
-                setDisplayForm(false)
-
+                setDisplayForm(false);
                 player.current.controlBar.removeChild('MuteToggle');
-                // Remove the VolumePanel button
                 player.current.controlBar.removeChild('VolumePanel');
-
-                // Add custom style to hide controls
                 player.current.addClass("hide-controls");
 
-                console.log(videoJSOptions)
-
-
                 player.current.on("ended", () => {
-                    // player.current.src({ src: '/assets/Gift-bg.jpg', type: 'image/jpg' });
-                    // Add background audio
-                    // audioElementRef.current.play()
-                    // setDisplayForm(true)
-                    // player.current.el().classList.add('hide-controls');
-                    // if (player.current.controlBar) {
-                    //     player.current.controlBar.hide(); // Hide control bar
-                    // }
                     console.log("ended");
-                    // Set thumbnail image (poster)
-
                 });
 
-                // Set a timer to start playing the video after 4 seconds
                 window.setTimeout(() => {
-
-                    // Check if the player is not disposed before calling play()
+                    console.log(isFirstVideoPlayed)
                     if (player.current && !player.current.isDisposed()) {
                         player.current.addClass("videoFadeInAni");
                         player.current.play();
-                        setDisplayContent(false)
-                        setDisplayImg(false)
-                        // Pause the player when the overlay is shown
-                        player.current.on('timeupdate', () => {
-                            console.log('Current Time:', player.current.currentTime());
-                            const buffer = 0.2;
-                            if (player.current.currentTime() >= 18.8 - buffer && player.current.currentTime() <= 19 + buffer) {
-                                // Check if the player is not disposed before pausing
-                                if (player.current && !player.current.isDisposed()) {
-                                    player.current.pause();
-                                    player.current.el().classList.add('hide-controls');
-                                    if (player.current.controlBar) {
-                                        player.current.controlBar.hide(); // Hide control bar
-                                    }
-                                    // Add background audio
-                                    // audioElementRef.current.play()
-                                    setDisplayForm(true)
-
-                                }
-                            }
-                        })
-                        // // Set a timer to pause the player after 10 seconds
-                        // window.setTimeout(() => {
-                        //     // Check if the player is not disposed before pausing
-                        //     if (player.current && !player.current.isDisposed()) {
-                        //         player.current.pause();
-                        //         player.current.el().classList.add('hide-controls');
-                        //         if (player.current.controlBar) {
-                        //             player.current.controlBar.hide(); // Hide control bar
-                        //         }
-                        //         // Add background audio
-                        //         audioElementRef.current.play()
-                        //         setDisplayForm(true)
-
-                        //     }
-                        // }, 18900); // Pause the player after 10 seconds
+                        setDisplayContent(false);
+                        setDisplayImg(false);
+                        player.current.on('timeupdate', timeUpdateHandler);
                     }
-
                 }, 4000);
 
-                console.log("Player Ready")
+                console.log("Player Ready");
             });
-
             document.addEventListener('DOMContentLoaded', () => {
-                document.getElementById('fullscreen-toggle-btn'
-                    .addEventListener('click', toggleFullScreen))
-            })
+                document.getElementById('fullscreen-toggle-btn')
+                    .addEventListener('click', toggleFullScreen);
+            });
         }
+
         return () => {
-            // // Clean up if needed
             if (player.current) {
-                // player.current.dispose();
+                player.current.off('timeupdate', timeUpdateHandler);
             }
-
         };
+    }, [isFirstVideoPlayed]);
 
-    }, [name]);
-
+    useEffect(() => {
+        if (isFirstVideoPlayed) {
+            setDisplayForm(true);
+        }
+    }, [isFirstVideoPlayed]);
 
     const toggleFullScreen = async () => {
         const container = document.getElementById('wrapper');
@@ -201,6 +171,8 @@ const MainVideoPlayer = () => {
         // Check if the player is not disposed before updating the playlist
         if (player.current && !player.current.isDisposed()) {
             setDisplayForm(false)
+            setIsFirstVideoPlayed(false);
+            console.log(isFirstVideoPlayed)
             player.current.el().classList.remove('hide-controls');
             if (player.current.controlBar) {
                 player.current.controlBar.show(); // Show control bar
@@ -240,30 +212,31 @@ const MainVideoPlayer = () => {
         // Check if the player is not disposed before updating the playlist
         if (player.current && !player.current.isDisposed()) {
             setDisplayChildPlanForm(false)
-            player.current.el().classList.remove('hide-controls');
-            if (player.current.controlBar) {
-                player.current.controlBar.show(); // Show control bar
-            }
-            player.current.src([
-                { src: '/assets/hdfc/video/Thankyou_video.mp4', type: 'video/mp4' },
-            ]);
+            setDisplayThankyou(true)
+            // player.current.el().classList.remove('hide-controls');
+            // if (player.current.controlBar) {
+            //     player.current.controlBar.show(); // Show control bar
+            // }
+            // player.current.src([
+            //     { src: '/assets/hdfc/video/Thankyou_video.mp4', type: 'video/mp4' },
+            // ]);
 
-            // Play the video
-            player.current.play();
+            // // Play the video
+            // player.current.play();
 
-            player.current.one("ended", () => {
-                // setTimeout(() => {
+            // player.current.one("ended", () => {
+            //     // setTimeout(() => {
 
-                //     setDisplayChildPlanForm(false);
-                console.log("ended");
-                // }, 100); // Adjust the duration as needed
-            });
+            //     //     setDisplayChildPlanForm(false);
+            //     console.log("ended");
+            //     // }, 100); // Adjust the duration as needed
+            // });
 
 
-            // Log the current item index after a short delay
-            setTimeout(() => {
-                console.log(player.current.playlist.currentItem()); // Log the current item index
-            }, 100);
+            // // Log the current item index after a short delay
+            // setTimeout(() => {
+            //     console.log(player.current.playlist.currentItem()); // Log the current item index
+            // }, 100);
         }
     };
 
@@ -361,7 +334,7 @@ const MainVideoPlayer = () => {
                     </div>
                 }
                 <div id="wrapper">
-                    {displayForm &&
+                    {isFirstVideoPlayed && displayForm &&
                         <>
                             <div id="overlay" className="videoFadeInAni">
                                 <InsurancePolicyForm getSkip={handleSkip} getChildPlan={handleChildPlan1} />
@@ -387,7 +360,14 @@ const MainVideoPlayer = () => {
                     {displayYesContinue &&
                         <>
                             <div id="overlay" className="videoFadeInAni">
-                                <YesContinue />
+                                <YesContinue getChildSkip={handleChildSkip}/>
+                            </div>
+                        </>
+                    }
+                    {displayThankyou &&
+                        <>
+                            <div id="overlay" className="videoFadeInAni">
+                                <Thankyou />
                             </div>
                         </>
                     }

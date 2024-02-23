@@ -62,7 +62,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
     return (
         <>
             <div className='image-container  w-full'>
-                <div className=' h-auto md:py-7  lg:py-12 bg-[#6FB3F2] '>
+                <div className=' h-auto md:py-7  lg:pb-12 bg-[#6FB3F2] '>
                     <div className='relative '>
                         <div className='flex  justify-around items-center mt-4 animate fadeIn three'>
                             {/* Content-1 */}
@@ -87,11 +87,11 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                 </div>
                                 <div className='text-center'>
                                     <h1 className='text-[14px] lg:text-[28px] font-semibold text-[#BC1425]'>ASPIRATION</h1>
-                                    <div className='lg:w-[250px] lg:h-[100px] mt-3'>
+                                    <div className='lg:w-[250px] lg:h-[100px] mt-3 mb-3'>
                                         <p className='text-[12px] lg:text-[16px] font-medium text-white '>(Endownment benefit) Lump Sum payment at maturity </p>
                                     </div>
                                 </div>
-                                <div className='mt-10'>
+                                <div className=''>
                                     <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[60px] lg:w-[160px] ' />
                                 </div>
                             </div>
@@ -114,7 +114,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                             </div>
 
                         </div>
-                        <div className='absolute  right-1 my-2 animate fadeIn three'>
+                        <div className='absolute  right-1 my-8 animate fadeIn three'>
                             <button
                                 className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
                                 onClick={getChildSkip}

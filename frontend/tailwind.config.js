@@ -6,6 +6,7 @@ module.exports = withMT({
     extend: {
       fontFamily: {
         'poppins': ['Poppins'],
+        'CaviarDreams': ['Caviar Dreams'],                                                
       },
       colors: {
         'black-rgba': 'rgba(0, 0, 0, 0.54)',
