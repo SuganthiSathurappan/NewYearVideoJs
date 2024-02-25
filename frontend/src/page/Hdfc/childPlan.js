@@ -60,9 +60,9 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
     };
 
     return (
-        <>
-            <div className='image-container  w-full'>
-                <div className=' h-auto md:py-7  lg:pb-12 bg-[#6FB3F2] '>
+        <div className=' w-full '>
+            <div className='image-container  bg-[#6FB3F2]'>
+                <div className='lg:mt-16 '>
                     <div className='relative '>
                         <div className='flex  justify-around items-center mt-4 animate fadeIn three'>
                             {/* Content-1 */}
@@ -275,7 +275,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                 </div>
 
             </div>
-        </>
+        </div>
     )
 }
 

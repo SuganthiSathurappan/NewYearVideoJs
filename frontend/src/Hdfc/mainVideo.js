@@ -316,23 +316,6 @@ const MainVideoPlayer = () => {
                     ref={videoPlayerRef}
                     className="video-js"
                 />
-            </div>
-
-            <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
-                <div>
-                    {displayImg &&
-                        <div className="image-container">
-                            <img alt="" src="/assets/hdfc/image/bg-insurance.jpg" />
-                        </div>
-                    }
-
-                </div>
-                {displayContent &&
-                    <div className="overlayTitle1 " >
-                        <span className="spanCss1 text-black" id="text-to-speech-span1">Hello</span>
-                        <span className="spanCss1 text-black" id="text-to-speech-span2"> {decryptedName} </span><br />
-                    </div>
-                }
                 <div id="wrapper">
                     {isFirstVideoPlayed && displayForm &&
                         <>
@@ -360,7 +343,7 @@ const MainVideoPlayer = () => {
                     {displayYesContinue &&
                         <>
                             <div id="overlay" className="videoFadeInAni">
-                                <YesContinue getChildSkip={handleChildSkip}/>
+                                <YesContinue getChildSkip={handleChildSkip} />
                             </div>
                         </>
                     }
@@ -374,7 +357,25 @@ const MainVideoPlayer = () => {
                 </div>
             </div>
 
-        </div>
+            <div className={`video-container ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`}>
+                <div>
+                    {displayImg &&
+                        <div className="image-container">
+                            <img alt="" src="/assets/hdfc/image/bg-insurance.jpg" />
+                        </div>
+                    }
+
+                </div>
+                {displayContent &&
+                    <div className="overlayTitle1 " >
+                        <span className="spanCss1 text-black" id="text-to-speech-span1">Hello</span>
+                        <span className="spanCss1 text-black" id="text-to-speech-span2"> {decryptedName} </span><br />
+                    </div>
+                }
+            </div>
+        
+
+        </div >
     );
 };
 
