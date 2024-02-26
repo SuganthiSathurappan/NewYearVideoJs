@@ -303,7 +303,7 @@ const MainVideoPlayer = () => {
                 {/* Insurance interactive audio */}
             </audio>
 
-            <audio src="/assets/hdfc/video/ChildPlan/background-music.mp3" type="audio/mp3" loop
+            <audio src="/assets/hdfc/video/ChildPlan/background-music-new.mp3" type="audio/mp3" loop
                 ref={audioMusicElementRef}>
                 {/* only play music */}
             </audio>
