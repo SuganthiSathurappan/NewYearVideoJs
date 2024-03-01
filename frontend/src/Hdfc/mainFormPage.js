@@ -26,8 +26,8 @@ const FormPage = () => {
                     <div class="flex justify-center mb-2">
                         <Link to={`/hdfc-player/${encryptName(customerName)}`}>
                             <img
-                                className="w-[400px] lg:w-50 md:w-50 sm:w-50 hover:w-[420px]"
-                                src="/assets/dice-button.png"  // Replace with the actual path to your image
+                                className="w-[400px] lg:w-50 md:w-50 sm:w-50 hover:w-[420px] rounded-sm border-1 border-[#8A203D]"
+                                src="/assets/hdfc/image/Thumbnail_HDFC.gif"  // Replace with the actual path to your image
                                 alt="Interactive Video Link"
                             />
                         </Link>

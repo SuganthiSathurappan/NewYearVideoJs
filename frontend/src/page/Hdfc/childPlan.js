@@ -51,6 +51,10 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
         setIsModalOpen(false);
         setIsOpens(false);
     };
+    const getHandleBack = () => {
+        setIsModalOpen(false);
+        setIsOpens(false);
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -63,7 +67,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
         <div className=' w-full '>
             <div className='image-container  bg-[#6FB3F2]'>
                 <div className='lg:mt-16 '>
-                    <div className='relative '>
+                    <div className=''>
                         <div className='flex  justify-around items-center mt-4 animate fadeIn three'>
                             {/* Content-1 */}
                             <div className='hidden md:flex flex-col items-center'>
@@ -91,8 +95,8 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                         <p className='text-[12px] lg:text-[16px] font-medium text-white '>(Endownment benefit) Lump Sum payment at maturity </p>
                                     </div>
                                 </div>
-                                <div className=''>
-                                    <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[60px] lg:w-[160px] ' />
+                                <div className='' onClick={openModal}>
+                                    <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[60px] lg:w-[160px] cursor-pointer animate-pulse' />
                                 </div>
                             </div>
                             {/* Content-3 */}
@@ -106,15 +110,15 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                         <p className='text-[12px] lg:text-[16px] font-medium text-white '>(Moneyback benefit) Payouts during last 5 policy years with first guranteed payout higher than subsequent guranteed payouts</p>
                                     </div>
                                 </div>
-                                <div className='mt-2'>
-                                    <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[60px] lg:w-[160px] '
+                                <div className='mt-2' onClick={openModal}>
+                                    <img src='/assets/hdfc/image/Chapter2-childplan/explore.png' alt="" className='w-[60px] lg:w-[160px] cursor-pointer animate-pulse'
                                     />
                                 </div>
 
                             </div>
 
                         </div>
-                        <div className='absolute  right-1 my-8 animate fadeIn three'>
+                        <div className='absolute right-4  my-4 animate fadeIn three'>
                             <button
                                 className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
                                 onClick={getChildSkip}
@@ -124,8 +128,9 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                         </div>
                         {/* Modal */}
                         {isModalOpen && (
-                            <div className="absolute  inset-0 bg-black bg-transparent flex items-center justify-center">
-                                <div className="bg-white p-4 rounded-3xl">
+                            <div className=" backdrop-blur-sm absolute inset-0 bg-black bg-transparent flex items-center justify-center
+                            ">
+                                <div className="bg-white p-4 rounded-[60px] border-2 border-[#8A203D]">
                                     {/* Your modal content goes here */}
 
                                     <div className='flex justify-end'>
@@ -172,8 +177,8 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                             </div>
                         )}
                         {isOpens && (
-                            <div className="absolute   inset-0 z-1 flex items-center justify-center " >
-                                <div className="bg-white p-4 rounded-3xl ">
+                            <div className="absolute  backdrop-blur-sm  inset-0 z-1 flex items-center justify-center " >
+                                <div className="bg-white p-4 w-[567px] h-[450px] rounded-[60px] border-2 border-[#8A203D] ">
                                     {/* Your modal content goes here */}
 
                                     <div>
@@ -215,10 +220,17 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
                                                     </p>
                                                 </div>
                                             </div>
-
+                                           <div className='flex justify-between'>
+                                            <div className='flex'>
+                                                <button 
+                                                 className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md py-1 px-4'
+                                                    onClick={getHandleBack}>Back</button>
+                                            </div>
                                             <div className='flex justify-end'>
-                                                <button className='font-extrabold text-white bg-[#BC1425] border p-2  text-lg rounded-xl '
+                                                <button 
+                                                 className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
                                                     onClick={getHandleOk}>Submit</button>
+                                            </div>
                                             </div>
                                         </div>
                                     </div>

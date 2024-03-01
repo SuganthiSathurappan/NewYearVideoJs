@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Typed from 'typed.js';
 
 
@@ -8,6 +8,7 @@ const YesContinue = ({ getChildSkip }) => {
     const text2Ref = useRef(null);
     const imageRef = useRef(null);
     const contentRef = useRef(null);
+    const [displaySkip, setDisplaySkip] = useState(false)
 
     useEffect(() => {
         // Options for Typed.js
@@ -34,7 +35,11 @@ const YesContinue = ({ getChildSkip }) => {
                 animateText1.destroy();
             };
         }, 1000);
-    }, []);
+
+        setTimeout(() => {
+            setDisplaySkip(true)
+        }, 2500);
+    }, [displaySkip]);
 
     const animateText2 = () => {
         const text2Options = {
@@ -51,7 +56,7 @@ const YesContinue = ({ getChildSkip }) => {
 
     return (
         <div className="w-full" >
-            <div className="image-container" style={{ backgroundImage: 'url(/assets/hdfc/image/Chapter2-childplan/bg-thank.jpg)' }}>
+            <div className="image-container bg-cover bg-center" style={{ backgroundImage: 'url(/assets/hdfc/image/Chapter2-childplan/bg-thank.jpg)' }}>
                 <div className='lg:mt-16' >
                     <div className='relative ' >
                         <div
@@ -91,17 +96,22 @@ const YesContinue = ({ getChildSkip }) => {
 
                                 </div>
                             </div>
-                            <div className='mt-5 animate fadeIn six '>
-                                <button
-                                    className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
-                                    onClick={getChildSkip}
-                                >
-                                    Skip
-                                </button>
-                            </div>
+
                         </div>
+
                     </div>
+
                 </div>
+                {displaySkip &&
+                    <div className='my-20 animate fadeIn six flex justify-end mx-3'>
+                        <button
+                            className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
+                            onClick={getChildSkip}
+                        >
+                            Skip
+                        </button>
+                    </div>
+                }
             </div>
         </div>
     );
