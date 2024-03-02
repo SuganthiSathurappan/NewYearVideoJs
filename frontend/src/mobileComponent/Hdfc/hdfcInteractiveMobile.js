@@ -20,9 +20,10 @@ const HdfcInteractiveMobile = () => {
     const [displayForm, setDisplayForm] = useState(false);
     const [isSkipped, setIsSkipped] = useState(true);
     const [displayContent, setDisplayContent] = useState(true);
-    
+
     const [displayChildPlanForm, setDisplayChildPlanForm] = useState(false);
     const [displayExploreForm, setDisplayExpolreForm] = useState(false);
+    const [isFirstVideoPlayed, setIsFirstVideoPlayed] = useState(true);
 
     const [audioContext, setAudioContext] = useState(new (window.AudioContext || window.webkitAudioContext)());
     const [source, setSource] = useState(null);
@@ -46,7 +47,7 @@ const HdfcInteractiveMobile = () => {
         // videoSrc: `/personalize-video/${pathName}.mp4`,
         // videoSrc: '/assets/hdfc/video/Chapter1-Video1_1.mp4',
         sources: [
-            { src: '/assets/hdfc/video/Chapter-1/Video1_1.mp4', type: 'video/mp4' },
+            { src: '/assets/hdfc/video/Chapter-1/Chapter1-Video.mp4', type: 'video/mp4' },
         ],
         fluid: true,
         responsive: true,
@@ -57,12 +58,28 @@ const HdfcInteractiveMobile = () => {
 
     // // This useEffect using play video purpose
     useEffect(() => {
-
+        const timeUpdateHandler = () => {
+            console.log(player.current.currentTime())
+            if (isFirstVideoPlayed && player.current.currentTime() >= 18.8 && player.current.currentTime() <= 19) {
+                console.log(isFirstVideoPlayed)
+                if (player.current && !player.current.isDisposed()) {
+                    player.current.pause();
+                    player.current.el().classList.add('hide-controls');
+                    if (player.current.controlBar) {
+                        player.current.controlBar.hide(); // Hide control bar
+                    }
+                    setTimeout(() => {
+                        setDisplayForm(true);
+                    }, 1000);
+                }
+            }
+        };
         if (!displayContent) {
             if (videoPlayerRef.current) {
                 player.current = videojs(videoPlayerRef.current, videoJSOptions, () => {
                     // player.current.src({ src: videoJSOptions.videoSrc, type: videoJSOptions.type });
                     player.current.playlist(videoJSOptions.sources);
+                    setDisplayForm(false);
                     player.current.controlBar.removeChild('MuteToggle');
                     // Remove the VolumePanel button
                     player.current.controlBar.removeChild('VolumePanel');
@@ -81,44 +98,38 @@ const HdfcInteractiveMobile = () => {
                         }
                     })
 
-                    // setIsSkipped(true)
                     player.current.play();
+                    window.setTimeout(() => {
+                        console.log(isFirstVideoPlayed)
+                        if (player.current && !player.current.isDisposed()) {
+                            player.current.addClass("videoFadeInAni");
+                            player.current.play();
+                            setDisplayContent(false);
+
+                            player.current.on('timeupdate', timeUpdateHandler);
+                        }
+                    }, 4000);
+
+                    // // Check if the player is not disposed before calling play()
                     // if (player.current && !player.current.isDisposed()) {
-
-                    //     setDisplayContent(false)
                     //     player.current.addClass("imgToVideoFadeInAni");
+                    //     // player.current.play();
+                    //     window.setTimeout(() => {
+                    //         // Check if the player is not disposed before pausing
+                    //         if (player.current && !player.current.isDisposed()) {
+                    //             player.current.pause();
+                    //             // Add background audio
+                    //             audioElementRef.current.play()
+                    //             setDisplayForm(true)
+                    //         }
+                    //     }, 18800); // Pause the player after 10 seconds
                     // }
-                    // Check if the player is not disposed before calling play()
-                    if (player.current && !player.current.isDisposed()) {
-                        player.current.addClass("imgToVideoFadeInAni");
-                        // player.current.play();
-                        window.setTimeout(() => {
-                            // Check if the player is not disposed before pausing
-                            if (player.current && !player.current.isDisposed()) {
-                                player.current.pause();
-                                // Add background audio
-                                audioElementRef.current.play()
-                                setDisplayForm(true)
-                            }
-                        }, 13100); // Pause the player after 10 seconds
-                    }
-
 
 
                     console.log("Player Ready")
 
                     player.current.on("ended", () => {
-                        // setDisplayForm(true)
-                        // setDisplayMute(false)
-                        // setIsSkipped(false)
-                        // setDisplayContent(false)
-                        // player.current.el().classList.add('hide-controls');
-                        // if (player.current.controlBar) {
-                        //     player.current.controlBar.hide(); // Hide control bar
-                        // }
                         console.log("ended");
-                        // Set thumbnail image (poster)
-
                     });
 
                 });
@@ -130,24 +141,26 @@ const HdfcInteractiveMobile = () => {
             }
         }
         return () => {
-            // // Clean up if needed
             if (player.current) {
-                // player.current.dispose();
+                player.current.off('timeupdate', timeUpdateHandler);
             }
-
         };
 
-    }, [displayContent]);
+    }, [displayContent, isFirstVideoPlayed]);
 
     window.setTimeout(() => {
         setDisplayContent(false)
 
 
     }, 5000);
-
+    useEffect(() => {
+        if (isFirstVideoPlayed) {
+            setDisplayForm(true);
+        }
+    }, [isFirstVideoPlayed]);
     // This useEffect using display name purpose
     useEffect(() => {
-
+        setDisplayForm(false)
         if (!spokenRef.current) {
             let spanContent = document.getElementById('text-to-speech-span1').innerText;
             console.log(spanContent)
@@ -186,9 +199,6 @@ const HdfcInteractiveMobile = () => {
     const handleSkip = () => {
         console.log("handleSkip")
 
-        // setDisplayForm(false)
-        // setDisplaySecVideo(true)
-        // setDisplayContactForm(true)
         // Check if the player is not disposed before taking any actions
         if (player.current && !player.current.isDisposed()) {
             // Hide the form and show controls if needed
@@ -201,11 +211,16 @@ const HdfcInteractiveMobile = () => {
         }
     };
 
-
     const handleChildPlan1 = () => {
         // Check if the player is not disposed before updating the playlist
         if (player.current && !player.current.isDisposed()) {
             setDisplayForm(false)
+            setIsFirstVideoPlayed(false);
+            console.log(isFirstVideoPlayed)
+            player.current.el().classList.remove('hide-controls');
+            if (player.current.controlBar) {
+                player.current.controlBar.show(); // Show control bar
+            }
             player.current.src([
                 { src: '/assets/hdfc/video/ChildPlan/Child_Plan1.mp4', type: 'video/mp4' },
             ]);
@@ -216,7 +231,12 @@ const HdfcInteractiveMobile = () => {
 
             player.current.one("ended", () => {
                 // Set displayForm to false after the second video ends
+                player.current.el().classList.add('hide-controls');
+                if (player.current.controlBar) {
+                    player.current.controlBar.hide(); // Hide control bar
+                }
                 setDisplayChildPlanForm(true)
+                audioMusicElementRef.current.play()
                 setTimeout(() => {
                     audioElementRef.current.pause();
                     setDisplayForm(false);
@@ -232,7 +252,6 @@ const HdfcInteractiveMobile = () => {
         }
     };
 
-    
     const handleChildSkip = () => {
         // Check if the player is not disposed before updating the playlist
         if (player.current && !player.current.isDisposed()) {
@@ -317,7 +336,7 @@ const HdfcInteractiveMobile = () => {
             <audio src="/assets/hdfc/video/Chapter-1/Audio1_2.mp3" type="audio/mp3" ref={audioElementRef}>
 
             </audio>
-            <audio src="/assets/hdfc/video/ChildPlan/HDFC-Life music.mp3" type="audio/mp3" loop
+            <audio src="/assets/hdfc/video/ChildPlan/background-music-new.mp3" type="audio/mp3" loop
                 ref={audioMusicElementRef}>
                 {/* only play music */}
             </audio>
@@ -351,7 +370,7 @@ const HdfcInteractiveMobile = () => {
                     </div>
                 }
 
-                {displayForm &&
+                {isFirstVideoPlayed && displayForm &&
                     <div className="imgToVideoFadeInAni">
                         <InsurancePolicyForm getSkip={handleSkip} getChildPlan={handleChildPlan1} />
                     </div>

@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import { encrypt } from '../common/cryptoUtils';
 import { useParams } from 'react-router-dom';
 
+import "../App.css";
+import "../responsiveStyle.css";
+
+
 const FormPage = () => {
   const { id } = useParams();
   console.log(id)
