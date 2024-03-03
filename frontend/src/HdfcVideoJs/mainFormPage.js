@@ -4,11 +4,9 @@ import { encrypt } from '../common/cryptoUtils';
 import { useParams } from 'react-router-dom';
 import { useClientsQuery } from '../features/hdfc/client/clientCampaignApiSlice';
 
-// import "../App.css";
-// import "../responsiveStyle.css";
-import "../HdfcApp.css";
 
-const FormPage = () => {
+
+const MainFormPage = () => {
     const { id } = useParams();
     console.log(id)
 
@@ -33,8 +31,7 @@ const FormPage = () => {
                                 src="/assets/hdfc/image/Thumbnail_HDFC.gif"  // Replace with the actual path to your image
                                 alt="Interactive Video Link"
                             />
-                        </Link>
-                        {/* <a href="#" class="text-[30px] text-opacity-100 float-left hover:text-red-600 underline">Intractive Video Link</a> */}
+                        </Link>                        
                     </div>
                 </div>
             </div>
@@ -42,4 +39,4 @@ const FormPage = () => {
     );
 };
 
-export default FormPage;
+export default MainFormPage;

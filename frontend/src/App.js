@@ -19,43 +19,34 @@ import MainFormPage from "./Hdfc/mainFormPage"
 // Hdfc Mobile
 import HdfcInteractiveMobile from "./mobileComponent/Hdfc/hdfcInteractiveMobile";
 
+// HDFC Recent Responsive Video js
+import MainFormPageVideojs from "./HdfcVideoJs/mainFormPage";
+import MainVideojsApp from "./HdfcVideoJs/mainAppVideojs";
+import MainVideoJsPLayer from "./HdfcVideoJs/mainVideoJs"
+
+
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 940 });
-  
+
   return (
     <>
-      {isMobile ? (
-        <Router>
-          <Routes>
-            {/* <Route path="/" element={<FormPage />} /> */}
-            <Route path="/NewYear/:id" element={<FormPage />} />
-            <Route path="/video-player/:name" element={<MobileVideoPlayer />} />
-            <Route path="/NewYear-Persionalization/:name" element={<MobilePersionalization />} />            
 
-            {/* Hdfc Routers */}
+      <Router>
+        <Routes>
+          {/* NewYear Routes */}
+          {/* <Route path="/" element={<FormPage />} /> */}
+          <Route path="/NewYear/:id" element={<FormPage />} />
+          <Route path="/video-player/:name" element={<VideoPlayer />} />
+          <Route path="/NewYear-Persionalization/:name" element={<Persionalization />} />
 
-            <Route path="/hdfc/:id" element={<MainFormPage />} />
-            <Route path="/hdfc-player/:name" element={<HdfcInteractiveMobile />} />
-          </Routes>
-        </Router>
-      ) : (
-        <Router>
-          <Routes>
-            {/* NewYear Routes */}
-            {/* <Route path="/" element={<FormPage />} /> */}
-            <Route path="/NewYear/:id" element={<FormPage />} />
-            <Route path="/video-player/:name" element={<VideoPlayer />} />
-            <Route path="/NewYear-Persionalization/:name" element={<Persionalization />} />
+          {/* HDFC Routes */}
+          <Route path="/" element={<MainFormPageVideojs />} />
+          <Route path="/hdfc/:id" element={<MainFormPageVideojs />} />
+          <Route path="/hdfc-player/:name" element={<MainVideojsApp />} />
+        </Routes>
+      </Router>
 
-            {/* HDFC Routes */}
-            <Route path="/" element={<MainFormPage />} />
-            <Route path="/hdfc/:id" element={<MainFormPage />} />
-            <Route path="/hdfc-player/:name" element={<MainVideoPlayer />} />
-          </Routes>
-        </Router>
-      )
-      }
     </>
   )
 }

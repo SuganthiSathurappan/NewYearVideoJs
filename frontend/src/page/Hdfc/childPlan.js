@@ -51,7 +51,7 @@ const ChildPlan = ({ getChildSkip, getHandleOk }) => {
         setIsModalOpen(false);
         setIsOpens(false);
     };
-    const getHandleBack  = () => {
+    const getHandleBack = () => {
         setIsModalOpen(false);
         setIsOpens(false);
     };

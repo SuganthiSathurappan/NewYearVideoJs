@@ -56,7 +56,8 @@ const YesContinue = ({ getChildSkip }) => {
 
     return (
         <div className="w-full" >
-            <div className="image-container bg-cover bg-center" style={{ backgroundImage: 'url(/assets/hdfc/image/Chapter2-childplan/bg-thank.jpg)' }}>
+            <div className="image-container bg-cover bg-center" 
+            style={{ backgroundImage: 'url(/assets/hdfc/image/Chapter2-childplan/bg-thank.jpg)' }}>
                 <div className='lg:mt-16' >
                     <div className='relative ' >
                         <div
@@ -103,7 +104,7 @@ const YesContinue = ({ getChildSkip }) => {
 
                 </div>
                 {displaySkip &&
-                    <div className='my-20 animate fadeIn six flex justify-end mx-3'>
+                    <div className='my-20 flex justify-end mx-3'>
                         <button
                             className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
                             onClick={getChildSkip}
