@@ -111,6 +111,13 @@ const Video = () => {
           console.log("ended");
         });
 
+        player.current.on("pause", () => {
+          // If paused and in fullscreen, exit fullscreen
+          if (document.fullscreenElement) {
+            document.exitFullscreen();
+          }
+        });
+
         window.setTimeout(() => {
           console.log(isFirstVideoPlayed)
           if (player.current && !player.current.isDisposed()) {
