@@ -292,7 +292,7 @@ const Video = () => {
             className="absolute inset-0 overflow-auto md:overflow-hidden"
             style={{ backgroundImage: 'url(/assets/hdfc/image/bg-insurance.jpg)' }}
           >
-            <div className="">
+            <div className="relative top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
               <div className="p-1  bg-cover bg-center ">
                 <div>
                   <span className="spanCss1 displayContentCss text-black" id="text-to-speech-span1">Hello</span>

@@ -15,7 +15,7 @@ function InsurancePolicy({getChildPlan}) {
               <div className="flex justify-center md:justify-center gap-5 ">
                 {/* 1 */}
                 <div className="flex flex-col items-center  ">
-                  <img src='/assets/hdfc/image/icon-saving&investments.png' alt="" className="w-[60px] mt-2 lg:w-[120px] " />
+                  <img src='/assets/hdfc/image/icon-saving&investments.png' alt="" className="w-[45px] mt-2 lg:w-[120px] " />
                   {/* content */}
                   <img
                     src={'/assets/hdfc/image/savings-investments.png'}
@@ -29,7 +29,7 @@ function InsurancePolicy({getChildPlan}) {
                 </div>
                 {/* 2 */}
                 <div className="flex flex-col items-center ">
-                  <img src={'/assets/hdfc/image/icon-health.png'} alt="" className="w-[60px] lg:w-[120px] mt-2" />
+                  <img src={'/assets/hdfc/image/icon-health.png'} alt="" className="w-[45px] lg:w-[120px] mt-2" />
                   {/* content */}
                   <img
                     src={'/assets/hdfc/image/health.png'}
@@ -41,10 +41,10 @@ function InsurancePolicy({getChildPlan}) {
                   </h1>
                 </div>
               </div>
-              <div className="relative m-2 mx-4 md:mx-32 lg:mx-14  flex justify-around md:justify-around gap-64">
+              <div className="relative -mt-5  md:mx-32 md:mt-0 lg:mx-14  flex justify-around md:justify-around gap-32 md:gap-40 lg:gap-64">
                 {/* 1 */}
-                <div className="flex flex-col items-center   relative">
-                  <img src={'/assets/hdfc/image/icon-pension.png'} alt="" className="w-[60px] lg:w-[120px]" />
+                <div className="flex flex-col items-center ml-4   relative">
+                  <img src={'/assets/hdfc/image/icon-pension.png'} alt="" className="w-[45px] lg:w-[120px]" />
                   {/* content */}
                   <img
                     src={'/assets/hdfc/image/pension.png'}
@@ -62,7 +62,7 @@ function InsurancePolicy({getChildPlan}) {
                     <img
                       src={'/assets/hdfc/image/icon-child.png'}
                       alt=""
-                      className="w-[60px] lg:w-[120px] animate-pulse"
+                      className="w-[45px] lg:w-[120px] animate-pulse"
                     />
                     {/* content */}
                     <img
@@ -84,13 +84,13 @@ function InsurancePolicy({getChildPlan}) {
                 </div>
                 {/* Mobile Width */}
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2  my-12  md:my-0 md:hidden px-2 animate fadeIn two">
-                  <img src={'/assets/hdfc/image/insurance-policy.png'} alt="" className="w-[120px] lg:w-[250px]" />
+                  <img src={'/assets/hdfc/image/insurance-policy.png'} alt="" className="w-[90px] lg:w-[250px]" />
                 </div>
               </div>
               <div className="md:mx-24 lg:mx-5 md:m-3 lg:mt-3 md:pb-8 lg:pb:5 flex justify-between relative ">
                 {/* 1 */}
                 <div className="flex flex-col  items-center ">
-                  <img src={'/assets/hdfc/image/icon-protection.png'} alt="" className="w-[60px] lg:w-[110px] " />
+                  <img src={'/assets/hdfc/image/icon-protection.png'} alt="" className="w-[45px] lg:w-[110px] " />
                   {/* content */}
                   <img
                     src={'/assets/hdfc/image/protection.png'}
@@ -111,7 +111,7 @@ function InsurancePolicy({getChildPlan}) {
                 </div>
                 {/* 2 */}
                 <div className="flex flex-col items-center md:-mr-2">
-                  <img src={'/assets/hdfc/image/icon-women.png'} alt="" className="w-[60px] lg:w-[110px] " />
+                  <img src={'/assets/hdfc/image/icon-women.png'} alt="" className="w-[45px] lg:w-[110px] " />
                   {/* content */}
                   <img
                     src={'/assets/hdfc/image/women.png'}

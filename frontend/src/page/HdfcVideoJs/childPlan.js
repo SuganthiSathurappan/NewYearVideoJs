@@ -147,7 +147,7 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
           {/* Modal */}
           {isModalOpen && (
             <div className="absolute backdrop-blur-sm inset-0 bg-black bg-transparent ">
-              <div className="flex items-center justify-center  my-5 md:my-12">
+              <div className="flex items-center justify-center   my-5 md:my-12">
                 <div className="bg-white p-2  md:p-4 rounded-3xl border-2 border-[#8A203D]">
                   <div className="flex justify-end">
                     <button
@@ -163,9 +163,9 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
                         <p className=" text-[16px] md:text-[22px] text-[#BC1425] font-semibold">
                           Calculate Your Premium
                         </p>
-                        <div className="flex flex-wrap justify-center md:justify-between  mt-4">
+                        <div className="flex flex-col md:flex-row justify-center md:justify-between  mt-4">
                           <div className="flex items-center">
-                            <h1 className="text-[19px]  md:block font-semibold">
+                            <h1 className="text-[14px] md:text-[19px] m-2 md:block font-semibold">
                               Principal Amount
                             </h1>
                           </div>
@@ -173,16 +173,16 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
                             <input
                               type="text"
                               name="principalAmount"
-                              className="border p-2 md:p-3 w-80 rounded-xl"
+                              className="border p-2 md:p-3 w-72  md:w-80 rounded-xl"
                               required
                               placeholder="Enter Your Principal Amount"
                               onChange={handleChange}
                             />
                           </div>
                         </div>
-                        <div className="flex flex-wrap justify-center md:justify-between  mt-4">
+                        <div className="flex flex-col md:flex-rowjustify-center md:justify-between  mt-4">
                           <div className="flex items-center">
-                            <h1 className="text-[19px]  md:block font-semibold">
+                            <h1 className="text-[14px] md:text-[19px] m-2  md:block font-semibold">
                               Tenure (Years)
                             </h1>
                           </div>
@@ -190,15 +190,15 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
                             <input
                               type="text"
                               name="tenure"
-                              className="border  p-2 md:p-3 w-80 rounded-xl"
+                              className="border  p-2 md:p-3 w-72  md:w-80 rounded-xl"
                               required
                               onChange={handleChange}
                             />
                           </div>
                         </div>
-                        <div className="flex flex-wrap justify-center md:justify-between  mt-4">
+                        <div className="flex flex-col md:flex-row justify-center md:justify-between  mt-4">
                           <div className="flex items-center">
-                            <h1 className="text-[19px]  md:block font-semibold">
+                            <h1 className="text-[14px] md:text-[19px] m-2  md:block font-semibold">
                               Applied Interest
                             </h1>
                           </div>
@@ -206,7 +206,7 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
                             <input
                               type="text"
                               name="appliedInterest"
-                              className="border p-2 md:p-3  w-80 rounded-xl"
+                              className="border p-2 md:p-3 w-72  md:w-80 rounded-xl"
                               required
                               placeholder="%"
                               onChange={handleChange}
