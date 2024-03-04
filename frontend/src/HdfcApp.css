@@ -1,15 +1,20 @@
+body{
+  font-family: "CaviarDreams";
+}
+
+
 .vjs-hidden {
-    display: none !important;
-  }
-  .hide-controls .vjs-control-bar {
-    display: none;
-  }
-  .hide-controls .vjs-big-play-button {
-    display: none !important;
-  }
-  
-  /* animattion in video fade in/out */
-.displayContentCss{
+  display: none !important;
+}
+.hide-controls .vjs-control-bar {
+  display: none;
+}
+.hide-controls .vjs-big-play-button {
+  display: none !important;
+}
+
+/* animattion in video fade in/out */
+.displayContentCss {
   /* animation: fadeInAnimation ease 8s; */
   animation: scale 5s forwards cubic-bezier(0.5, 1, 0.89, 1), fadeIn ease 5s;
 }

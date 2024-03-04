@@ -1,4 +1,4 @@
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 // import VideoPlayer from "./components/newYearVideo";
 import MobilePersionalization from "./mobileComponent/personalizationMobile";

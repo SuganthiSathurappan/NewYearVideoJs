@@ -93,13 +93,13 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
                 <h1 className="text-[14px] md:text-[24px] lg:text-[28px]] font-semibold text-[#BC1425] mt-1 md:mt-0">
                   ASPIRATION
                 </h1>
-                <div className="md:w-[160px] lg:w-[250px] md:h-[90px]  lg:h-[90px] mt-4  md:mt-3 md:mb-3">
+                <div className="md:w-[160px] lg:w-[250px] md:h-[90px]  lg:h-[90px] mt-1 mb-1.5  md:mt-3 md:mb-3">
                   <p className="text-[7px]  md:text-[13px] lg:text-[16px] font-bold md:font-medium text-white ">
                     (Endownment benefit) Lump Sum payment at maturity{" "}
                   </p>
                 </div>
               </div>
-              <div className=" md:mt-3 lg:mt-3" onClick={openModal}>
+              <div className="mt-3 lg:mt-4" onClick={openModal}>
                 <img
                   src={"/assets/hdfc/image/Chapter2-childplan/explore.png"}
                   alt=""
@@ -285,15 +285,15 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
                         </div>
                       </div>
 
-                      <div className='flex justify-between'>
+                      <div className='flex justify-between mt-2 md:my-4'>
                         <div className='flex'>
                           <button
-                            className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md py-1 px-4'
+                            className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-sm md:text-lg rounded-md py-1 px-2 md:px-4'
                             onClick={getHandleBack} >Back</button>
                         </div>
                         <div className='flex justify-end'>
                           <button
-                            className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-lg rounded-md  px-4'
+                            className='border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-sm md:text-lg rounded-md  px-2 md:px-4'
                             onClick={getHandleOk}>Submit</button>
                         </div>
                       </div>

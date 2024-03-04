@@ -79,7 +79,7 @@ const YesContinue = ({ getChildSkip }) => {
                         className="w-44 md:w-96 "
                       />
                     </div>
-                    <div className="flex items-center ml-2 md:ml-3 absolute mt-4 md:mt-6 ">
+                    <div className="flex items-center ml-2 md:ml-3 absolute mt-2 md:mt-6 ">
                       <a
                         href="mailto:service@hdfclife.com"
                         className="no-underline"

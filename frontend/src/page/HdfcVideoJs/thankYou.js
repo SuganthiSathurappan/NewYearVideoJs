@@ -119,7 +119,7 @@ function Thankyou(ge) {
                             />
                           </div>
                           <div
-                            className="flex items-center  -ml-4 md:ml-3 absolute mt-0.5 md:mt-3  "
+                            className="flex items-center  -ml-4 md:ml-3 absolute  mt-0.5 md:mt-4  "
                             ref={contentRefs.current[0]}
                           >
                             <a
@@ -141,7 +141,7 @@ function Thankyou(ge) {
                             />
                           </div>
                           <div
-                            className="flex items-center  -ml-4 md:ml-3 absolute mt-0.5 md:mt-3"
+                            className="flex items-center  -ml-4 md:ml-3 absolute mt-1 md:mt-5"
                             ref={contentRefs.current[1]}
                           >
                             <a href="tel:022-68446530" className="no-underline">
@@ -163,7 +163,7 @@ function Thankyou(ge) {
                             />
                           </div>
                           <div
-                            className="flex items-center  -ml-4 md:ml-3 absolute mt-0.5 md:mt-3 "
+                            className="flex items-center  -ml-4 md:ml-3 absolute mt-1 md:mt-5"
                             ref={contentRefs.current[2]}
                           >
                             <a
@@ -185,7 +185,7 @@ function Thankyou(ge) {
                             />
                           </div>
                           <div
-                            className="flex items-center  -ml-4 md:ml-4 absolute mt-0.5 md:mt-3 "
+                            className="flex items-center  -ml-4 md:ml-4 absolute  mt-1 md:mt-5 "
                             ref={contentRefs.current[2]}
                           >
                             <a
