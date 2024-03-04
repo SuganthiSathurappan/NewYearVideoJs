@@ -153,7 +153,7 @@ function Thankyou(ge) {
                         </div>
                       </div>
 
-                      <div className="flex justify-between">
+                      <div className="flex justify-between my-2">
                         <div className="flex ">
                           <div className="relative" ref={imageRefs.current[2]}>
                             <img

@@ -107,7 +107,7 @@ const YesContinue = ({ getChildSkip }) => {
           </div>
         </div>
         {displaySkip && (
-          <div className="my-4 md:my-20 animate fadeIn six flex justify-end mx-3">
+          <div className=" animate fadeIn six absolute bottom-6 right-6">
             <button
               className="border bg-gradient-to-r from-[#6B2D52] via-[#8A203D] to-pink-800 text-white text-sm md:text-lg rounded-md px-2  md:px-4"
               onClick={getChildSkip}

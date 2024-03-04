@@ -180,7 +180,7 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
                             />
                           </div>
                         </div>
-                        <div className="flex flex-col md:flex-rowjustify-center md:justify-between  mt-4">
+                        <div className="flex flex-col md:flex-row justify-center md:justify-between  mt-4">
                           <div className="flex items-center">
                             <h1 className="text-[14px] md:text-[19px] m-2  md:block font-semibold">
                               Tenure (Years)
