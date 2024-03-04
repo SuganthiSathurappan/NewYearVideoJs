@@ -6,7 +6,8 @@ import "videojs-contextmenu-ui";
 import "videojs-overlay";
 import { useParams } from 'react-router-dom';
 import 'videojs-playlist';
-
+// initialize video.js plugins
+import "videojs-landscape-fullscreen";
 
 import InsurancePolicyForm from '../page/HdfcVideoJs/insurancePolicyForm'
 import ChildPlan from "../page/HdfcVideoJs/childPlan";
@@ -97,7 +98,15 @@ const Video = () => {
         player.current.controlBar.removeChild('MuteToggle');
         player.current.controlBar.removeChild('VolumePanel');
         // player.current.addClass("hide-controls");
-
+        // configure plugins
+        player.current.landscapeFullscreen({
+          fullscreen: {
+            enterOnRotate: true,
+            exitOnRotate: true,
+            alwaysInLandscapeMode: true,
+            iOS: true
+          }
+        })
         player.current.on("ended", () => {
           console.log("ended");
         });
