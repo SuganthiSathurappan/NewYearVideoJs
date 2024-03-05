@@ -32,3 +32,38 @@ body{
     opacity: 1;
   }
 }
+
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 740px) and (orientation: landscape) {
+ 
+  .icon-class {
+    width: 70px;
+  }
+  .icon-btn {
+    width: 120px;
+  }
+  .img {
+    width: 150px;
+    margin-top: 70px;
+  }
+  .mar {
+    margin: 0px 40px 0px 40px;
+  }
+}
+
+@media only screen and (min-device-width: 540px) and (max-device-width: 720px) and (orientation: landscape) {
+  
+  .icon-class {
+    width: 90px;
+  }
+  .icon-btn {
+    width: 80px;
+  }
+  .img {
+    width: 150px;
+    margin-top: 70px;
+  }
+  .mar {
+    margin: 0px 40px 0px 40px;
+  }
+}
