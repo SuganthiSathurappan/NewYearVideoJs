@@ -147,8 +147,8 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
           {/* Modal */}
           {isModalOpen && (
             <div className="absolute backdrop-blur-sm inset-0 bg-black bg-transparent ">
-              <div className="flex items-center justify-center   my-5 md:my-12">
-                <div className="bg-white p-2  md:p-4 rounded-3xl border-2 border-[#8A203D]">
+              <div className="flex items-center justify-center   md:my-12">
+                <div className="m-3 md:m-0 bg-white p-2  md:p-4 rounded-3xl border-2 border-[#8A203D]">
                   <div className="flex justify-end">
                     <button
                       className="font-extrabold text-black text-sm w-[20px] "
@@ -232,8 +232,8 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
           )}
           {isOpens && (
             <div className="absolute backdrop-blur-sm  inset-0 z-1 ">
-              <div className="flex  justify-center  my-5 md:my-12">
-                <div className="bg-white p-2  md:p-4 rounded-3xl border-2 border-[#8A203D] ">
+              <div className="flex justify-center   md:my-12">
+                <div className="m-3 md:m-0 bg-white p-2  md:p-4 rounded-3xl border-2 border-[#8A203D] ">
                   <div>
                     <div className="flex flex-col justify-center ">
                       <p className="text-[22px] text-[#BC1425] font-semibold text-center">
@@ -258,9 +258,9 @@ function ChildPlan({ getChildSkip, getHandleOk }) {
                           Summary
                         </h1>
                       </div>
-                      <div className="mx-auto mt-2 items-start">
+                      <div className="mx-3 md:mx-auto mt-2 items-start">
                         <div className="text-[16px] md:text-[18px] font-semibold">
-                          <p className="flex justify-between">
+                          <p className="flex  justify-between">
                             <span>Premium Amount :</span>
                             <span className="px-10 font-normal">
                               {formData.principalAmount}

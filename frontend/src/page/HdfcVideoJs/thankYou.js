@@ -100,7 +100,7 @@ function Thankyou(ge) {
                 ></p>
               </div>
               {/* Content-2*/}
-              <div className="my-4 md:my-8">
+              <div className="my-2 md:my-8">
                 <h1
                   ref={contactUsRef}
                   className="text-[12px] md:text-[22px] text-center font-medium outline-white text-white uppercase stroke-white stroke-1"
