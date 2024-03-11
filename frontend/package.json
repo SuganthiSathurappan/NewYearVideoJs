@@ -34,7 +34,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "HTTPS=true PORT=443 SSL_CRT_FILE=/usr/share/source/certificate.crt SSL_KEY_FILE=/usr/share/source/media-techtist.key react-scripts start",
+    "start": "HTTPS=true PORT=80 SSL_CRT_FILE=/usr/share/source/certificate.crt SSL_KEY_FILE=/usr/share/source/media-techtist.key react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
