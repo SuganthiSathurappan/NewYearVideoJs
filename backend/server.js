@@ -26,7 +26,7 @@ const router = require("./app/router/master_router")
 app.use('/api', router)
 
 // Set up HTTPS server
-const privateKey = fs.readFileSync('/usr/share/source/media-techtist.key', 'utf8');
+const privateKey = fs.readFileSync('/usr/share/source/private.key', 'utf8');
 const certificate = fs.readFileSync('/usr/share/source/certificate.crt', 'utf8');
 const credentials = { key: privateKey, cert: certificate };
 const httpsServer = https.createServer(credentials, app);
