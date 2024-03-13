@@ -45,7 +45,7 @@ app.post("/mssg", function (req, res) {
 // Creating object of key and certificate 
 // for SSL 
 const options = {
-  key: fs.readFileSync("/usr/share/source/media-skie.key"),
+  key: fs.readFileSync("/usr/share/source/private.key"),
   cert: fs.readFileSync("/usr/share/source/certificate.crt"),
 };
 
