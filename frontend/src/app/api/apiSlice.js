@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: 'https://media.techtist.com:3000/',
+  baseUrl: 'https://media.skie.ai:3000/',
   prepareHeaders: (headers, { getState }) => {
     headers.set('Content-Type', 'application/json');
     // multipart/form-data; boundary=<calculated when request is sent></calculated>
