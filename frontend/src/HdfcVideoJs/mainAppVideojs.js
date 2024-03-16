@@ -13,7 +13,7 @@ const App = () => {
   return (
     <div className="bg-gray-200 ">
       {/* Center the video player on mobile devices */}
-      <div className="flex  justify-center  md:items-start h-screen">
+      <div className="flex  justify-center sm:items-center  md:items-start h-screen imageDisplay-class">
         {/* Dont touch this part */}
         <div className="container mx-auto max-w-7xl lg:px-8">
           {/* <h1>Video Player Example</h1> */}

@@ -19,12 +19,12 @@ const MainFormPage = () => {
     const encryptName = (name) => encrypt(name);
 
     return (
-        <div className='flex justify-center mt-10 font-CaviarDreams'>
+        <div className='flex justify-center font-CaviarDreams'>
 
             <div class="w-[500px] ">
             
                 <div class="w-full ">
-                    <div class="flex justify-center mb-2">
+                    <div class="flex justify-center sm:items-center md:items-start h-screen imageDisplay-class">
                         <Link to={`/hdfc-player/${encryptName(customerName)}`}>
                             <img
                                 className="w-[400px] lg:w-50 md:w-50 sm:w-50 hover:w-[420px] rounded-sm border-1 border-[#8A203D]"

@@ -1,7 +1,6 @@
-body{
+body {
   font-family: "CaviarDreams";
 }
-
 
 .vjs-hidden {
   display: none !important;
@@ -32,10 +31,14 @@ body{
     opacity: 1;
   }
 }
-
+@media only screen and (max-width: 640px) {
+  /* Styles for small screens */
+  .imageDisplay-class {
+    align-items: center;
+  }
+}
 
 @media only screen and (min-device-width: 320px) and (max-device-width: 740px) and (orientation: landscape) {
- 
   .icon-class {
     width: 70px;
   }
@@ -52,7 +55,6 @@ body{
 }
 
 @media only screen and (min-device-width: 540px) and (max-device-width: 720px) and (orientation: landscape) {
-  
   .icon-class {
     width: 90px;
   }
