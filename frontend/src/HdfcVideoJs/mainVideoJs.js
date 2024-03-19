@@ -74,6 +74,27 @@ const Video = () => {
   }, [spokenRef]);
 
   useEffect(() => {
+    // Detect screen orientation change on mobile devices
+    const handleOrientationChange = () => {
+      // Check if currently in fullscreen mode
+      if (document.fullscreenElement && window.screen.orientation) {
+        // If in fullscreen and orientation is landscape, exit fullscreen
+        if (window.screen.orientation.type.startsWith('landscape')) {
+          document.exitFullscreen();
+        }
+      }
+    };
+
+    // Bind the handleOrientationChange function to the screen orientation change event
+    window.addEventListener('orientationchange', handleOrientationChange);
+
+    return () => {
+      // Remove the event listener when the component unmounts
+      window.removeEventListener('orientationchange', handleOrientationChange);
+    };
+  }, []);
+
+  useEffect(() => {
     const timeUpdateHandler = () => {
       console.log(isFirstVideoPlayed)
       if (isFirstVideoPlayed && player.current.currentTime() >= 18.8 && player.current.currentTime() <= 19) {
@@ -98,15 +119,20 @@ const Video = () => {
         player.current.controlBar.removeChild('MuteToggle');
         player.current.controlBar.removeChild('VolumePanel');
         // player.current.addClass("hide-controls");
-        // configure plugins
-        player.current.landscapeFullscreen({
-          fullscreen: {
-            enterOnRotate: true,
-            exitOnRotate: true,
-            alwaysInLandscapeMode: true,
-            iOS: true
-          }
-        })
+        // // configure plugins
+        // try {
+        //   player.current.landscapeFullscreen({
+        //     fullscreen: {
+        //       enterOnRotate: true,
+        //       exitOnRotate: true,
+        //       alwaysInLandscapeMode: true,
+        //       iOS: true
+        //     }
+        //   });
+        // } catch (error) {
+        //   console.error('Error occurred while attempting to enter landscape fullscreen:', error);
+        //   // Handle the error gracefully, such as showing a message to the user
+        // }
         player.current.on("ended", () => {
           console.log("ended");
         });
@@ -151,18 +177,49 @@ const Video = () => {
   }, [isFirstVideoPlayed]);
 
   const toggleFullScreen = async () => {
-    const container = document.getElementById('wrapper');
-    const fullscreenApi = container.requestFullscreen
-      || container.webkitRequestFullScreen
-      || container.mozRequestFullScreen
-      || container.msRequestFullscreen;
-    if (!document.fullscreenElement) {
-      fullscreenApi.call(container);
-    }
-    else {
-      document.exitFullscreen();
+    try {
+      const container = document.getElementById('wrapper');
+      // Check if the browser is Safari and the device is iOS
+      const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+      if (isSafari && isIOS) {
+        // For iOS Safari, request fullscreen mode using a user interaction event
+        container.addEventListener('touchstart', async () => {
+          if (!document.fullscreenElement) {
+            await container.webkitRequestFullscreen(); // Use webkitRequestFullscreen for iOS
+          } else {
+            await document.exitFullscreen();
+          }
+        });
+      } else {
+
+        if (!document.fullscreenElement) {
+          // Check if the fullscreen request method is available
+          if (container.requestFullscreen) {
+            // Attempt to request fullscreen mode
+            await container.requestFullscreen();
+          } else if (container.webkitRequestFullscreen) {
+            await container.webkitRequestFullscreen();
+          } else if (container.mozRequestFullScreen) {
+            await container.mozRequestFullScreen();
+          } else if (container.msRequestFullscreen) {
+            await container.msRequestFullscreen();
+          } else {
+            console.error('Fullscreen API is not supported.');
+            // Handle lack of fullscreen support gracefully
+          }
+        } else {
+          // If already in fullscreen mode, exit fullscreen
+          await document.exitFullscreen();
+        }
+      }
+    } catch (error) {
+      // Handle errors that occur during fullscreen mode request
+      console.error('Error toggling fullscreen:', error);
     }
   };
+
 
   const handleSkip = () => {
 
@@ -285,7 +342,7 @@ const Video = () => {
         {/* only play music */}
       </audio>
 
-      <div className="aspect-w-16 aspect-h-9 ">
+      <div id="wrapper" className="aspect-w-16 aspect-h-9 ">
         <video
           ref={videoPlayerRef}
           className="video-js  vjs-16-9 w-fit "
