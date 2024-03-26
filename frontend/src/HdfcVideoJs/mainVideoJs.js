@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import 'videojs-playlist';
 // initialize video.js plugins
 import "videojs-landscape-fullscreen";
+import { useNavigate } from 'react-router-dom';
 
 import InsurancePolicyForm from '../page/HdfcVideoJs/insurancePolicyForm'
 import ChildPlan from "../page/HdfcVideoJs/childPlan";
@@ -39,13 +40,39 @@ const Video = () => {
   const player = useRef(null);
   const audioElementRef = useRef(false);
   const audioMusicElementRef = useRef(false);
+  const navigate = useNavigate();
 
   console.log(name)
   // Decrypt the name
   const decryptedName = decrypt(name);
   console.log(decryptedName)
 
+  useEffect(() => {
+    // Check if the page was refreshed
+    const isRefreshed = localStorage.getItem('isRefreshed');
 
+    if (isRefreshed) {
+      // Clear the flag
+      localStorage.removeItem('isRefreshed');
+
+      // Navigate to MainFormPage.js
+      navigate(-1);
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    console.log("Set flag in localStorage when the component is unmounted")
+    // Set flag in localStorage when the component is unmounted
+    const handleBeforeUnload = () => {
+      localStorage.setItem('isRefreshed', 'true');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   const videoJSOptions = {
     sources: [
@@ -75,7 +102,7 @@ const Video = () => {
 
   useEffect(() => {
     const timeUpdateHandler = () => {
-      console.log(isFirstVideoPlayed)
+      // console.log(isFirstVideoPlayed)
       if (isFirstVideoPlayed && player.current.currentTime() >= 18.8 && player.current.currentTime() <= 19) {
 
         if (player.current && !player.current.isDisposed()) {
@@ -122,10 +149,20 @@ const Video = () => {
           console.log(isFirstVideoPlayed)
           if (player.current && !player.current.isDisposed()) {
             player.current.addClass("videoFadeInAni");
-            player.current.play();
-            setDisplayContent(false);
-            setDisplayImg(false);
-            player.current.on('timeupdate', timeUpdateHandler);
+            const playPromise = player.current.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  console.log(" Automatic playback started!")
+                  setDisplayContent(false);
+                  setDisplayImg(false);
+                  player.current.on('timeupdate', timeUpdateHandler);
+                }).catch(error => {
+                  // Auto-play was prevented
+                  // User interaction is required to start playback
+                  console.error("Autoplay was prevented:", error);
+                });
+            }
           }
         }, 4000);
 

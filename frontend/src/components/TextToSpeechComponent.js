@@ -1,12 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import {Buffer} from 'buffer';
+import { Buffer } from 'buffer';
+import { useNavigate } from 'react-router-dom'; // Import useHistory hook
+
 
 const YourComponent = () => {
   const [audioBuffer, setAudioBuffer] = useState(null);
   // const [audioContext, setAudioContext] = useState(null);
   const [audioContext, setAudioContext] = useState(new (window.AudioContext || window.webkitAudioContext)());
   const [source, setSource] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Check if the page is being refreshed
+    const navigationEntries = window.performance.getEntriesByType("navigation");
+    if (navigationEntries.length > 0 && navigationEntries[0].type === 'reload') {
+      // Page is being refreshed, navigate to MainFormPage.js
+      navigate('/');
+    }
+  }, [navigate]);
 
   const postData = {
     text: "Hi suganthi,  welcome to you",
@@ -32,7 +44,7 @@ const YourComponent = () => {
       )
 
       if (response.status === 200) {
-        console.log('Request successful');    
+        console.log('Request successful');
         playAudio(response.data);
         // const audioBuffer = Buffer.from(response.data, 'binary')
         // const base64Audio = audioBuffer.toString('base64')
@@ -46,7 +58,7 @@ const YourComponent = () => {
     }
   };
 
-  
+
   const playAudio = (audioData) => {
     if (audioContext.state === 'closed') {
       setAudioContext(new (window.AudioContext || window.webkitAudioContext)());
@@ -71,7 +83,7 @@ const YourComponent = () => {
 
   return (
     <div>
-       <button onClick={handlePostRequest}>Speak</button>
+      <button onClick={handlePostRequest}>Speak</button>
       <button onClick={stopAudio}>Stop</button>
     </div>
   );

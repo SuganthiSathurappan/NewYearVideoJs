@@ -24,7 +24,7 @@ import MainFormPageVideojs from "./HdfcVideoJs/mainFormPage";
 import MainVideojsApp from "./HdfcVideoJs/mainAppVideojs";
 import MainVideoJsPLayer from "./HdfcVideoJs/mainVideoJs"
 
-
+import Texttospeech from "../src/components/TextToSpeechComponent"
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 940 });
@@ -35,13 +35,13 @@ function App() {
       <Router>
         <Routes>
           {/* NewYear Routes */}
-          {/* <Route path="/" element={<FormPage />} /> */}
+          <Route path="/" element={<Texttospeech />} />
           <Route path="/NewYear/:id" element={<FormPage />} />
           <Route path="/video-player/:name" element={<VideoPlayer />} />
           <Route path="/NewYear-Persionalization/:name" element={<Persionalization />} />
 
           {/* HDFC Routes */}
-          <Route path="/" element={<MainFormPageVideojs />} />
+          <Route path="/mainFormPageVideojs" element={<MainFormPageVideojs />} />
           <Route path="/hdfc/:id" element={<MainFormPageVideojs />} />
           <Route path="/hdfc-player/:name" element={<MainVideojsApp />} />
         </Routes>
