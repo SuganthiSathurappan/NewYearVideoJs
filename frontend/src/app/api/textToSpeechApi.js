@@ -11,7 +11,7 @@ export const handlePostRequest = async (spanContent, playAudio) => {
                 style_exaggeration: 0.55 // Style Exaggeration: 55%
             },
         };
-        
+
         const response = await axios.post(
             `https://api.elevenlabs.io/v1/text-to-speech/fczKPxiN0r7mINJ9tt1n`,
             postData,
@@ -39,6 +39,7 @@ export const handlePostRequest = async (spanContent, playAudio) => {
 };
 
 export const playAudio = (audioData, audioContext, setAudioContext, setSource) => {
+    console.log(audioContext.state)
     if (audioContext.state === 'closed') {
         setAudioContext(new (window.AudioContext || window.webkitAudioContext)());
     }
@@ -46,10 +47,14 @@ export const playAudio = (audioData, audioContext, setAudioContext, setSource) =
     audioContext.decodeAudioData(audioData, (buffer) => {
         const audioSource = audioContext.createBufferSource();
         audioSource.buffer = buffer;
-
-        audioSource.connect(audioContext.destination);
-        audioSource.start(0);
-
+        if (audioContext.state === 'suspended'  || audioSource.state === 'started') {          
+            audioSource.disconnect(); 
+        } else {
+            audioSource.connect(audioContext.destination);
+            audioSource.start(0);
+        }
         setSource(audioSource);
     });
+
+
 };

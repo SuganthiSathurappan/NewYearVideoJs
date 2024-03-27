@@ -31,6 +31,7 @@ const Video = () => {
   const [displayThankyou, setDisplayThankyou] = useState(false);
 
   const [isFirstVideoPlayed, setIsFirstVideoPlayed] = useState(true);
+  const [isPageRefreshed, setPageRefreshed] = useState(false);
 
   const [audioContext, setAudioContext] = useState(new (window.AudioContext || window.webkitAudioContext)());
   const [source, setSource] = useState(null);
@@ -47,32 +48,7 @@ const Video = () => {
   const decryptedName = decrypt(name);
   console.log(decryptedName)
 
-  useEffect(() => {
-    // Check if the page was refreshed
-    const isRefreshed = localStorage.getItem('isRefreshed');
 
-    if (isRefreshed) {
-      // Clear the flag
-      localStorage.removeItem('isRefreshed');
-
-      // Navigate to MainFormPage.js
-      navigate(-1);
-    }
-  }, [navigate]);
-
-  useEffect(() => {
-    console.log("Set flag in localStorage when the component is unmounted")
-    // Set flag in localStorage when the component is unmounted
-    const handleBeforeUnload = () => {
-      localStorage.setItem('isRefreshed', 'true');
-    };
-
-    window.addEventListener('beforeunload', handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
-    };
-  }, []);
 
   const videoJSOptions = {
     sources: [
@@ -98,22 +74,59 @@ const Video = () => {
         });
       }
     }
+    
   }, [spokenRef]);
 
   useEffect(() => {
-    const timeUpdateHandler = () => {
-      // console.log(isFirstVideoPlayed)
-      if (isFirstVideoPlayed && player.current.currentTime() >= 18.8 && player.current.currentTime() <= 19) {
+    // Check if the page was refreshed
+    const isRefreshed = localStorage.getItem('isRefreshed');
 
+    if (isRefreshed) {
+      // Clear the flag
+      localStorage.removeItem('isRefreshed');
+      setPageRefreshed(true);
+     
+    }
+  }, []);
+  
+  useEffect(() => {
+    if (isPageRefreshed) {
+      if (player.current && !player.current.isDisposed()) {
+        player.current.dispose(); // Dispose the player when navigating back
+      }
+     // Navigate to MainFormPage.js
+     navigate(-1);
+    }
+  }, [isPageRefreshed, navigate]);
+
+  useEffect(() => {
+    console.log("Set flag in localStorage when the component is unmounted")
+    // Set flag in localStorage when the component is unmounted
+    const handleBeforeUnload = () => {
+      localStorage.setItem('isRefreshed', 'true');
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
+    const timeUpdateHandler = () => {
+    
+      if (isFirstVideoPlayed && player.current.currentTime() >= 18.81 && player.current.currentTime() <= 19) {
+        console.log(isFirstVideoPlayed)
         if (player.current && !player.current.isDisposed()) {
           player.current.pause();
           player.current.el().classList.add('hide-controls');
           if (player.current.controlBar) {
             player.current.controlBar.hide(); // Hide control bar
           }
-          setTimeout(() => {
+          // setTimeout(() => {
             setDisplayForm(true);
-          }, 1000);
+          // }, 1000);
         }
       }
     };
@@ -176,8 +189,12 @@ const Video = () => {
 
     return () => {
       if (player.current) {
-        player.current.off('timeupdate', timeUpdateHandler);
+        console.log("player dispose")
+        setIsFirstVideoPlayed(false)
+        // player.current.off('timeupdate', timeUpdateHandler);
+        // player.current.dispose();
       }
+
     };
   }, [isFirstVideoPlayed]);
 
@@ -219,6 +236,9 @@ const Video = () => {
 
   const handleChildPlan1 = () => {
     // Check if the player is not disposed before updating the playlist
+    console.log("Check if the player is not disposed before updating the playlist",player.current)
+    
+
     if (player.current && !player.current.isDisposed()) {
       setDisplayForm(false)
       setIsFirstVideoPlayed(false);
@@ -235,7 +255,7 @@ const Video = () => {
       // Play the video
       player.current.play();
 
-      player.current.one("ended", () => {
+      player.current.on("ended", () => {
         // Set displayForm to false after the second video ends
         player.current.el().classList.add('hide-controls');
         if (player.current.controlBar) {
@@ -298,9 +318,10 @@ const Video = () => {
       // Play the video
       player.current.play();
 
-      player.current.one("ended", () => {
+      player.current.on("ended", () => {
         console.log("ended");
         setDisplayThankyou(true)
+        audioMusicElementRef.current.play()
         // player.current.src([
         //   { src: '/assets/hdfc/video/Thankyou_video.mp4', type: 'video/mp4' },
         // ]);
