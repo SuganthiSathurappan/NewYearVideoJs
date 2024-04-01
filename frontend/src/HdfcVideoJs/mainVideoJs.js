@@ -139,23 +139,27 @@ const Video = () => {
         player.current.controlBar.removeChild('VolumePanel');
         // player.current.addClass("hide-controls");
         // // configure plugins
-        player.current.landscapeFullscreen({
-          fullscreen: {
-            enterOnRotate: true,
-            exitOnRotate: true,
-            alwaysInLandscapeMode: true,
-            iOS: {
-              enterOnRotate: true,
-              exitOnRotate: true,
-              forceLandscape: true
-            }
-          }
-        });
+        // player.current.landscapeFullscreen({
+        //   fullscreen: {
+        //     enterOnRotate: true,
+        //     exitOnRotate: true,
+        //     alwaysInLandscapeMode: true,
+        //     iOS: true
+        //   }
+        // })
         player.current.on("ended", () => {
           console.log("ended");
         });
 
         player.current.on("pause", () => {
+          player.current.landscapeFullscreen({
+            fullscreen: {
+              enterOnRotate: true,
+              exitOnRotate: true,
+              alwaysInLandscapeMode: true,
+              iOS: true
+            }
+          })
           // If paused and in fullscreen, exit fullscreen
           if (document.fullscreenElement) {
             document.exitFullscreen();
