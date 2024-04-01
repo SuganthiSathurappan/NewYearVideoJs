@@ -20,14 +20,12 @@ const MainFormPage = () => {
 
     return (
         <div className='flex justify-center font-CaviarDreams'>
-
-            <div class="w-[500px] ">
-            
+            <div>            
                 <div class="w-full ">
                     <div class="flex justify-center sm:items-center md:items-start h-screen imageDisplay-class">
                         <Link to={`/hdfc-player/${encryptName(customerName)}`}>
                             <img
-                                className="w-[400px] lg:w-50 md:w-50 sm:w-50 hover:w-[420px] rounded-sm border-1 border-[#8A203D]"
+                                className="rounded-sm border-1 border-[#8A203D]"
                                 src="/assets/hdfc/image/thumbnail-player.gif"  // Replace with the actual path to your image
                                 alt="Interactive Video Link"
                             />
