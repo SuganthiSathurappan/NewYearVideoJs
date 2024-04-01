@@ -74,7 +74,7 @@ const Video = () => {
         });
       }
     }
-
+    
   }, [spokenRef]);
 
   useEffect(() => {
@@ -85,17 +85,17 @@ const Video = () => {
       // Clear the flag
       localStorage.removeItem('isRefreshed');
       setPageRefreshed(true);
-
+     
     }
   }, []);
-
+  
   useEffect(() => {
     if (isPageRefreshed) {
       if (player.current && !player.current.isDisposed()) {
         player.current.dispose(); // Dispose the player when navigating back
       }
-      // Navigate to MainFormPage.js
-      navigate(-1);
+     // Navigate to MainFormPage.js
+     navigate(-1);
     }
   }, [isPageRefreshed, navigate]);
 
@@ -115,7 +115,7 @@ const Video = () => {
 
   useEffect(() => {
     const timeUpdateHandler = () => {
-
+    
       if (isFirstVideoPlayed && player.current.currentTime() >= 18.81 && player.current.currentTime() <= 19) {
         console.log(isFirstVideoPlayed)
         if (player.current && !player.current.isDisposed()) {
@@ -125,7 +125,7 @@ const Video = () => {
             player.current.controlBar.hide(); // Hide control bar
           }
           // setTimeout(() => {
-          setDisplayForm(true);
+            setDisplayForm(true);
           // }, 1000);
         }
       }
@@ -137,6 +137,7 @@ const Video = () => {
         setDisplayForm(false);
         player.current.controlBar.removeChild('MuteToggle');
         player.current.controlBar.removeChild('VolumePanel');
+        player.current.playsinline(true)
         // player.current.addClass("hide-controls");
         // // configure plugins
         // player.current.landscapeFullscreen({
@@ -152,14 +153,6 @@ const Video = () => {
         });
 
         player.current.on("pause", () => {
-          player.current.landscapeFullscreen({
-            fullscreen: {
-              enterOnRotate: true,
-              exitOnRotate: true,
-              alwaysInLandscapeMode: true,
-              iOS: true
-            }
-          })
           // If paused and in fullscreen, exit fullscreen
           if (document.fullscreenElement) {
             document.exitFullscreen();
@@ -244,8 +237,8 @@ const Video = () => {
 
   const handleChildPlan1 = () => {
     // Check if the player is not disposed before updating the playlist
-    console.log("Check if the player is not disposed before updating the playlist", player.current)
-
+    console.log("Check if the player is not disposed before updating the playlist",player.current)
+    
 
     if (player.current && !player.current.isDisposed()) {
       setDisplayForm(false)
