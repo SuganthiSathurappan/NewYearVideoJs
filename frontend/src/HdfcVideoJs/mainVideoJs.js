@@ -36,6 +36,7 @@ const Video = () => {
   const [audioContext, setAudioContext] = useState(new (window.AudioContext || window.webkitAudioContext)());
   const [source, setSource] = useState(null);
 
+  const [firstInteractive, setFirstInteractive] = useState(false)
 
   const spokenRef = useRef(false);
   const player = useRef(null);
@@ -60,6 +61,12 @@ const Video = () => {
     userActions: { hotkeys: true },
     muted: false,
   };
+  useEffect(() => {
+    console.log(isFirstVideoPlayed,firstInteractive)
+    // if (isFirstVideoPlayed) {
+    //   setDisplayForm(true);
+    // }
+  }, [isFirstVideoPlayed,firstInteractive]);
 
   useEffect(() => {
     if (!spokenRef.current) {
@@ -74,7 +81,7 @@ const Video = () => {
         });
       }
     }
-    
+
   }, [spokenRef]);
 
   useEffect(() => {
@@ -85,17 +92,17 @@ const Video = () => {
       // Clear the flag
       localStorage.removeItem('isRefreshed');
       setPageRefreshed(true);
-     
+
     }
   }, []);
-  
+
   useEffect(() => {
     if (isPageRefreshed) {
       if (player.current && !player.current.isDisposed()) {
         player.current.dispose(); // Dispose the player when navigating back
       }
-     // Navigate to MainFormPage.js
-     navigate(-1);
+      // Navigate to MainFormPage.js
+      navigate(-1);
     }
   }, [isPageRefreshed, navigate]);
 
@@ -115,18 +122,20 @@ const Video = () => {
 
   useEffect(() => {
     const timeUpdateHandler = () => {
-    
-      if (isFirstVideoPlayed && player.current.currentTime() >= 18.81 && player.current.currentTime() <= 19) {
-        console.log(isFirstVideoPlayed)
-        if (player.current && !player.current.isDisposed()) {
-          player.current.pause();
-          player.current.el().classList.add('hide-controls');
-          if (player.current.controlBar) {
-            player.current.controlBar.hide(); // Hide control bar
-          }
-          // setTimeout(() => {
+      // console.log(isFirstVideoPlayed)
+      if (player.current.currentTime() >= 18.81 && player.current.currentTime() <= 19) {
+        console.log(firstInteractive, isFirstVideoPlayed)
+        if (!firstInteractive && isFirstVideoPlayed) {
+          if (player.current && !player.current.isDisposed()) {
+            player.current.pause();
+            player.current.el().classList.add('hide-controls');
+            if (player.current.controlBar) {
+              player.current.controlBar.hide(); // Hide control bar
+            }
+            // setTimeout(() => {
             setDisplayForm(true);
-          // }, 1000);
+            // }, 1000);
+          }
         }
       }
     };
@@ -197,13 +206,14 @@ const Video = () => {
       }
 
     };
-  }, [isFirstVideoPlayed]);
+  }, []);
 
-  useEffect(() => {
-    if (isFirstVideoPlayed) {
-      setDisplayForm(true);
-    }
-  }, [isFirstVideoPlayed]);
+  // useEffect(() => {
+  //   // console.log(isFirstVideoPlayed)
+  //   // if (isFirstVideoPlayed) {
+  //   //   setDisplayForm(true);
+  //   // }
+  // }, [isFirstVideoPlayed,firstInteractive]);
 
   const toggleFullScreen = async () => {
     const container = document.getElementById('wrapper');
@@ -237,12 +247,13 @@ const Video = () => {
 
   const handleChildPlan1 = () => {
     // Check if the player is not disposed before updating the playlist
-    console.log("Check if the player is not disposed before updating the playlist",player.current)
-    
-
+    console.log("Check if the player is not disposed before updating the playlist", player.current)
+    setIsFirstVideoPlayed(false);
+    console.log(isFirstVideoPlayed)
     if (player.current && !player.current.isDisposed()) {
       setDisplayForm(false)
       setIsFirstVideoPlayed(false);
+      setFirstInteractive(true);
       console.log(isFirstVideoPlayed)
       player.current.el().classList.remove('hide-controls');
       if (player.current.controlBar) {
