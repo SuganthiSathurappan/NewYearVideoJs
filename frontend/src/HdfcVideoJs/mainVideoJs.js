@@ -61,12 +61,12 @@ const Video = () => {
     userActions: { hotkeys: true },
     muted: false,
   };
-  useEffect(() => {
-    console.log(isFirstVideoPlayed,firstInteractive)
-    // if (isFirstVideoPlayed) {
-    //   setDisplayForm(true);
-    // }
-  }, [isFirstVideoPlayed,firstInteractive]);
+  // useEffect(() => {
+  //   console.log(isFirstVideoPlayed,firstInteractive)
+  //   // if (isFirstVideoPlayed) {
+  //   //   setDisplayForm(true);
+  //   // }
+  // }, [isFirstVideoPlayed,firstInteractive]);
 
   useEffect(() => {
     if (!spokenRef.current) {
@@ -120,25 +120,27 @@ const Video = () => {
     };
   }, []);
 
-  useEffect(() => {
-    const timeUpdateHandler = () => {
-      // console.log(isFirstVideoPlayed)
-      if (player.current.currentTime() >= 18.81 && player.current.currentTime() <= 19) {
-        console.log(firstInteractive, isFirstVideoPlayed)
-        if (!firstInteractive && isFirstVideoPlayed) {
-          if (player.current && !player.current.isDisposed()) {
-            player.current.pause();
-            player.current.el().classList.add('hide-controls');
-            if (player.current.controlBar) {
-              player.current.controlBar.hide(); // Hide control bar
-            }
-            // setTimeout(() => {
-            setDisplayForm(true);
-            // }, 1000);
+  const timeUpdateHandler = () => {
+    // console.log(isFirstVideoPlayed,player.current.currentTime())
+    if (player.current.currentTime() >= 18.81 && player.current.currentTime() <= 19.21) {
+      console.log(firstInteractive, isFirstVideoPlayed)
+      if (!firstInteractive && isFirstVideoPlayed) {
+        if (player.current && !player.current.isDisposed()) {
+          player.current.pause();            
+          player.current.el().classList.add('hide-controls');
+          if (player.current.controlBar) {
+            player.current.controlBar.hide(); // Hide control bar
           }
+          // setTimeout(() => {
+          setDisplayForm(true);
+          // }, 1000);
         }
       }
-    };
+    }
+  };
+  
+  useEffect(() => {
+   
 
     if (videoPlayerRef.current) {
       player.current = videojs(videoPlayerRef.current, videoJSOptions, () => {
@@ -162,6 +164,7 @@ const Video = () => {
         });
 
         player.current.on("pause", () => {
+          player.current.off('timeupdate', timeUpdateHandler);
           // If paused and in fullscreen, exit fullscreen
           if (document.fullscreenElement) {
             document.exitFullscreen();
@@ -201,12 +204,12 @@ const Video = () => {
       if (player.current) {
         console.log("player dispose")
         setIsFirstVideoPlayed(false)
-        // player.current.off('timeupdate', timeUpdateHandler);
+        player.current.off('timeupdate', timeUpdateHandler);
         // player.current.dispose();
       }
 
     };
-  }, []);
+  }, [isFirstVideoPlayed]);
 
   // useEffect(() => {
   //   // console.log(isFirstVideoPlayed)
@@ -251,6 +254,7 @@ const Video = () => {
     setIsFirstVideoPlayed(false);
     console.log(isFirstVideoPlayed)
     if (player.current && !player.current.isDisposed()) {
+      player.current.off('timeupdate', timeUpdateHandler);
       setDisplayForm(false)
       setIsFirstVideoPlayed(false);
       setFirstInteractive(true);
