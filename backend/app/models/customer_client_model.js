@@ -21,11 +21,11 @@ module.exports = (sequelizedb, Sequelize) => {
         },
         cus_client_designation : {
             type: Sequelize.STRING(100),
-            allowNull:false,
+            allowNull:true,
         },
         cus_client_address : {
             type: Sequelize.STRING,
-            allowNull:false, 
+            allowNull:true, 
         },
         cus_client_created_date: {
             type: Sequelize.STRING,
