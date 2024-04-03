@@ -86,11 +86,11 @@ function InsurancePolicy({ getChildPlan }) {
                       Child
                     </h1>
                   </div>
-                  <div className="-mr-16  -rotate-12 hidden lg:block">
+                  <div className="lg:-mr-16  -rotate-12  lg:block ">
                     <img
                       src={'/assets/hdfc/image/arrow.png'}
                       alt=""
-                      className="w-[30px] lg:w-[65px]  mt-2 arrow animate-arrow"
+                      className="w-[15px] md:w-[26px]  lg:w-[65px]  mt-2 arrow animate-arrow"
                     />
                   </div>
                 </div>

@@ -30,10 +30,19 @@ export const clientsApiSlice = apiSlice.injectEndpoints({
                 method: 'GET',
             }),
             providesTags: ['Client'],
-        })
+        }),
+        addUserCampaignLink: builder.mutation({
+            query: (data) => ({
+              url: '/api/hdfc/addUserCampaignLink',
+              method: 'POST',
+              body: { ...data },
+            }),
+            invalidatesTags: ['Client'],
+          }),
     }),
 });
 
 export const {
     useClientsQuery,
+    useAddUserCampaignLinkMutation,
 } = clientsApiSlice;

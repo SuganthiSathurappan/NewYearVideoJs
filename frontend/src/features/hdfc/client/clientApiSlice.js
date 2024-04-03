@@ -11,9 +11,19 @@ export const clientApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Client'],
       // keepUnusedDataFor: 5,
     }),
+    addUser: builder.mutation({
+      query: (data) => ({
+        url: '/api/hdfc/addUser',
+        method: 'POST',
+        body: { ...data },
+      }),
+      invalidatesTags: ['Client'],
+    }),
+    
   }),
 });
 
 export const {
   useClientQuery,
-} = clientApiSlice;
+  useAddUserMutation,
+  } = clientApiSlice;

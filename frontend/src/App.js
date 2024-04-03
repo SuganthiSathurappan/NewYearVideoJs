@@ -22,7 +22,7 @@ import HdfcInteractiveMobile from "./mobileComponent/Hdfc/hdfcInteractiveMobile"
 // HDFC Recent Responsive Video js
 import MainFormPageVideojs from "./HdfcVideoJs/mainFormPage";
 import MainVideojsApp from "./HdfcVideoJs/mainAppVideojs";
-import MainVideoJsPLayer from "./HdfcVideoJs/mainVideoJs"
+import UserCampaignRegister from "./HdfcVideoJs/UserCampaign";
 
 import Texttospeech from "../src/components/TextToSpeechComponent"
 
@@ -41,6 +41,7 @@ function App() {
           <Route path="/NewYear-Persionalization/:name" element={<Persionalization />} />
 
           {/* HDFC Routes */}
+          <Route path="/hdfc/campaign" element={<UserCampaignRegister />} />
           <Route path="/mainFormPageVideojs" element={<MainFormPageVideojs />} />
           <Route path="/hdfc/:id" element={<MainFormPageVideojs />} />
           <Route path="/hdfc-player/:name" element={<MainVideojsApp />} />
